@@ -3,11 +3,7 @@
  */
 package Programacion4;
 
-public class Library {
-    public boolean someLibraryMethod() {
-        return true;
-    }
-
+public class App {
     public static void main(String[] args) {
         
     }
