@@ -1,5 +1,7 @@
 package binarySearchTree;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -63,5 +65,78 @@ public class BinarySearchTreeTest {
         BinarySearchTree<Person> tree2 = new BinarySearchTree<Person>(john);
 
         assertTrue(tree.equals(tree2));
+    }
+
+    @Test
+    public void search_String_ValidSearchValue() {
+        BinarySearchTree<String> tree = new BinarySearchTree<String>();
+        tree.insert("John");
+        tree.insert("Brandon");
+        tree.insert("Pedro");
+        tree.insert("Carlos");
+
+        
+        Node<String> actual = tree.search("Brandon");
+        Node<String> expected = new Node<>("Brandon");
+        assertEquals(expected.getData(), actual.getData());
+    }
+
+    @Test
+    public void search_String_InvalidSearchValue() {
+        BinarySearchTree<String> tree = new BinarySearchTree<String>();
+        tree.insert("John");
+        tree.insert("Brandon");
+        tree.insert("Pedro");
+        tree.insert("Carlos");
+
+        assertThrows(IllegalArgumentException.class, () -> tree.search("Roman"));
+    }
+
+    @Test
+    public void search_Integer_ValidSearchValue() {
+        BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();
+        tree.insert(1);
+        tree.insert(2);
+        tree.insert(3);
+        tree.insert(-2);
+
+        Node<Integer> actual = tree.search(-2);
+        Node<Integer> expected = new Node<>(-2);
+        assertEquals(expected.getData(), actual.getData());
+    }
+
+    @Test
+    public void search_Integer_InvalidSearchValue() {
+        BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();
+        tree.insert(1);
+        tree.insert(2);
+        tree.insert(3);
+        tree.insert(-2);
+
+        assertThrows(IllegalArgumentException.class, () -> tree.search(4));
+    }
+
+    @Test
+    public void search_Person_ValidSearchValue() {
+        BinarySearchTree<Person> tree = new BinarySearchTree<Person>();
+        tree.insert(new Person("John", "2010-05-01", "123456789"));
+        tree.insert(new Person("Brandon", "2010-05-01", "123456788"));
+        tree.insert(new Person("Pedro", "2011-05-01", "123456787"));
+        tree.insert(new Person("Carlos", "2009-05-01", "123456786"));
+
+        Node<Person> actual = tree.search(new Person("Carlos", "2009-05-01", "123456786"));
+        Node<Person> expected = new Node<>(new Person("Carlos", "2009-05-01", "123456786"));
+        assertEquals(expected.getData(), actual.getData());
+    }
+
+    @Test
+    public void search_Person_InvalidSearchValue() {
+        BinarySearchTree<Person> tree = new BinarySearchTree<Person>();
+        tree.insert(new Person("John", "2010-05-01", "123456789"));
+        tree.insert(new Person("Brandon", "2010-05-01", "123456788"));
+        tree.insert(new Person("Pedro", "2011-05-01", "123456787"));
+        tree.insert(new Person("Carlos", "2009-05-01", "123456786"));
+
+        assertThrows(IllegalArgumentException.class, () -> tree.search(new Person("Roman", "2010-05-01", "123456789")));
     }
 }
