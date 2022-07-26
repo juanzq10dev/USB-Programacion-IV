@@ -3,8 +3,8 @@ package binarySearchTree;
 import java.util.Objects;
 
 public class Node<T> {
-    private T data; 
-    private Node<T> parentNode; 
+    private T data;
+    private Node<T> parentNode;
     private Node<T> leftNode;
     private Node<T> rightNode;
 
@@ -36,7 +36,7 @@ public class Node<T> {
         if (leftNode != null) {
             leftNode.setParentNode(this);
         }
-        
+
         this.leftNode = leftNode;
     }
 
@@ -51,13 +51,28 @@ public class Node<T> {
         this.rightNode = rightNode;
     }
 
+    public boolean isComplete() {
+        if (this.leftNode == null || this.rightNode == null) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean isLeafNode() {
+        return (this.leftNode == null && this.rightNode == null);
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         Node<?> node = (Node<?>) o;
 
-        boolean isEqual = Objects.equals(data, node.data) && Objects.equals(leftNode, node.leftNode) && Objects.equals(rightNode, node.rightNode);
+        boolean isEqual = Objects.equals(data, node.data) && Objects.equals(leftNode, node.leftNode)
+                && Objects.equals(rightNode, node.rightNode);
         if (parentNode != null) {
             isEqual = isEqual && Objects.equals(parentNode.data, node.parentNode.data);
         }
