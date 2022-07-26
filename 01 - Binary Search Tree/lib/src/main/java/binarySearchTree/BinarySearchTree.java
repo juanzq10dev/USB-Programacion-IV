@@ -70,6 +70,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
             System.out.println(" \\");
         } 
 
+        System.out.println("");
         printSpaces(space);
         System.out.println(node.getData());
 
