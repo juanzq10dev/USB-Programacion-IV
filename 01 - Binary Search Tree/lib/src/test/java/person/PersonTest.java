@@ -4,8 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import person.Person;
-
 public class PersonTest {
     @Test
     public void compareTo_DifferentDateBirthday_Negative1() {

@@ -56,7 +56,12 @@ public class Node<T> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Node<?> node = (Node<?>) o;
-        return Objects.equals(data, node.data) && Objects.equals(leftNode, node.leftNode) && Objects.equals(rightNode, node.rightNode);
+
+        boolean isEqual = Objects.equals(data, node.data) && Objects.equals(leftNode, node.leftNode) && Objects.equals(rightNode, node.rightNode);
+        if (parentNode != null) {
+            isEqual = isEqual && Objects.equals(parentNode.data, node.parentNode.data);
+        }
+        return isEqual;
     }
 
     @Override
