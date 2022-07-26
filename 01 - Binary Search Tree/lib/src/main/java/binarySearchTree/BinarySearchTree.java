@@ -62,7 +62,6 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
 
         space += 10;
-    
         printRecursive(node.getRightNode(), space, true);
 
         if (right == false && node.getParentNode() != null) {
@@ -86,6 +85,44 @@ public class BinarySearchTree<T extends Comparable<T>> {
         for (int i = 10; i < spaces; i++) {
             System.out.print(" ");
         }
+    }
+
+    public void delete(T data) {
+        this.rootNode = deleteRecursive(this.rootNode, data);
+    }
+
+    private Node<T> deleteRecursive(Node<T> root, T data) {
+        if (root == null) {
+            throw new IllegalArgumentException("Node not found");
+        }
+
+        if (data.compareTo(root.getData()) < 0) {
+            root.setLeftNode(deleteRecursive(root.getLeftNode(), data));
+        } else if (data.compareTo(root.getData()) > 0) {
+            root.setRightNode(deleteRecursive(root.getRightNode(), data));
+        } else {
+            if (root.getLeftNode() == null) {
+                return root.getRightNode();
+            } else if (root.getRightNode() == null) {
+                return root.getLeftNode();
+            }
+
+            root.setData(getMin(root.getRightNode()));
+            root.setRightNode(deleteRecursive(root.getRightNode(), root.getData()));
+        }
+        return root;
+    }
+
+    private T getMin(Node<T> node) {
+        if (node == null) {
+            throw new IllegalArgumentException("Node not found");
+        }
+
+        while (node.getLeftNode() != null) {
+            node = node.getLeftNode();
+        }
+
+        return node.getData();
     }
 
     @Override

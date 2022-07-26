@@ -35,8 +35,9 @@ public class Node<T> {
     public void setLeftNode(Node<T> leftNode) {
         if (leftNode != null) {
             leftNode.setParentNode(this);
-            this.leftNode = leftNode;
         }
+        
+        this.leftNode = leftNode;
     }
 
     public Node<T> getRightNode() {
@@ -46,8 +47,8 @@ public class Node<T> {
     public void setRightNode(Node<T> rightNode) {
         if (rightNode != null) {
             rightNode.setParentNode(this);
-            this.rightNode = rightNode;
         }
+        this.rightNode = rightNode;
     }
 
     @Override
