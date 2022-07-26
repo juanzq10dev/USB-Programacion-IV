@@ -1,10 +1,12 @@
 package binarySearchTree;
 
+import java.util.LinkedList;
 import java.util.Objects;
+import java.util.Queue;
 
 public class BinarySearchTree<T extends Comparable<T>> {
     private Node<T> rootNode;
-    private int oCount; 
+    private int oCount;
     private int totalElements;
 
     public BinarySearchTree() {
@@ -29,7 +31,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         this.oCount++;
         if (data.compareTo(rootNode.getData()) < 0) {
             rootNode.setLeftNode(insertRecursive(rootNode.getLeftNode(), data));
-        } else if(data.compareTo(rootNode.getData()) > 0) {
+        } else if (data.compareTo(rootNode.getData()) > 0) {
             rootNode.setRightNode(insertRecursive(rootNode.getRightNode(), data));
         }
 
@@ -47,7 +49,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
         if (node.getData().compareTo(data) == 0) {
             return node;
-        } 
+        }
 
         this.oCount++;
         if (data.compareTo(node.getData()) < 0) {
@@ -73,7 +75,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         if (right == false && node.getParentNode() != null) {
             printSpaces(space - 3);
             System.out.println(" \\");
-        } 
+        }
 
         System.out.println("");
         printSpaces(space);
@@ -82,8 +84,8 @@ public class BinarySearchTree<T extends Comparable<T>> {
         if (right == true && node.getParentNode() != null) {
             printSpaces(space - 3);
             System.out.println(" /");
-        } 
-        
+        }
+
         printRecursive(node.getLeftNode(), space, false);
     }
 
@@ -141,7 +143,8 @@ public class BinarySearchTree<T extends Comparable<T>> {
     }
 
     public void printOCount(Runnable runnable) {
-        System.out.println("The tree has " + this.totalElements + " elements" + ", the Big O is: O(" + oCount(runnable) + ")");
+        System.out.println(
+                "The tree has " + this.totalElements + " elements" + ", the Big O is: O(" + oCount(runnable) + ")");
     }
 
     public int getTotalElements() {
@@ -149,28 +152,53 @@ public class BinarySearchTree<T extends Comparable<T>> {
     }
 
     public int getHeight() {
-        return getHeightRecursive(this.rootNode, 1);
+        return getHeightRecursive(this.rootNode);
     }
 
     public int getHeightFrom(Node<T> node) {
-        return getHeightRecursive(node, 1);
+        return getHeightRecursive(node);
     }
 
-    private int getHeightRecursive(Node<T> node, int level) {
-        if (node == null) {
-            return level;
+    private int getHeightRecursive(Node<T> node) {
+        if (node == null) { 
+            return 0;
         }
 
-        int heightSubtreeLeft = getHeightRecursive(node.getLeftNode(), level++);
-        int heightSubtreeRight = getHeightRecursive(node.getRightNode(), level++);
+        int heightSubtreeLeft = getHeightRecursive(node.getLeftNode()); 
+        int heightSubtreeRight = getHeightRecursive(node.getRightNode()); 
+        return 1 + Math.max(heightSubtreeLeft, heightSubtreeRight); 
+    }
 
-        return Math.max(heightSubtreeLeft, heightSubtreeRight);
+    public int countLeafNodes() {
+        Queue<Node<T>> queue = new LinkedList<Node<T>>();
+        queue.add(this.rootNode);
+        int totalLeafNodes = 0;
+
+        while (!queue.isEmpty()) {
+            Node<T> node = queue.remove();
+            if (node != null) {
+                if (node.isLeafNode()) {
+                    totalLeafNodes++;
+                }
+                queue.add(node.getLeftNode());
+                queue.add(node.getRightNode());
+
+            }
+        }
+
+        return totalLeafNodes;
+    }
+
+    public int countInternalNodes() {
+        return getTotalElements() - countLeafNodes();
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         BinarySearchTree<?> that = (BinarySearchTree<?>) o;
         return Objects.equals(rootNode, that.rootNode);
     }

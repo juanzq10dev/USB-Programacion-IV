@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-public class BinarySearchControllerTest {
+public class BinarySearchTreeTypeTest {
     @Test
     public void isFull_FullBinaryTree_True() {
         BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();

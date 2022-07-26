@@ -346,4 +346,58 @@ public class BinarySearchTreeTest {
         int expected = 4;
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void countLeafNodes_AddingThreeElements_Two() {
+        BinarySearchTree<String> tree = new BinarySearchTree<String>();
+        tree.insert("John");
+        tree.insert("Brandon");
+        tree.insert("Pedro");
+
+        int actual = tree.countLeafNodes();
+        int expected = 2;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void countLeafNodes_AddingThreeLeafNodes_Three() {
+        BinarySearchTree<String> tree = new BinarySearchTree<String>();
+        tree.insert("John");
+        tree.insert("Brandon");
+        tree.insert("Pedro");
+        tree.insert("Carlos");
+        tree.insert("Maria");
+        tree.insert("Vanessa");
+
+        int actual = tree.countLeafNodes();
+        int expected = 3;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void countInternalNodes_AddingThreeInternalNodes_Three() {
+        BinarySearchTree<String> tree = new BinarySearchTree<String>();
+        tree.insert("John");
+        tree.insert("Brandon");
+        tree.insert("Pedro");
+        tree.insert("Carlos");
+        tree.insert("Maria");
+        tree.insert("Vanessa");
+
+        int actual = tree.countInternalNodes();
+        int expected = 3;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void countLeafNodes_AddingThreeElements_One() {
+        BinarySearchTree<String> tree = new BinarySearchTree<String>();
+        tree.insert("John");
+        tree.insert("Brandon");
+        tree.insert("Pedro");
+
+        int actual = tree.countInternalNodes();
+        int expected = 1;
+        assertEquals(expected, actual);
+    }
 }
