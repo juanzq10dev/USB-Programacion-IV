@@ -15,7 +15,7 @@ public class BinarySearchControllerTest {
         tree.insert(2);
         tree.insert(6);
 
-        assertTrue(BinarySearchController.isFull(tree));
+        assertTrue(BinarySearchTreeType.isFull(tree));
     }
 
     @Test
@@ -26,7 +26,7 @@ public class BinarySearchControllerTest {
         tree.insert(5);
         tree.insert(2);
 
-        assertFalse(BinarySearchController.isFull(tree));
+        assertFalse(BinarySearchTreeType.isFull(tree));
     }
 
     @Test
@@ -37,7 +37,7 @@ public class BinarySearchControllerTest {
         tree.insert(-2);
         tree.insert(-4);
 
-        assertTrue(BinarySearchController.isPathologic(tree));
+        assertTrue(BinarySearchTreeType.isPathologic(tree));
     }
 
     @Test
@@ -49,7 +49,7 @@ public class BinarySearchControllerTest {
         tree.insert(-4);
         tree.insert(5);
 
-        assertFalse(BinarySearchController.isPathologic(tree));
+        assertFalse(BinarySearchTreeType.isPathologic(tree));
     }
 
     @Test
@@ -63,7 +63,7 @@ public class BinarySearchControllerTest {
         tree.insert(2);
         tree.insert(6);
 
-        assertTrue(BinarySearchController.isComplete(tree));
+        assertTrue(BinarySearchTreeType.isComplete(tree));
     }
 
     @Test
@@ -77,7 +77,7 @@ public class BinarySearchControllerTest {
         tree.insert(4);
         tree.insert(1);
 
-        assertFalse(BinarySearchController.isComplete(tree));
+        assertFalse(BinarySearchTreeType.isComplete(tree));
     }
 
     @Test
@@ -89,7 +89,7 @@ public class BinarySearchControllerTest {
         tree.insert(-1);
         tree.insert(-4);
 
-        assertTrue(BinarySearchController.isComplete(tree));
+        assertTrue(BinarySearchTreeType.isComplete(tree));
     }
 
     @Test
@@ -101,7 +101,7 @@ public class BinarySearchControllerTest {
         tree.insert(2);
         tree.insert(6);
 
-        assertFalse(BinarySearchController.isComplete(tree));
+        assertFalse(BinarySearchTreeType.isComplete(tree));
     } 
     
     @Test
@@ -115,7 +115,7 @@ public class BinarySearchControllerTest {
         tree.insert(2);
         tree.insert(6);
 
-        assertTrue(BinarySearchController.isPerfect(tree));
+        assertTrue(BinarySearchTreeType.isPerfect(tree));
     }
 
     @Test
@@ -126,7 +126,7 @@ public class BinarySearchControllerTest {
         tree.insert(5);
         tree.insert(2);
 
-        assertFalse(BinarySearchController.isPerfect(tree));
+        assertFalse(BinarySearchTreeType.isPerfect(tree));
     }
 
     @Test
@@ -139,6 +139,31 @@ public class BinarySearchControllerTest {
         tree.insert(2);
         tree.insert(6);
 
-        assertFalse(BinarySearchController.isPerfect(tree));
+        assertFalse(BinarySearchTreeType.isPerfect(tree));
+    }
+
+    @Test
+    public void isBalanced_BalancedBinaryTree_True() {
+        BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();
+        tree.insert(1);
+        tree.insert(-1);
+        tree.insert(5);
+        tree.insert(2);
+        tree.insert(6);
+
+        assertTrue(BinarySearchTreeType.isBalanced(tree));
+    }
+
+    @Test
+    public void isBalanced_UnbalancedBinaryTree_False() {
+        BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();
+        tree.insert(1);
+        tree.insert(-1);
+        tree.insert(5);
+        tree.insert(2);
+        tree.insert(6);
+        tree.insert(7);
+
+        assertFalse(BinarySearchTreeType.isBalanced(tree));
     }
 }

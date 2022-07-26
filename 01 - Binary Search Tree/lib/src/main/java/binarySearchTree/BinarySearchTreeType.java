@@ -3,7 +3,7 @@ package binarySearchTree;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class BinarySearchController {
+public class BinarySearchTreeType {
     public static boolean isFull(BinarySearchTree tree) {
         Node root = tree.getRootNode();
         Queue<Node> queue = new LinkedList<>();
@@ -108,5 +108,13 @@ public class BinarySearchController {
             }
         }
         return true;
+    }
+
+    public static boolean isBalanced(BinarySearchTree binarySearchTree) {
+        Node root = binarySearchTree.getRootNode();
+        int leftHeight = binarySearchTree.getHeightFrom(root.getLeftNode());
+        int rightHeight = binarySearchTree.getHeightFrom(root.getRightNode());
+
+        return Math.abs(leftHeight - rightHeight) <= 1;
     }
 }

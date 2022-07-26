@@ -148,6 +148,25 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return totalElements;
     }
 
+    public int getHeight() {
+        return getHeightRecursive(this.rootNode, 1);
+    }
+
+    public int getHeightFrom(Node<T> node) {
+        return getHeightRecursive(node, 1);
+    }
+
+    private int getHeightRecursive(Node<T> node, int level) {
+        if (node == null) {
+            return level;
+        }
+
+        int heightSubtreeLeft = getHeightRecursive(node.getLeftNode(), level++);
+        int heightSubtreeRight = getHeightRecursive(node.getRightNode(), level++);
+
+        return Math.max(heightSubtreeLeft, heightSubtreeRight);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
