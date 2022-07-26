@@ -28,4 +28,27 @@ public class BinarySearchControllerTest {
 
         assertFalse(BinarySearchController.isFull(tree));
     }
+
+    @Test
+    public void isPathologic_PathologicTree_True() {
+        BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();
+        tree.insert(1);
+        tree.insert(-1);
+        tree.insert(-2);
+        tree.insert(-4);
+
+        assertTrue(BinarySearchController.isPathologic(tree));
+    }
+
+    @Test
+    public void isPathologic_NonPathologicTree_False() {
+        BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();
+        tree.insert(1);
+        tree.insert(-1);
+        tree.insert(2);
+        tree.insert(-4);
+        tree.insert(5);
+
+        assertFalse(BinarySearchController.isPathologic(tree));
+    }
 }
