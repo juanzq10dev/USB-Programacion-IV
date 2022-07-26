@@ -51,16 +51,16 @@ public class Node<T> {
         this.rightNode = rightNode;
     }
 
-    public boolean isComplete() {
-        if (this.leftNode == null || this.rightNode == null) {
-            return false;
-        }
-
-        return true;
-    }
-
     public boolean isLeafNode() {
         return (this.leftNode == null && this.rightNode == null);
+    }
+
+    public boolean hasOneChildren() {
+        return (this.leftNode != null && this.rightNode == null) || (this.leftNode == null && this.rightNode != null);
+    }
+
+    public boolean hasTwoChildren() {
+        return this.leftNode != null && this.rightNode != null;
     }
 
     @Override

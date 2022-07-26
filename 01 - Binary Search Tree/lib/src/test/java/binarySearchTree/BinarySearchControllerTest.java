@@ -102,5 +102,43 @@ public class BinarySearchControllerTest {
         tree.insert(6);
 
         assertFalse(BinarySearchController.isComplete(tree));
-    }   
+    } 
+    
+    @Test
+    public void isPerfect_PerfectBinaryTree_True() {
+        BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();
+        tree.insert(1);
+        tree.insert(-5);
+        tree.insert(-6);
+        tree.insert(-3);
+        tree.insert(5);
+        tree.insert(2);
+        tree.insert(6);
+
+        assertTrue(BinarySearchController.isPerfect(tree));
+    }
+
+    @Test
+    public void isPerfect_NonPerfectBinaryTree_False() {
+        BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();
+        tree.insert(1);
+        tree.insert(-1);
+        tree.insert(5);
+        tree.insert(2);
+
+        assertFalse(BinarySearchController.isPerfect(tree));
+    }
+
+    @Test
+    public void isPerfect_OneChildAtLastLevel_False() {
+        BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();
+        tree.insert(1);
+        tree.insert(-5);
+        tree.insert(-3);
+        tree.insert(5);
+        tree.insert(2);
+        tree.insert(6);
+
+        assertFalse(BinarySearchController.isPerfect(tree));
+    }
 }

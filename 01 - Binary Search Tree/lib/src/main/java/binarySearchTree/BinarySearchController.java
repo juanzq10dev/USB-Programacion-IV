@@ -66,7 +66,7 @@ public class BinarySearchController {
                     return false;
                 }
 
-                if (!node.isComplete()) {
+                if (!node.hasTwoChildren()) {
                     nonCompleteNodeFound = true;
                 }
 
@@ -75,7 +75,38 @@ public class BinarySearchController {
             }
 
         }
+        return true;
+    }
 
+    public static boolean isPerfect(BinarySearchTree binarySearchTree) {
+        Node root = binarySearchTree.getRootNode();
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        boolean leafNodeFound = false;
+
+        while (!queue.isEmpty()) {
+            Node node = queue.poll();
+
+            if (node != null) {
+                if (node.getLeftNode() != null && node.getRightNode() != null) {
+                    if (leafNodeFound) {
+                        return false;
+                    } else {
+                        queue.add(node.getLeftNode());
+                        queue.add(node.getRightNode());
+                    }
+                }
+
+                if (node.isLeafNode()) {
+                    leafNodeFound = true;
+                }
+
+                if (node.hasOneChildren()) {
+                    return false;
+                }
+
+            }
+        }
         return true;
     }
 }
