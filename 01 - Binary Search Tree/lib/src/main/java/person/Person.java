@@ -1,4 +1,4 @@
-package binarySearchTree;
+package person;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -38,6 +38,6 @@ public class Person implements Comparable<Person> {
 
     @Override
     public String toString() {
-        return "{" + "name=" + name + ", birthday=" + birthday + ", CI=" + CI + '}';
+        return "{" + name + ", " + birthday + ", " + CI + '}';
     }    
 }

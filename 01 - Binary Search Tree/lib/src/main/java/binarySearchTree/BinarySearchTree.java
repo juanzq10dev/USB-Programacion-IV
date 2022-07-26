@@ -36,7 +36,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return searchRecursive(this.rootNode, data);
     }
 
-    public Node<T> searchRecursive(Node<T> node, T data) {
+    private Node<T> searchRecursive(Node<T> node, T data) {
         if (node == null) {
             throw new IllegalArgumentException("Node not found");
         }
@@ -49,6 +49,41 @@ public class BinarySearchTree<T extends Comparable<T>> {
             return searchRecursive(node.getLeftNode(), data);
         } else {
             return searchRecursive(node.getRightNode(), data);
+        }
+    }
+
+    public void print() {
+        printRecursive(this.rootNode, 0, true);
+    }
+
+    private void printRecursive(Node<T> node, int space, boolean right) {
+        if (node == null) {
+            return;
+        }
+
+        space += 10;
+    
+        printRecursive(node.getRightNode(), space, true);
+
+        if (right == false && node.getParentNode() != null) {
+            printSpaces(space - 3);
+            System.out.println(" \\");
+        } 
+
+        printSpaces(space);
+        System.out.println(node.getData());
+
+        if (right == true && node.getParentNode() != null) {
+            printSpaces(space - 3);
+            System.out.println(" /");
+        } 
+        
+        printRecursive(node.getLeftNode(), space, false);
+    }
+
+    private void printSpaces(int spaces) {
+        for (int i = 10; i < spaces; i++) {
+            System.out.print(" ");
         }
     }
 

@@ -1,8 +1,10 @@
-package binarySearchTree;
+package person;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
+
+import person.Person;
 
 public class PersonTest {
     @Test

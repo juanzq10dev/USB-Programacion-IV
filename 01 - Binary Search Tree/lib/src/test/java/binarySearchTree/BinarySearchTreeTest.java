@@ -6,6 +6,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import person.Person;
+
 public class BinarySearchTreeTest {
     @Test
     public void insert_String_True() {
@@ -138,5 +140,20 @@ public class BinarySearchTreeTest {
         tree.insert(new Person("Carlos", "2009-05-01", "123456786"));
 
         assertThrows(IllegalArgumentException.class, () -> tree.search(new Person("Roman", "2010-05-01", "123456789")));
+    }
+
+    @Test
+    public void print_String_ValidTree() {
+        BinarySearchTree<String> tree = new BinarySearchTree<String>();
+        tree.insert("John");
+        tree.insert("Brandon");
+        tree.insert("Pedro");
+        tree.insert("Carlos");
+        tree.insert("Roman");
+        tree.insert("Romario");
+        tree.insert("Roma");
+        tree.insert("Brald");
+        
+        tree.print();
     }
 }
