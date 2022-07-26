@@ -4,7 +4,8 @@ import java.util.Objects;
 
 public class BinarySearchTree<T extends Comparable<T>> {
     private Node<T> rootNode;
-    private int oCount; // times a recursive method was called
+    private int oCount; 
+    private int totalElements;
 
     public BinarySearchTree() {
         this.rootNode = null;
@@ -21,6 +22,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
     private Node<T> insertRecursive(Node<T> rootNode, T data) {
         if (rootNode == null) {
             rootNode = new Node<T>(data);
+            this.totalElements++;
             return rootNode;
         }
 
@@ -107,8 +109,10 @@ public class BinarySearchTree<T extends Comparable<T>> {
             root.setRightNode(deleteRecursive(root.getRightNode(), data));
         } else {
             if (root.getLeftNode() == null) {
+                this.totalElements--;
                 return root.getRightNode();
             } else if (root.getRightNode() == null) {
+                this.totalElements--;
                 return root.getLeftNode();
             }
 
@@ -134,6 +138,14 @@ public class BinarySearchTree<T extends Comparable<T>> {
         this.oCount = 0;
         runnable.run();
         return this.oCount;
+    }
+
+    public void printOCount(Runnable runnable) {
+        System.out.println("The tree has " + this.totalElements + " elements" + ", the Big O is: O(" + oCount(runnable) + ")");
+    }
+
+    public int getTotalElements() {
+        return totalElements;
     }
 
     @Override

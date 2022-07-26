@@ -304,4 +304,46 @@ public class BinarySearchTreeTest {
         int expected = 3;
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void totalElements_AddingThreeElements_Three() {
+        BinarySearchTree<String> tree = new BinarySearchTree<String>();
+        tree.insert("John");
+        tree.insert("Brandon");
+        tree.insert("Pedro");
+
+        int actual = tree.getTotalElements();
+        int expected = 3;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void totalElements_DeletingOneElement_Four() {
+        BinarySearchTree<String> tree = new BinarySearchTree<String>();
+        tree.insert("John");
+        tree.insert("Brandon");
+        tree.insert("Pedro");
+        tree.insert("Carlos");
+        tree.insert("Maria");
+        tree.delete("Maria");
+
+        int actual = tree.getTotalElements();
+        int expected = 4;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void totalElements_DeletingElementWithTwoChild_Four() {
+        BinarySearchTree<String> tree = new BinarySearchTree<String>();
+        tree.insert("John");
+        tree.insert("Brandon");
+        tree.insert("Pedro");
+        tree.insert("Carlos");
+        tree.insert("Maria");
+        tree.delete("John");
+
+        int actual = tree.getTotalElements();
+        int expected = 4;
+        assertEquals(expected, actual);
+    }
 }
