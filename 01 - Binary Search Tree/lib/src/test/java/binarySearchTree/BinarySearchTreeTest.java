@@ -248,4 +248,60 @@ public class BinarySearchTreeTest {
 
         assertThrows(IllegalArgumentException.class, () -> tree.delete(new Person("Carlos", "2009-05-01", "123456787")));
     }
+
+    @Test
+    public void oCount_StringSearch_Two() {
+        BinarySearchTree<String> tree = new BinarySearchTree<String>();
+        tree.insert("John");
+        tree.insert("Brandon");
+        tree.insert("Pedro");
+        tree.insert("Carlos");
+
+        int actual = tree.oCount(() -> tree.search("Carlos"));
+        int expected = 2;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void oCount_IntegerInsert_Three() {
+        BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();
+        tree.insert(1);
+        tree.insert(3);
+        tree.insert(2);
+        tree.insert(-2);
+        tree.insert(4);
+        tree.insert(-5);
+        tree.insert(-3);
+        tree.insert(-1);
+
+        int actual = tree.oCount(() -> tree.insert(5));
+        int expected = 3;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void oCount_PrintPerson_Four() {
+        BinarySearchTree<Person> tree = new BinarySearchTree<Person>();
+        tree.insert(new Person("John", "2010-05-01", "123456789"));
+        tree.insert(new Person("Brandon", "2010-05-01", "123456788"));
+        tree.insert(new Person("Pedro", "2011-05-01", "123456787"));
+        tree.insert(new Person("Carlos", "2009-05-01", "123456786"));
+
+        int actual = tree.oCount(() -> tree.print());
+        int expected = 4;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void oCount_DeleteString_Three() {
+        BinarySearchTree<String> tree = new BinarySearchTree<String>();
+        tree.insert("John");
+        tree.insert("Brandon");
+        tree.insert("Pedro");
+        tree.insert("Carlos");
+
+        int actual = tree.oCount(() -> tree.delete("Carlos"));
+        int expected = 3;
+        assertEquals(expected, actual);
+    }
 }
