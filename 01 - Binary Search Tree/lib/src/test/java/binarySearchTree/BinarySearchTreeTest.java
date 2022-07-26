@@ -139,7 +139,7 @@ public class BinarySearchTreeTest {
         tree.insert(new Person("Pedro", "2011-05-01", "123456787"));
         tree.insert(new Person("Carlos", "2009-05-01", "123456786"));
 
-        assertThrows(IllegalArgumentException.class, () -> tree.search(new Person("Roman", "2010-05-01", "123456789")));
+        assertThrows(IllegalArgumentException.class, () -> tree.search(new Person("Roman", "2010-06-01", "123456789")));
     }
 
     @Test

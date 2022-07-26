@@ -41,7 +41,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
             throw new IllegalArgumentException("Node not found");
         }
 
-        if (node == null || node.getData().compareTo(data) == 0) {
+        if (node.getData().compareTo(data) == 0) {
             return node;
         } 
 
