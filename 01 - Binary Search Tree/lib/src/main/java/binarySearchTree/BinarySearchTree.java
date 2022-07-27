@@ -193,6 +193,13 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return getTotalElements() - countLeafNodes();
     }
 
+    public void printBigONotation() {
+        System.out.println("The Big O notation for print is O(n) where n is the number of elements in the tree");
+        System.out.println("The Big O notation for search is O(h) where h is the height of the tree");
+        System.out.println("The Big O notation for insert is O(h) where h is the height of the tree");
+        System.out.println("The Big O notation for delete is O(h) where h is the height of the tree");
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
