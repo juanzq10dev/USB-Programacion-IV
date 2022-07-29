@@ -10,16 +10,16 @@
 | Array List         | Insert    | Integer   | 10000000     | 453                                         | 0.453  | 0.00755  |
 | Binary Search Tree | Insert    | Integer   | 100000000000 | java.lang.OutOfMemoryError: Java heap space | -      | -        |
 | Array List         | Insert    | Integer   | 100000000000 | java.lang.OutOfMemoryError: Java heap space | -      | -        |
-| Binary Search Tree | Search    | Integer   | 1000         |                                             |        |          |
-| Array List         | Search    | Integer   | 1000         |                                             |        |          |
-| Binary Search Tree | Search    | Integer   | 10000        |                                             |        |          |
-| Array List         | Search    | Integer   | 10000        |                                             |        |          |
-| Binary Search Tree | Search    | Integer   | 1000000      |                                             |        |          |
-| Array List         | Search    | Integer   | 1000000      |                                             |        |          |
-| Binary Search Tree | Search    | Integer   | 10000000     |                                             |        |          |
-| Array List         | Search    | Integer   | 10000000     |                                             |        |          |
-| Binary Search Tree | Search    | Integer   | 100000000000 |                                             |        |          |
-| Array List         | Search    | Integer   | 100000000000 |                                             |        |          |
+| Binary Search Tree | Search    | Integer   | 1000         | <1                                          |        |          |
+| Array List         | Search    | Integer   | 1000         | <1                                          |        |          |
+| Binary Search Tree | Search    | Integer   | 10000        | <1                                          |        |          |
+| Array List         | Search    | Integer   | 10000        | 1                                           |        |          |
+| Binary Search Tree | Search    | Integer   | 1000000      | <1                                          |        |          |
+| Array List         | Search    | Integer   | 1000000      | 8                                           |        |          |
+| Binary Search Tree | Search    | Integer   | 10000000     | <1                                          |        |          |
+| Array List         | Search    | Integer   | 10000000     | 22                                          |        |          |
+| Binary Search Tree | Search    | Integer   | 100000000000 | -                                           |        |          |
+| Array List         | Search    | Integer   | 100000000000 | -                                           |        |          |
 |                    |           |           |              |                                             |        |          |
 |                    |           |           |              |                                             |        |          |
 |                    |           |           |              |                                             |        |          |
