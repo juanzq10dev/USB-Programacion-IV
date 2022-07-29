@@ -89,6 +89,29 @@ public class BinarySearchTree<T extends Comparable<T>> {
         printRecursive(node.getLeftNode(), space, false);
     }
 
+    public void printIterativeBFS() {
+        if (this.rootNode == null) {
+            return;
+        }
+
+        Queue<Node<T>> queue = new LinkedList<>();
+        queue.add(this.rootNode);
+
+        while (!queue.isEmpty()) {
+            Node<T> currentNode = queue.remove();
+            System.out.print(currentNode.getData() + " ");
+
+            if (currentNode.getLeftNode() != null) {
+                queue.add(currentNode.getLeftNode());
+            }
+
+            if (currentNode.getRightNode() != null) {
+                queue.add(currentNode.getRightNode());
+            }
+        }
+        System.out.println();
+    }
+
     private void printSpaces(int spaces) {
         for (int i = 10; i < spaces; i++) {
             System.out.print(" ");
