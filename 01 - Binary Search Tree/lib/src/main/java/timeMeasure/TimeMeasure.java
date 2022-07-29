@@ -1,13 +1,11 @@
 package timeMeasure;
 
 public class TimeMeasure {
-    public static long measure(Runnable runnable) throws InterruptedException {
+    public static void measure(Runnable runnable) {
         long initTime = System.currentTimeMillis();
-        Thread thread = new Thread(runnable);
-        thread.start();
-        thread.join();
+        runnable.run();
         long endTime = System.currentTimeMillis();
-        return endTime - initTime;
+        System.out.println(endTime - initTime);
     }
 
     public static long millisToSeconds(long millis) {
