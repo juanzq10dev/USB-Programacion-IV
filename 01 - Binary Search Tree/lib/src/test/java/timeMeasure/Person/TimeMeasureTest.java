@@ -71,8 +71,8 @@ public class TimeMeasureTest {
         BinarySearchTree<Person> tree = new BinarySearchTree<>();
         ArrayList<Person> list = new ArrayList<Person>();
         for (int i = 0; i < quantity - 1; i++) {
-                list.add(new Person("Juan", "2010-06-02", i + ""));
-            
+            list.add(new Person("Juan", "2010-06-02", i + ""));
+
         }
 
         Collections.shuffle(list);
@@ -88,8 +88,8 @@ public class TimeMeasureTest {
         Assume.assumeTrue(operation == Operation.ADD && dataStructure == DataStructure.ARRAY_LIST);
         ArrayList<Person> list = new ArrayList<Person>();
         for (int i = 0; i < quantity - 1; i++) {
-                list.add(new Person("Juan", "2010-06-02", i + ""));
-            
+            list.add(new Person("Juan", "2010-06-02", i + ""));
+
         }
 
         System.out.print("Adding element " + quantity + " to ArrayList: ");
@@ -104,8 +104,8 @@ public class TimeMeasureTest {
         BinarySearchTree<Person> tree = new BinarySearchTree<>();
         ArrayList<Person> list = new ArrayList<Person>();
         for (int i = 0; i < quantity - 1; i++) {
-                list.add(new Person("Juan", "2010-06-02", i + ""));
-            
+            list.add(new Person("Juan", "2010-06-02", i + ""));
+
         }
 
         Collections.shuffle(list);
@@ -122,8 +122,8 @@ public class TimeMeasureTest {
         Assume.assumeTrue(operation == Operation.SEARCH && dataStructure == DataStructure.ARRAY_LIST);
         ArrayList<Person> list = new ArrayList<Person>();
         for (int i = 0; i < quantity; i++) {
-                list.add(new Person("Juan", "2010-06-02", i + ""));
-            
+            list.add(new Person("Juan", "2010-06-02", i + ""));
+
         }
 
         System.out.print("Searching element " + quantity + " in ArrayList: ");
@@ -138,8 +138,8 @@ public class TimeMeasureTest {
         BinarySearchTree<Person> tree = new BinarySearchTree<>();
         ArrayList<Person> list = new ArrayList<Person>();
         for (int i = 0; i < quantity - 1; i++) {
-                list.add(new Person("Juan", "2010-06-02", i + ""));
-            
+            list.add(new Person("Juan", "2010-06-02", i + ""));
+
         }
 
         Collections.shuffle(list);
@@ -156,8 +156,8 @@ public class TimeMeasureTest {
         Assume.assumeTrue(operation == Operation.DELETE && dataStructure == DataStructure.ARRAY_LIST);
         ArrayList<Person> list = new ArrayList<Person>();
         for (int i = 0; i < quantity; i++) {
-                list.add(new Person("Juan", "2010-06-02", i + ""));
-            
+            list.add(new Person("Juan", "2010-06-02", i + ""));
+
         }
 
         list.add(new Person("Juan", "2010-06-02", quantity + ""));
@@ -166,4 +166,6 @@ public class TimeMeasureTest {
             list.remove(new Person("Juan", "2010-06-02", quantity + ""));
         });
     }
+
+    
 }

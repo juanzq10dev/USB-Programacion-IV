@@ -70,8 +70,8 @@ public class TimeMeasureTest {
         BinarySearchTree<String> tree = new BinarySearchTree<>();
         ArrayList<String> list = new ArrayList<String>();
         for (int i = 0; i < quantity - 1; i++) {
-                list.add((char)i + "");
-            
+            list.add((char) i + "");
+
         }
 
         Collections.shuffle(list);
@@ -87,8 +87,8 @@ public class TimeMeasureTest {
         Assume.assumeTrue(operation == Operation.ADD && dataStructure == DataStructure.ARRAY_LIST);
         ArrayList<String> list = new ArrayList<String>();
         for (int i = 0; i < quantity - 1; i++) {
-                list.add((char)i + "");
-            
+            list.add((char) i + "");
+
         }
 
         System.out.print("Adding element " + quantity + " to ArrayList: ");
@@ -103,8 +103,8 @@ public class TimeMeasureTest {
         BinarySearchTree<String> tree = new BinarySearchTree<>();
         ArrayList<String> list = new ArrayList<String>();
         for (int i = 0; i < quantity - 1; i++) {
-                list.add((char)i + "");
-            
+            list.add((char) i + "");
+
         }
 
         Collections.shuffle(list);
@@ -121,8 +121,8 @@ public class TimeMeasureTest {
         Assume.assumeTrue(operation == Operation.SEARCH && dataStructure == DataStructure.ARRAY_LIST);
         ArrayList<String> list = new ArrayList<String>();
         for (int i = 0; i < quantity; i++) {
-                list.add((char)i + "");
-            
+            list.add((char) i + "");
+
         }
 
         System.out.print("Searching element " + quantity + " in ArrayList: ");
@@ -137,8 +137,8 @@ public class TimeMeasureTest {
         BinarySearchTree<String> tree = new BinarySearchTree<>();
         ArrayList<String> list = new ArrayList<String>();
         for (int i = 0; i < quantity - 1; i++) {
-                list.add((char)i + "");
-            
+            list.add((char) i + "");
+
         }
 
         Collections.shuffle(list);
@@ -155,8 +155,8 @@ public class TimeMeasureTest {
         Assume.assumeTrue(operation == Operation.DELETE && dataStructure == DataStructure.ARRAY_LIST);
         ArrayList<String> list = new ArrayList<String>();
         for (int i = 0; i < quantity; i++) {
-                list.add((char)i + "");
-            
+            list.add((char) i + "");
+
         }
 
         System.out.print("Deleting element " + quantity + " from ArrayList: ");
@@ -164,4 +164,6 @@ public class TimeMeasureTest {
             list.remove((char) quantity + "");
         });
     }
+
+   
 }
