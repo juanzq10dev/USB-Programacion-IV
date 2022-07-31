@@ -1,6 +1,8 @@
 package binarySearchTree;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Queue;
 
@@ -36,6 +38,12 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
 
         return rootNode;
+    }
+
+    public void insert(List<T> data) {
+        for (T d : data) {
+            insert(d);
+        }
     }
 
     public Node<T> search(T data) {

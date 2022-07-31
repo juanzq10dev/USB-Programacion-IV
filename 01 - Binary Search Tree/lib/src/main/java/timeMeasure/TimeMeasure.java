@@ -5,7 +5,7 @@ public class TimeMeasure {
         long initTime = System.nanoTime();
         runnable.run();
         long endTime = System.nanoTime();
-        System.out.println(nanoToMillis(endTime - initTime));
+        System.out.println(nanoToMillis(endTime - initTime) + " ms");
     }
 
     private static double nanoToMillis(long nanoTime) {

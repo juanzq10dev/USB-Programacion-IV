@@ -1,276 +1,171 @@
 package timeMeasure;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 
+import org.junit.Assume;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
 import binarySearchTree.BinarySearchTree;
 
+@RunWith(Parameterized.class)
 public class TimeMeasureTest {
-    @Test
-    public void measure_1000IntegerInsert_BinaryTree() {
-        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i < 1000 - 1; i++) {
-            list.add(i);
-        }
+    enum Operation {
+        ADD, PRINT, SEARCH, DELETE
+    }
 
-        Collections.shuffle(list);
-        TimeMeasure.measure(() -> {
-            for (int integer : list) {
-                tree.insert(integer);
-            }
+    enum DataStructure {
+        BINARY_SEARCH_TREE, ARRAY_LIST
+    }
+
+    @Parameters
+    public static Collection<Object[]> data() {
+        return Arrays.asList(new Object[][] {
+                { Operation.ADD, DataStructure.BINARY_SEARCH_TREE, 1000 },
+                { Operation.ADD, DataStructure.ARRAY_LIST, 1000 },
+                { Operation.ADD, DataStructure.BINARY_SEARCH_TREE, 10000 },
+                { Operation.ADD, DataStructure.ARRAY_LIST, 10000 },
+                { Operation.ADD, DataStructure.BINARY_SEARCH_TREE, 1000000 },
+                { Operation.ADD, DataStructure.ARRAY_LIST, 1000000 },
+                { Operation.ADD, DataStructure.BINARY_SEARCH_TREE, 10000000 },
+                { Operation.ADD, DataStructure.ARRAY_LIST, 10000000 },
+                { Operation.SEARCH, DataStructure.BINARY_SEARCH_TREE, 1000 },
+                { Operation.SEARCH, DataStructure.ARRAY_LIST, 1000 },
+                { Operation.SEARCH, DataStructure.BINARY_SEARCH_TREE, 10000 },
+                { Operation.SEARCH, DataStructure.ARRAY_LIST, 10000 },
+                { Operation.SEARCH, DataStructure.BINARY_SEARCH_TREE, 1000000 },
+                { Operation.SEARCH, DataStructure.ARRAY_LIST, 1000000 },
+                { Operation.SEARCH, DataStructure.BINARY_SEARCH_TREE, 10000000 },
+                { Operation.SEARCH, DataStructure.ARRAY_LIST, 10000000 },
+                { Operation.DELETE, DataStructure.BINARY_SEARCH_TREE, 1000 },
+                { Operation.DELETE, DataStructure.ARRAY_LIST, 1000 },
+                { Operation.DELETE, DataStructure.BINARY_SEARCH_TREE, 10000 },
+                { Operation.DELETE, DataStructure.ARRAY_LIST, 10000 },
+                { Operation.DELETE, DataStructure.BINARY_SEARCH_TREE, 1000000 },
+                { Operation.DELETE, DataStructure.ARRAY_LIST, 1000000 },
+                { Operation.DELETE, DataStructure.BINARY_SEARCH_TREE, 10000000 },
+                { Operation.DELETE, DataStructure.ARRAY_LIST, 10000000 },
         });
     }
 
-    @Test
-    public void measure_1000IntegerInsert_ArrayList() {
-        ArrayList<Integer> list = new ArrayList<Integer>();
+    private Operation operation;
+    private DataStructure dataStructure;
+    private int quantity;
 
-        TimeMeasure.measure(() -> {
-            for (int i = 0; i < 1000; i++) {
+    public TimeMeasureTest(Operation operation, DataStructure dataStructure, int quantity) {
+        this.operation = operation;
+        this.dataStructure = dataStructure;
+        this.quantity = quantity;
+    }
+
+    @Test
+    public void measure_IntegerInsert_BinaryTree() {
+        Assume.assumeTrue(operation == Operation.ADD && dataStructure == DataStructure.BINARY_SEARCH_TREE);
+        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        for (int i = 0; i < quantity - 1; i++) {
+            if (i != quantity / 2) {
                 list.add(i);
             }
+        }
+
+        tree.insert(quantity / 2);
+        Collections.shuffle(list);
+        tree.insert(list);
+        System.out.print("Adding element " + quantity + " to BinarySearchTree: ");
+        TimeMeasure.measure(() -> {
+            tree.insert(quantity);
         });
     }
 
     @Test
-    public void measure_10000IntegerInsert_BinaryTree() {
-        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
+    public void measure_IntegerInsert_ArrayList() {
+        Assume.assumeTrue(operation == Operation.ADD && dataStructure == DataStructure.ARRAY_LIST);
         ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < quantity - 1; i++) {
             list.add(i);
         }
 
-        Collections.shuffle(list);
+        System.out.print("Adding element " + quantity + " to ArrayList: ");
         TimeMeasure.measure(() -> {
-            for (int integer : list) {
-                tree.insert(integer);
-            }
+            list.add(quantity);
         });
     }
 
     @Test
-    public void measure_10000IntegerInsert_ArrayList() {
+    public void measure_IntegerSearch_BinaryTree() {
+        Assume.assumeTrue(operation == Operation.SEARCH && dataStructure == DataStructure.BINARY_SEARCH_TREE);
+        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
         ArrayList<Integer> list = new ArrayList<Integer>();
-
-        TimeMeasure.measure(() -> {
-            for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < quantity - 1; i++) {
+            if (i != quantity / 2) {
                 list.add(i);
             }
+        }
+
+        tree.insert(quantity / 2);
+        Collections.shuffle(list);
+        tree.insert(list);
+        tree.insert(quantity);
+
+        System.out.print("Searching element " + quantity + " elements in BinarySearchTree: ");
+        TimeMeasure.measure(() -> {
+            tree.search(quantity);
         });
     }
 
     @Test
-    public void measure_1000000IntegerInsert_BinaryTree() {
-        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
+    public void measure_IntegerSearch_ArrayList() {
+        Assume.assumeTrue(operation == Operation.SEARCH && dataStructure == DataStructure.ARRAY_LIST);
         ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i < 1000000; i++) {
+        for (int i = 0; i < quantity; i++) {
             list.add(i);
         }
 
-        Collections.shuffle(list);
+        System.out.print("Searching element " + quantity + " in ArrayList: ");
         TimeMeasure.measure(() -> {
-            for (int integer : list) {
-                tree.insert(integer);
-            }
+            list.contains(quantity);
         });
     }
 
     @Test
-    public void measure_1000000IntegerInsert_ArrayList() {
+    public void measure_IntegerDelete_BinarySearch() {
+        Assume.assumeTrue(operation == Operation.DELETE && dataStructure == DataStructure.BINARY_SEARCH_TREE);
+        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
         ArrayList<Integer> list = new ArrayList<Integer>();
-
-        TimeMeasure.measure(() -> {
-            for (int i = 0; i < 1000000; i++) {
+        for (int i = 0; i < quantity - 1; i++) {
+            if (i != quantity / 2) {
                 list.add(i);
             }
-        });
-    }
-
-    @Test
-    public void measure_10000000IntegerInsert_BinaryTree() {
-        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i < 10000000; i++) {
-            list.add(i);
         }
 
+        tree.insert(quantity / 2);
         Collections.shuffle(list);
+        tree.insert(list);
+        tree.insert(quantity);
+
+        System.out.print("Deleting element " + quantity + " in BinarySearchTree: ");
         TimeMeasure.measure(() -> {
-            for (int integer : list) {
-                tree.insert(integer);
-            }
+            tree.delete(quantity);
         });
     }
 
     @Test
-    public void measure_10000000IntegerInsert_ArrayList() {
+    public void measure_IntegerDelete_ArrayList() {
+        Assume.assumeTrue(operation == Operation.DELETE && dataStructure == DataStructure.ARRAY_LIST);
         ArrayList<Integer> list = new ArrayList<Integer>();
-
-        TimeMeasure.measure(() -> {
-            for (int i = 0; i < 10000000; i++) {
-                list.add(i);
-            }
-        });
-    }
-
-    @Test
-    public void measure_100000000000IntegerInsert_BinaryTree() {
-        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        BigInteger bigInteger = new BigInteger("100000000000");
-        for (BigInteger i = new BigInteger("0"); i.compareTo(bigInteger) < 0; i = i.add(BigInteger.ONE)) {
-            list.add(i.intValue());
-        }
-
-        Collections.shuffle(list);
-        TimeMeasure.measure(() -> {
-            for (int integer : list) {
-                tree.insert(integer);
-            }
-        });
-    }
-
-    @Test
-    public void measure_100000000000IntegerInsert_ArrayList() {
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        BigInteger bigInteger = new BigInteger("100000000000");
-
-        TimeMeasure.measure(() -> {
-            for (BigInteger i = new BigInteger("0"); i.compareTo(bigInteger) < 0; i = i.add(BigInteger.ONE)) {
-                list.add(i.intValue());
-            }
-        });
-
-    }
-
-    @Test
-    public void measure_1000IntegerSearch_BinaryTree() {
-        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i < 1000 - 1; i++) {
+        for (int i = 0; i < quantity; i++) {
             list.add(i);
         }
 
-        Collections.shuffle(list);
-        for (int integer : list) {
-            tree.insert(integer);
-        }
-        tree.insert(1000);
-
+        System.out.print("Deleting element " + quantity + "  in ArrayList: ");
         TimeMeasure.measure(() -> {
-            tree.search(1000);
-
-        });
-    }
-
-    @Test
-    public void measure_1000IntegerSearch_ArrayList() {
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i < 1000; i++) {
-            list.add(i);
-        }
-
-        TimeMeasure.measure(() -> {
-            list.contains(1000);
-
-        });
-    }
-
-    @Test
-    public void measure_10000IntegerSearch_BinaryTree() {
-        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i < 10000 - 1; i++) {
-            list.add(i);
-        }
-
-        Collections.shuffle(list);
-        for (int integer : list) {
-            tree.insert(integer);
-        }
-        tree.insert(10000);
-
-        TimeMeasure.measure(() -> {
-            tree.search(10000);
-        });
-    }
-
-    @Test
-    public void measure_10000IntegerSearch_ArrayList() {
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i < 10000; i++) {
-            list.add(i);
-        }
-
-        TimeMeasure.measure(() -> {
-            list.contains(10000);
-            
-        });
-    }
-
-    @Test
-    public void measure_1000000IntegerSearch_BinaryTree() {
-        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i < 1000000 - 1; i++) {
-            list.add(i);
-        }
-
-        Collections.shuffle(list);
-        for (int integer : list) {
-            tree.insert(integer);
-        }
-        tree.insert(1000000);
-
-        TimeMeasure.measure(() -> {
-            tree.search(1000000);
-        });
-    }
-
-    @Test
-    public void measure_1000000IntegerSearch_ArrayList() {
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i < 1000000; i++) {
-            list.add(i);
-        }
-
-        TimeMeasure.measure(() -> {
-            list.contains(1000000);
-        });
-    }
-
-    @Test
-    public void measure_10000000IntegerSearch_BinaryTree() {
-        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i < 10000000 - 1; i++) {
-            list.add(i);
-        }
-
-        Collections.shuffle(list);
-        for (int integer : list) {
-            tree.insert(integer);
-        }
-        tree.insert(10000000);
-
-        TimeMeasure.measure(() -> {
-            tree.search(10000000);
-        });
-    }
-
-    @Test
-    public void measure_10000000IntegerSearch_ArrayList() {
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i < 10000000; i++) {
-            list.add(i);
-        }
-
-        TimeMeasure.measure(() -> {
-            list.contains(10000000);
+            list.remove((Object) quantity);
         });
     }
 
@@ -393,4 +288,5 @@ public class TimeMeasureTest {
             System.out.println(list.toString());
         });
     }
+
 }
