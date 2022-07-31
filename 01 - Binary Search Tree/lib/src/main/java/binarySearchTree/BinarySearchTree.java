@@ -1,6 +1,5 @@
 package binarySearchTree;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -8,7 +7,6 @@ import java.util.Queue;
 
 public class BinarySearchTree<T extends Comparable<T>> {
     private Node<T> rootNode;
-    private int oCount;
     private int totalElements;
 
     public BinarySearchTree() {
@@ -30,7 +28,6 @@ public class BinarySearchTree<T extends Comparable<T>> {
             return rootNode;
         }
 
-        this.oCount++;
         if (data.compareTo(rootNode.getData()) < 0) {
             rootNode.setLeftNode(insertRecursive(rootNode.getLeftNode(), data));
         } else if (data.compareTo(rootNode.getData()) > 0) {
@@ -59,7 +56,6 @@ public class BinarySearchTree<T extends Comparable<T>> {
             return node;
         }
 
-        this.oCount++;
         if (data.compareTo(node.getData()) < 0) {
             return searchRecursive(node.getLeftNode(), data);
         } else {
@@ -76,7 +72,6 @@ public class BinarySearchTree<T extends Comparable<T>> {
             return;
         }
 
-        this.oCount++;
         space += 10;
         printRecursive(node.getRightNode(), space, true);
 
@@ -135,7 +130,6 @@ public class BinarySearchTree<T extends Comparable<T>> {
             throw new IllegalArgumentException("Node not found");
         }
 
-        this.oCount++;
         if (data.compareTo(root.getData()) < 0) {
             root.setLeftNode(deleteRecursive(root.getLeftNode(), data));
         } else if (data.compareTo(root.getData()) > 0) {
@@ -165,17 +159,6 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
 
         return node.getData();
-    }
-
-    public int oCount(Runnable runnable) {
-        this.oCount = 0;
-        runnable.run();
-        return this.oCount;
-    }
-
-    public void printOCount(Runnable runnable) {
-        System.out.println(
-                "The tree has " + this.totalElements + " elements" + ", the Big O is: O(" + oCount(runnable) + ")");
     }
 
     public int getTotalElements() {
