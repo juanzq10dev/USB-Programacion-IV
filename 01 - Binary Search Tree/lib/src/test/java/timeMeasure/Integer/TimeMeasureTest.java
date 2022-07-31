@@ -1,4 +1,4 @@
-package timeMeasure;
+package timeMeasure.Integer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,6 +12,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import binarySearchTree.BinarySearchTree;
+import timeMeasure.TimeMeasure;
 
 @RunWith(Parameterized.class)
 public class TimeMeasureTest {
@@ -69,12 +70,10 @@ public class TimeMeasureTest {
         BinarySearchTree<Integer> tree = new BinarySearchTree<>();
         ArrayList<Integer> list = new ArrayList<Integer>();
         for (int i = 0; i < quantity - 1; i++) {
-            if (i != quantity / 2) {
-                list.add(i);
-            }
+            list.add(i);
+
         }
 
-        tree.insert(quantity / 2);
         Collections.shuffle(list);
         tree.insert(list);
         System.out.print("Adding element " + quantity + " to BinarySearchTree: ");
@@ -103,12 +102,10 @@ public class TimeMeasureTest {
         BinarySearchTree<Integer> tree = new BinarySearchTree<>();
         ArrayList<Integer> list = new ArrayList<Integer>();
         for (int i = 0; i < quantity - 1; i++) {
-            if (i != quantity / 2) {
-                list.add(i);
-            }
+            list.add(i);
+
         }
 
-        tree.insert(quantity / 2);
         Collections.shuffle(list);
         tree.insert(list);
         tree.insert(quantity);
@@ -139,12 +136,10 @@ public class TimeMeasureTest {
         BinarySearchTree<Integer> tree = new BinarySearchTree<>();
         ArrayList<Integer> list = new ArrayList<Integer>();
         for (int i = 0; i < quantity - 1; i++) {
-            if (i != quantity / 2) {
-                list.add(i);
-            }
+            list.add(i);
+
         }
 
-        tree.insert(quantity / 2);
         Collections.shuffle(list);
         tree.insert(list);
         tree.insert(quantity);
