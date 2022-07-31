@@ -171,6 +171,7 @@ public class TimeMeasureTest {
 
     @Test
     public void measure_1000IntegerPrint_BinaryTree() {
+        Assume.assumeTrue(operation == Operation.PRINT && dataStructure == DataStructure.BINARY_SEARCH_TREE);
         BinarySearchTree<Integer> tree = new BinarySearchTree<>();
         ArrayList<Integer> list = new ArrayList<Integer>();
         for (int i = 0; i < 1000; i++) {
@@ -189,6 +190,7 @@ public class TimeMeasureTest {
 
     @Test
     public void measure_1000IntegerPrint_ArrayList() {
+        Assume.assumeTrue(operation == Operation.PRINT && dataStructure == DataStructure.ARRAY_LIST);
         ArrayList<Integer> list = new ArrayList<Integer>();
         for (int i = 0; i < 1000; i++) {
             list.add(i);
@@ -201,6 +203,7 @@ public class TimeMeasureTest {
 
     @Test
     public void measure_10000IntegerPrint_BinaryTree() {
+        Assume.assumeTrue(operation == Operation.PRINT && dataStructure == DataStructure.BINARY_SEARCH_TREE);
         BinarySearchTree<Integer> tree = new BinarySearchTree<>();
         ArrayList<Integer> list = new ArrayList<Integer>();
         for (int i = 0; i < 10000; i++) {
@@ -219,6 +222,7 @@ public class TimeMeasureTest {
 
     @Test
     public void measure_10000IntegerPrint_ArrayList() {
+        Assume.assumeTrue(operation == Operation.PRINT && dataStructure == DataStructure.ARRAY_LIST);
         ArrayList<Integer> list = new ArrayList<Integer>();
         for (int i = 0; i < 10000; i++) {
             list.add(i);
@@ -231,6 +235,7 @@ public class TimeMeasureTest {
 
     @Test
     public void measure_1000000IntegerPrint_BinaryTree() {
+        Assume.assumeTrue(operation == Operation.PRINT && dataStructure == DataStructure.BINARY_SEARCH_TREE);
         BinarySearchTree<Integer> tree = new BinarySearchTree<>();
         ArrayList<Integer> list = new ArrayList<Integer>();
         for (int i = 0; i < 1000000; i++) {
@@ -249,6 +254,7 @@ public class TimeMeasureTest {
 
     @Test
     public void measure_1000000IntegerPrint_ArrayList() {
+        Assume.assumeTrue(operation == Operation.PRINT && dataStructure == DataStructure.ARRAY_LIST);
         ArrayList<Integer> list = new ArrayList<Integer>();
         for (int i = 0; i < 1000000; i++) {
             list.add(i);
@@ -261,6 +267,7 @@ public class TimeMeasureTest {
 
     @Test
     public void measure_10000000IntegerPrint_BinaryTree() {
+        Assume.assumeTrue(operation == Operation.PRINT && dataStructure == DataStructure.BINARY_SEARCH_TREE);
         BinarySearchTree<Integer> tree = new BinarySearchTree<>();
         ArrayList<Integer> list = new ArrayList<Integer>();
         for (int i = 0; i < 10000000; i++) {
@@ -279,6 +286,7 @@ public class TimeMeasureTest {
 
     @Test
     public void measure_10000000IntegerPrint_ArrayList() {
+        Assume.assumeTrue(operation == Operation.PRINT && dataStructure == DataStructure.ARRAY_LIST);
         ArrayList<Integer> list = new ArrayList<Integer>();
         for (int i = 0; i < 10000000; i++) {
             list.add(i);
