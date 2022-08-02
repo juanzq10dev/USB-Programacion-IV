@@ -3,7 +3,7 @@ package binarySearchTree;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class BinarySearchTreeType {
+public class BinarySearchTreeType<T> {
     public static boolean isFull(BinarySearchTree tree) {
         Node root = tree.getRootNode();
         Queue<Node> queue = new LinkedList<>();
