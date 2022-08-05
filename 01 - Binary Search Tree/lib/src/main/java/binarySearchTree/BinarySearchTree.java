@@ -64,61 +64,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
     }
 
     public void print() {
-        printRecursive(this.rootNode, 0, true);
-    }
-
-    private void printRecursive(Node<T> node, int space, boolean right) {
-        if (node == null) {
-            return;
-        }
-
-        space += 10;
-        printRecursive(node.getRightNode(), space, true);
-
-        if (right == false && node.getParentNode() != null) {
-            printSpaces(space - 3);
-            System.out.println(" \\");
-        }
-
-        System.out.println("");
-        printSpaces(space);
-        System.out.println(node.getData());
-
-        if (right == true && node.getParentNode() != null) {
-            printSpaces(space - 3);
-            System.out.println(" /");
-        }
-
-        printRecursive(node.getLeftNode(), space, false);
-    }
-
-    public void printIterativeBFS() {
-        if (this.rootNode == null) {
-            return;
-        }
-
-        Queue<Node<T>> queue = new LinkedList<>();
-        queue.add(this.rootNode);
-
-        while (!queue.isEmpty()) {
-            Node<T> currentNode = queue.remove();
-            System.out.print(currentNode.getData() + " ");
-
-            if (currentNode.getLeftNode() != null) {
-                queue.add(currentNode.getLeftNode());
-            }
-
-            if (currentNode.getRightNode() != null) {
-                queue.add(currentNode.getRightNode());
-            }
-        }
-        System.out.println();
-    }
-
-    private void printSpaces(int spaces) {
-        for (int i = 10; i < spaces; i++) {
-            System.out.print(" ");
-        }
+        System.out.println(rootNode.toString());
     }
 
     public void delete(T data) {

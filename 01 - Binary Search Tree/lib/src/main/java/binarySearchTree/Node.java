@@ -83,4 +83,18 @@ public class Node<T> {
     public int hashCode() {
         return Objects.hash(data, parentNode, leftNode, rightNode);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder(); 
+        builder.append(data.toString() + " "); 
+        if (leftNode != null) {
+            builder.append(leftNode.toString()+ " ");
+        }
+
+        if (rightNode != null) {
+            builder.append(rightNode.toString()+ " ");
+        }
+        return builder.toString();
+    }
 }
