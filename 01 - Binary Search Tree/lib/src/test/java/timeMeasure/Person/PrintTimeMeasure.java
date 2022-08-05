@@ -21,7 +21,7 @@ public class PrintTimeMeasure {
         tree.insert(list);
         System.out.print("Printing 1000 elements in BinarySearchTree: ");
         TimeMeasure.measure(() -> {
-            tree.printIterativeBFS();
+            tree.print();
         });
     }
 
@@ -52,7 +52,7 @@ public class PrintTimeMeasure {
         tree.insert(list);
         System.out.print("Printing 10000 elements in BinarySearchTree: ");
         TimeMeasure.measure(() -> {
-            tree.printIterativeBFS();
+            tree.print();
         });
     }
 
@@ -83,7 +83,7 @@ public class PrintTimeMeasure {
         tree.insert(list);
         System.out.print("Printing 1000000 elements in BinarySearchTree: ");
         TimeMeasure.measure(() -> {
-            tree.printIterativeBFS();
+            tree.print();
         });
     }
 
@@ -112,7 +112,7 @@ public class PrintTimeMeasure {
         tree.insert(list);
         System.out.print("Printing 10000000 elements in BinarySearchTree: ");
         TimeMeasure.measure(() -> {
-            tree.printIterativeBFS();
+            tree.print();
         });
     }
 

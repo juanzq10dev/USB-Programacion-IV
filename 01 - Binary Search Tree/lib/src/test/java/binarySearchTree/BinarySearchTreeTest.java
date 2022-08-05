@@ -261,6 +261,19 @@ public class BinarySearchTreeTest {
         assertEquals(expected, actual);
     }
 
+    @Test 
+    public void totalElements_AddingRepeatedElement_ElementDoesNotCount() {
+        BinarySearchTree<String> tree = new BinarySearchTree<>();
+        tree.insert("John");
+        tree.insert("Brandon");
+        tree.insert("Pedro");
+        tree.insert("John");
+
+        int actual = tree.getTotalElements();
+        int expected = 3;
+        assertEquals(expected, actual);
+    }
+
     @Test
     public void totalElements_DeletingOneElement_Four() {
         BinarySearchTree<String> tree = new BinarySearchTree<String>();

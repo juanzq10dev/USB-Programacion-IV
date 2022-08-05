@@ -22,7 +22,7 @@ public class PrintTimeMeasure{
         }
 
         TimeMeasure.measure(() -> {
-            tree.printIterativeBFS();
+            tree.print();
         });
     }
 
@@ -52,7 +52,7 @@ public class PrintTimeMeasure{
         }
 
         TimeMeasure.measure(() -> {
-            tree.printIterativeBFS();
+            tree.print();
         });
     }
 
@@ -82,7 +82,7 @@ public class PrintTimeMeasure{
         }
 
         TimeMeasure.measure(() -> {
-            tree.printIterativeBFS();
+            tree.print();
         });
     }
 
@@ -112,7 +112,7 @@ public class PrintTimeMeasure{
         }
 
         TimeMeasure.measure(() -> {
-            tree.printIterativeBFS();
+            tree.print();
         });
     }
 
