@@ -1,7 +1,6 @@
 package timeMeasure.Integer;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import org.junit.Test;
 
 import binarySearchTree.BinarySearchTree;
@@ -11,14 +10,17 @@ public class PrintTimeMeasure{
     @Test
     public void measure_1000IntegerPrint_BinaryTree() {
         BinarySearchTree<Integer> tree = new BinarySearchTree<>();
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i < 1000; i++) {
-            list.add(i);
+        int max = 1000 * 10;
+        int min = 0; 
+        tree.insert(max / 2);
+        while (tree.getTotalElements() < 1000 / 2) {
+            int value = (int) Math.floor(Math.random() * (max / 2 - min + 1) + min);
+            tree.insert(value);
         }
 
-        Collections.shuffle(list);
-        for (int integer : list) {
-            tree.insert(integer);
+        while (tree.getTotalElements() < 1000) {
+            int value = (int) Math.floor(Math.random() * (max - max / 2 + 1) + max / 2);
+            tree.insert(value);
         }
 
         TimeMeasure.measure(() -> {
@@ -41,14 +43,17 @@ public class PrintTimeMeasure{
     @Test
     public void measure_10000IntegerPrint_BinaryTree() {
         BinarySearchTree<Integer> tree = new BinarySearchTree<>();
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i < 10000; i++) {
-            list.add(i);
+        int max = 10000 * 10;
+        int min = 0; 
+        tree.insert(max / 2);
+        while (tree.getTotalElements() < 10000 / 2) {
+            int value = (int) Math.floor(Math.random() * (max / 2 - min + 1) + min);
+            tree.insert(value);
         }
 
-        Collections.shuffle(list);
-        for (int integer : list) {
-            tree.insert(integer);
+        while (tree.getTotalElements() < 10000) {
+            int value = (int) Math.floor(Math.random() * (max - max / 2 + 1) + max / 2);
+            tree.insert(value);
         }
 
         TimeMeasure.measure(() -> {
@@ -71,14 +76,18 @@ public class PrintTimeMeasure{
     @Test
     public void measure_1000000IntegerPrint_BinaryTree() {
         BinarySearchTree<Integer> tree = new BinarySearchTree<>();
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i < 1000000; i++) {
-            list.add(i);
+
+        int max = 1000000 * 10;
+        int min = 0; 
+        tree.insert(max / 2);
+        while (tree.getTotalElements() < 1000000 / 2) {
+            int value = (int) Math.floor(Math.random() * (max / 2 - min + 1) + min);
+            tree.insert(value);
         }
 
-        Collections.shuffle(list);
-        for (int integer : list) {
-            tree.insert(integer);
+        while (tree.getTotalElements() < 1000000) {
+            int value = (int) Math.floor(Math.random() * (max - max / 2 + 1) + max / 2);
+            tree.insert(value);
         }
 
         TimeMeasure.measure(() -> {
@@ -101,14 +110,18 @@ public class PrintTimeMeasure{
     @Test
     public void measure_10000000IntegerPrint_BinaryTree() {
         BinarySearchTree<Integer> tree = new BinarySearchTree<>();
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i < 10000000; i++) {
-            list.add(i);
+
+        int max = 10000000 * 10;
+        int min = 0; 
+        tree.insert(max / 2);
+        while (tree.getTotalElements() < 10000000 / 2) {
+            int value = (int) Math.floor(Math.random() * (max / 2 - min + 1) + min);
+            tree.insert(value);
         }
 
-        Collections.shuffle(list);
-        for (int integer : list) {
-            tree.insert(integer);
+        while (tree.getTotalElements() < 10000000) {
+            int value = (int) Math.floor(Math.random() * (max - max / 2 + 1) + max / 2);
+            tree.insert(value);
         }
 
         TimeMeasure.measure(() -> {

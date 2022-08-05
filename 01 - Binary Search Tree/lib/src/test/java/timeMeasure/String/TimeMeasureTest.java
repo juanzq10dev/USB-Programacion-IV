@@ -3,7 +3,6 @@ package timeMeasure.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 
 import org.junit.Assume;
 import org.junit.Test;
@@ -68,17 +67,23 @@ public class TimeMeasureTest {
     public void measure_StringInsert_BinaryTree() {
         Assume.assumeTrue(operation == Operation.ADD && dataStructure == DataStructure.BINARY_SEARCH_TREE);
         BinarySearchTree<String> tree = new BinarySearchTree<>();
-        ArrayList<String> list = new ArrayList<String>();
-        for (int i = 0; i < quantity - 1; i++) {
-            list.add((char) i + "");
 
+        int max = quantity * 10;
+        int min = 0; 
+        tree.insert((char) max / 2 + "" );
+        while (tree.getTotalElements() < quantity / 2) {
+            int value = (int) Math.floor(Math.random() * (max / 2 - min + 1) + min);
+            tree.insert((char) value + "");
         }
 
-        Collections.shuffle(list);
-        tree.insert(list);
+        while (tree.getTotalElements() < quantity - 1) {
+            int value = (int) Math.floor(Math.random() * (max - max / 2 + 1) + max / 2);
+            tree.insert((char) value + "");
+        }
+
         System.out.print("Adding element " + quantity + " to BinarySearchTree: ");
         TimeMeasure.measure(() -> {
-            tree.insert((char) quantity + "");
+            tree.insert((char) max + 1 + "");
         });
     }
 
@@ -101,18 +106,25 @@ public class TimeMeasureTest {
     public void measure_StringSearch_BinaryTree() {
         Assume.assumeTrue(operation == Operation.SEARCH && dataStructure == DataStructure.BINARY_SEARCH_TREE);
         BinarySearchTree<String> tree = new BinarySearchTree<>();
-        ArrayList<String> list = new ArrayList<String>();
-        for (int i = 0; i < quantity - 1; i++) {
-            list.add((char) i + "");
 
+        int max = quantity * 10;
+        int min = 0; 
+        tree.insert((char) max / 2 + "" );
+        while (tree.getTotalElements() < quantity / 2) {
+            int value = (int) Math.floor(Math.random() * (max / 2 - min + 1) + min);
+            tree.insert((char) value + "");
         }
 
-        Collections.shuffle(list);
-        tree.insert(list);
-        tree.insert((char) quantity + "");
+        while (tree.getTotalElements() < quantity - 1) {
+            int value = (int) Math.floor(Math.random() * (max - max / 2 + 1) + max / 2);
+            tree.insert((char) value + "");
+        }
+
+        tree.insert((char) max + 1 + "");
+
         System.out.print("Searching element " + quantity + " in BinarySearchTree: ");
         TimeMeasure.measure(() -> {
-            tree.search((char) quantity + "");
+            tree.search((char) max + 1 + "");
         });
     }
 
@@ -135,18 +147,25 @@ public class TimeMeasureTest {
     public void measure_StringDelete_BinaryTree() {
         Assume.assumeTrue(operation == Operation.DELETE && dataStructure == DataStructure.BINARY_SEARCH_TREE);
         BinarySearchTree<String> tree = new BinarySearchTree<>();
-        ArrayList<String> list = new ArrayList<String>();
-        for (int i = 0; i < quantity - 1; i++) {
-            list.add((char) i + "");
 
+        int max = quantity * 10;
+        int min = 0; 
+        tree.insert((char) max / 2 + "" );
+        while (tree.getTotalElements() < quantity / 2) {
+            int value = (int) Math.floor(Math.random() * (max / 2 - min + 1) + min);
+            tree.insert((char) value + "");
         }
 
-        Collections.shuffle(list);
-        tree.insert(list);
-        tree.insert((char) quantity + "");
+        while (tree.getTotalElements() < quantity - 1) {
+            int value = (int) Math.floor(Math.random() * (max - max / 2 + 1) + max / 2);
+            tree.insert((char) value + "");
+        }
+
+        tree.insert((char) max + 1 + "");
+
         System.out.print("Deleting element " + quantity + " from BinarySearchTree: ");
         TimeMeasure.measure(() -> {
-            tree.delete((char) quantity + "");
+            tree.delete((char) max + 1 + "");
         });
     }
 

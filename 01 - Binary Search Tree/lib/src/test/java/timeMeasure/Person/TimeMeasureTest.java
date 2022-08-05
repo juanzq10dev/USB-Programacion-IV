@@ -3,7 +3,6 @@ package timeMeasure.Person;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 
 import org.junit.Assume;
 import org.junit.Test;
@@ -69,17 +68,23 @@ public class TimeMeasureTest {
     public void measure_PersonInsert_BinaryTree() {
         Assume.assumeTrue(operation == Operation.ADD && dataStructure == DataStructure.BINARY_SEARCH_TREE);
         BinarySearchTree<Person> tree = new BinarySearchTree<>();
-        ArrayList<Person> list = new ArrayList<Person>();
-        for (int i = 0; i < quantity - 1; i++) {
-            list.add(new Person("Juan", "2010-06-02", i + ""));
 
+        int max = quantity * 10;
+        int min = 0; 
+        tree.insert(new Person("Juan", "2010-06-02", max / 2 + ""));
+        while (tree.getTotalElements() < quantity / 2) {
+            int value = (int) Math.floor(Math.random() * (max / 2 - min + 1) + min);
+            tree.insert(new Person("Juan", "2010-06-02", value + ""));
         }
 
-        Collections.shuffle(list);
-        tree.insert(list);
+        while (tree.getTotalElements() < quantity - 1) {
+            int value = (int) Math.floor(Math.random() * (max - max / 2 + 1) + max / 2);
+            tree.insert(new Person("Juan", "2010-06-02", value + ""));
+        }
+
         System.out.print("Adding element " + quantity + " to BinarySearchTree: ");
         TimeMeasure.measure(() -> {
-            tree.insert(new Person("Juan", "2010-06-02", quantity + ""));
+            tree.insert(new Person("Juan", "2010-06-02", max + 1 + ""));
         });
     }
 
@@ -102,18 +107,25 @@ public class TimeMeasureTest {
     public void measure_PersonSearch_BinaryTree() {
         Assume.assumeTrue(operation == Operation.SEARCH && dataStructure == DataStructure.BINARY_SEARCH_TREE);
         BinarySearchTree<Person> tree = new BinarySearchTree<>();
-        ArrayList<Person> list = new ArrayList<Person>();
-        for (int i = 0; i < quantity - 1; i++) {
-            list.add(new Person("Juan", "2010-06-02", i + ""));
 
+        int max = quantity * 10;
+        int min = 0; 
+        tree.insert(new Person("Juan", "2010-06-02", max / 2 + ""));
+        while (tree.getTotalElements() < quantity / 2) {
+            int value = (int) Math.floor(Math.random() * (max / 2 - min + 1) + min);
+            tree.insert(new Person("Juan", "2010-06-02", value + ""));
         }
 
-        Collections.shuffle(list);
-        tree.insert(list);
-        tree.insert(new Person("Juan", "2010-06-02", quantity + ""));
+        while (tree.getTotalElements() < quantity - 1) {
+            int value = (int) Math.floor(Math.random() * (max - max / 2 + 1) + max / 2);
+            tree.insert(new Person("Juan", "2010-06-02", value + ""));
+        }
+
+        tree.insert(new Person("Juan", "2010-06-02", max + 1 + ""));
+
         System.out.print("Searching element " + quantity + " in BinarySearchTree: ");
         TimeMeasure.measure(() -> {
-            tree.search(new Person("Juan", "2010-06-02", quantity + ""));
+            tree.search(new Person("Juan", "2010-06-02", max + 1 + ""));
         });
     }
 
@@ -136,18 +148,25 @@ public class TimeMeasureTest {
     public void measure_PersonDelete_BinaryTree() {
         Assume.assumeTrue(operation == Operation.DELETE && dataStructure == DataStructure.BINARY_SEARCH_TREE);
         BinarySearchTree<Person> tree = new BinarySearchTree<>();
-        ArrayList<Person> list = new ArrayList<Person>();
-        for (int i = 0; i < quantity - 1; i++) {
-            list.add(new Person("Juan", "2010-06-02", i + ""));
-
+        
+        int max = quantity * 10;
+        int min = 0; 
+        tree.insert(new Person("Juan", "2010-06-02", max / 2 + ""));
+        while (tree.getTotalElements() < quantity / 2) {
+            int value = (int) Math.floor(Math.random() * (max / 2 - min + 1) + min);
+            tree.insert(new Person("Juan", "2010-06-02", value + ""));
         }
 
-        Collections.shuffle(list);
-        tree.insert(list);
-        tree.insert(new Person("Juan", "2010-06-02", quantity + ""));
+        while (tree.getTotalElements() < quantity - 1) {
+            int value = (int) Math.floor(Math.random() * (max - max / 2 + 1) + max / 2);
+            tree.insert(new Person("Juan", "2010-06-02", value + ""));
+        }
+
+        tree.insert(new Person("Juan", "2010-06-02", max + 1 + ""));
+
         System.out.print("Deleting element " + quantity + " in BinarySearchTree: ");
         TimeMeasure.measure(() -> {
-            tree.delete(new Person("Juan", "2010-06-02", quantity + ""));
+            tree.delete(new Person("Juan", "2010-06-02", max + 1 + ""));
         });
     }
 

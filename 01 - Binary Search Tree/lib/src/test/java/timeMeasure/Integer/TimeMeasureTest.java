@@ -3,7 +3,6 @@ package timeMeasure.Integer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 
 import org.junit.Assume;
 import org.junit.Test;
@@ -68,17 +67,23 @@ public class TimeMeasureTest {
     public void measure_IntegerInsert_BinaryTree() {
         Assume.assumeTrue(operation == Operation.ADD && dataStructure == DataStructure.BINARY_SEARCH_TREE);
         BinarySearchTree<Integer> tree = new BinarySearchTree<>();
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i < quantity - 1; i++) {
-            list.add(i);
 
+        int max = quantity * 10;
+        int min = 0; 
+        tree.insert(max / 2);
+        while (tree.getTotalElements() < quantity / 2) {
+            int value = (int) Math.floor(Math.random() * (max / 2 - min + 1) + min);
+            tree.insert(value);
         }
 
-        Collections.shuffle(list);
-        tree.insert(list);
+        while (tree.getTotalElements() < quantity - 1) {
+            int value = (int) Math.floor(Math.random() * (max - max / 2 + 1) + max / 2);
+            tree.insert(value);
+        }
+
         System.out.print("Adding element " + quantity + " to BinarySearchTree: ");
         TimeMeasure.measure(() -> {
-            tree.insert(quantity);
+            tree.insert(max + 1);
         });
     }
 
@@ -100,19 +105,25 @@ public class TimeMeasureTest {
     public void measure_IntegerSearch_BinaryTree() {
         Assume.assumeTrue(operation == Operation.SEARCH && dataStructure == DataStructure.BINARY_SEARCH_TREE);
         BinarySearchTree<Integer> tree = new BinarySearchTree<>();
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i < quantity - 1; i++) {
-            list.add(i);
 
+        int max = quantity * 10;
+        int min = 0; 
+        tree.insert(max / 2);
+        while (tree.getTotalElements() < quantity / 2) {
+            int value = (int) Math.floor(Math.random() * (max / 2 - min + 1) + min);
+            tree.insert(value);
         }
 
-        Collections.shuffle(list);
-        tree.insert(list);
-        tree.insert(quantity);
+        while (tree.getTotalElements() < quantity - 1) {
+            int value = (int) Math.floor(Math.random() * (max - max / 2 + 1) + max / 2);
+            tree.insert(value);
+        }
+
+        tree.insert(max + 1);
 
         System.out.print("Searching element " + quantity + " elements in BinarySearchTree: ");
         TimeMeasure.measure(() -> {
-            tree.search(quantity);
+            tree.search(max + 1);
         });
     }
 
@@ -134,19 +145,25 @@ public class TimeMeasureTest {
     public void measure_IntegerDelete_BinarySearch() {
         Assume.assumeTrue(operation == Operation.DELETE && dataStructure == DataStructure.BINARY_SEARCH_TREE);
         BinarySearchTree<Integer> tree = new BinarySearchTree<>();
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i < quantity - 1; i++) {
-            list.add(i);
 
+        int max = quantity * 10;
+        int min = 0; 
+        tree.insert(max / 2);
+        while (tree.getTotalElements() < quantity / 2) {
+            int value = (int) Math.floor(Math.random() * (max / 2 - min + 1) + min);
+            tree.insert(value);
         }
 
-        Collections.shuffle(list);
-        tree.insert(list);
-        tree.insert(quantity);
+        while (tree.getTotalElements() < quantity - 1) {
+            int value = (int) Math.floor(Math.random() * (max - max / 2 + 1) + max / 2);
+            tree.insert(value);
+        }
+
+        tree.insert(max + 1);
 
         System.out.print("Deleting element " + quantity + " in BinarySearchTree: ");
         TimeMeasure.measure(() -> {
-            tree.delete(quantity);
+            tree.delete(max + 1);
         });
     }
 
