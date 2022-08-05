@@ -1,7 +1,6 @@
 package binarySearchTree;
 
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Objects;
 import java.util.Queue;
 
@@ -17,11 +16,11 @@ public class BinarySearchTree<T extends Comparable<T>> {
         this.rootNode = rootNode;
     }
 
-    public void insert(T data) {
-        this.rootNode = insertRecursive(this.rootNode, data);
+    public void add(T data) {
+        this.rootNode = addRecursive(this.rootNode, data);
     }
 
-    private Node<T> insertRecursive(Node<T> rootNode, T data) {
+    private Node<T> addRecursive(Node<T> rootNode, T data) {
         if (rootNode == null) {
             rootNode = new Node<T>(data);
             this.totalElements++;
@@ -29,18 +28,12 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
 
         if (data.compareTo(rootNode.getData()) < 0) {
-            rootNode.setLeftNode(insertRecursive(rootNode.getLeftNode(), data));
+            rootNode.setLeftNode(addRecursive(rootNode.getLeftNode(), data));
         } else if (data.compareTo(rootNode.getData()) > 0) {
-            rootNode.setRightNode(insertRecursive(rootNode.getRightNode(), data));
+            rootNode.setRightNode(addRecursive(rootNode.getRightNode(), data));
         }
 
         return rootNode;
-    }
-
-    public void insert(List<T> data) {
-        for (T d : data) {
-            insert(d);
-        }
     }
 
     public Node<T> search(T data) {
@@ -67,19 +60,19 @@ public class BinarySearchTree<T extends Comparable<T>> {
         System.out.println(rootNode.toString());
     }
 
-    public void delete(T data) {
-        this.rootNode = deleteRecursive(this.rootNode, data);
+    public void remove(T data) {
+        this.rootNode = removeRecursive(this.rootNode, data);
     }
 
-    private Node<T> deleteRecursive(Node<T> root, T data) {
+    private Node<T> removeRecursive(Node<T> root, T data) {
         if (root == null) {
             throw new IllegalArgumentException("Node not found");
         }
 
         if (data.compareTo(root.getData()) < 0) {
-            root.setLeftNode(deleteRecursive(root.getLeftNode(), data));
+            root.setLeftNode(removeRecursive(root.getLeftNode(), data));
         } else if (data.compareTo(root.getData()) > 0) {
-            root.setRightNode(deleteRecursive(root.getRightNode(), data));
+            root.setRightNode(removeRecursive(root.getRightNode(), data));
         } else {
             if (root.getLeftNode() == null) {
                 this.totalElements--;
@@ -90,7 +83,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
             }
 
             root.setData(getMin(root.getRightNode()));
-            root.setRightNode(deleteRecursive(root.getRightNode(), root.getData()));
+            root.setRightNode(removeRecursive(root.getRightNode(), root.getData()));
         }
         return root;
     }

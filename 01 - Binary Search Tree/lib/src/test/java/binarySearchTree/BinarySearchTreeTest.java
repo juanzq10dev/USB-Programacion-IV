@@ -10,12 +10,12 @@ import person.Person;
 
 public class BinarySearchTreeTest {
     @Test
-    public void insert_String_True() {
+    public void add_String_True() {
         BinarySearchTree<String> tree = new BinarySearchTree<String>();
-        tree.insert("John");
-        tree.insert("Brandon");
-        tree.insert("Pedro");
-        tree.insert("Carlos");
+        tree.add("John");
+        tree.add("Brandon");
+        tree.add("Pedro");
+        tree.add("Carlos");
 
         Node<String> john = new Node<>("John");
         Node<String> brandon = new Node<>("Brandon");
@@ -30,12 +30,12 @@ public class BinarySearchTreeTest {
     }
 
     @Test
-    public void insert_Integer_True() {
+    public void add_Integer_True() {
         BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();
-        tree.insert(1);
-        tree.insert(2);
-        tree.insert(3);
-        tree.insert(-2);
+        tree.add(1);
+        tree.add(2);
+        tree.add(3);
+        tree.add(-2);
 
         Node<Integer> one = new Node<>(1);
         Node<Integer> two = new Node<>(2);
@@ -50,12 +50,12 @@ public class BinarySearchTreeTest {
     }
 
     @Test
-    public void insert_Person_True() {
+    public void add_Person_True() {
         BinarySearchTree<Person> tree = new BinarySearchTree<Person>();
-        tree.insert(new Person("John", "2010-05-01", "123456789"));
-        tree.insert(new Person("Brandon", "2010-05-01", "123456788"));
-        tree.insert(new Person("Pedro", "2011-05-01", "123456787"));
-        tree.insert(new Person("Carlos", "2009-05-01", "123456786"));
+        tree.add(new Person("John", "2010-05-01", "123456789"));
+        tree.add(new Person("Brandon", "2010-05-01", "123456788"));
+        tree.add(new Person("Pedro", "2011-05-01", "123456787"));
+        tree.add(new Person("Carlos", "2009-05-01", "123456786"));
 
         Node<Person> john = new Node<>(new Person("John", "2010-05-01", "123456789"));
         Node<Person> brandon = new Node<>(new Person("Brandon", "2010-05-01", "123456788"));
@@ -72,10 +72,10 @@ public class BinarySearchTreeTest {
     @Test
     public void search_String_ValidSearchValue() {
         BinarySearchTree<String> tree = new BinarySearchTree<String>();
-        tree.insert("John");
-        tree.insert("Brandon");
-        tree.insert("Pedro");
-        tree.insert("Carlos");
+        tree.add("John");
+        tree.add("Brandon");
+        tree.add("Pedro");
+        tree.add("Carlos");
 
         
         Node<String> actual = tree.search("Brandon");
@@ -86,10 +86,10 @@ public class BinarySearchTreeTest {
     @Test
     public void search_String_InvalidSearchValue() {
         BinarySearchTree<String> tree = new BinarySearchTree<String>();
-        tree.insert("John");
-        tree.insert("Brandon");
-        tree.insert("Pedro");
-        tree.insert("Carlos");
+        tree.add("John");
+        tree.add("Brandon");
+        tree.add("Pedro");
+        tree.add("Carlos");
 
         assertThrows(IllegalArgumentException.class, () -> tree.search("Roman"));
     }
@@ -97,10 +97,10 @@ public class BinarySearchTreeTest {
     @Test
     public void search_Integer_ValidSearchValue() {
         BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();
-        tree.insert(1);
-        tree.insert(2);
-        tree.insert(3);
-        tree.insert(-2);
+        tree.add(1);
+        tree.add(2);
+        tree.add(3);
+        tree.add(-2);
 
         Node<Integer> actual = tree.search(-2);
         Node<Integer> expected = new Node<>(-2);
@@ -110,10 +110,10 @@ public class BinarySearchTreeTest {
     @Test
     public void search_Integer_InvalidSearchValue() {
         BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();
-        tree.insert(1);
-        tree.insert(2);
-        tree.insert(3);
-        tree.insert(-2);
+        tree.add(1);
+        tree.add(2);
+        tree.add(3);
+        tree.add(-2);
 
         assertThrows(IllegalArgumentException.class, () -> tree.search(4));
     }
@@ -121,10 +121,10 @@ public class BinarySearchTreeTest {
     @Test
     public void search_Person_ValidSearchValue() {
         BinarySearchTree<Person> tree = new BinarySearchTree<Person>();
-        tree.insert(new Person("John", "2010-05-01", "123456789"));
-        tree.insert(new Person("Brandon", "2010-05-01", "123456788"));
-        tree.insert(new Person("Pedro", "2011-05-01", "123456787"));
-        tree.insert(new Person("Carlos", "2009-05-01", "123456786"));
+        tree.add(new Person("John", "2010-05-01", "123456789"));
+        tree.add(new Person("Brandon", "2010-05-01", "123456788"));
+        tree.add(new Person("Pedro", "2011-05-01", "123456787"));
+        tree.add(new Person("Carlos", "2009-05-01", "123456786"));
 
         Node<Person> actual = tree.search(new Person("Carlos", "2009-05-01", "123456786"));
         Node<Person> expected = new Node<>(new Person("Carlos", "2009-05-01", "123456786"));
@@ -134,23 +134,23 @@ public class BinarySearchTreeTest {
     @Test
     public void search_Person_InvalidSearchValue() {
         BinarySearchTree<Person> tree = new BinarySearchTree<Person>();
-        tree.insert(new Person("John", "2010-05-01", "123456789"));
-        tree.insert(new Person("Brandon", "2010-05-01", "123456788"));
-        tree.insert(new Person("Pedro", "2011-05-01", "123456787"));
-        tree.insert(new Person("Carlos", "2009-05-01", "123456786"));
+        tree.add(new Person("John", "2010-05-01", "123456789"));
+        tree.add(new Person("Brandon", "2010-05-01", "123456788"));
+        tree.add(new Person("Pedro", "2011-05-01", "123456787"));
+        tree.add(new Person("Carlos", "2009-05-01", "123456786"));
 
         assertThrows(IllegalArgumentException.class, () -> tree.search(new Person("Roman", "2010-06-01", "123456789")));
     }
 
     @Test
-    public void delete_String_ValidValue() {
+    public void remove_String_ValidValue() {
         BinarySearchTree<String> tree = new BinarySearchTree<String>();
-        tree.insert("John");
-        tree.insert("Brandon");
-        tree.insert("Pedro");
-        tree.insert("Carlos");
+        tree.add("John");
+        tree.add("Brandon");
+        tree.add("Pedro");
+        tree.add("Carlos");
 
-        tree.delete("Brandon");
+        tree.remove("Brandon");
 
         Node<String> john = new Node<String>("John");
         Node<String> pedro = new Node<String>("Pedro");
@@ -163,28 +163,28 @@ public class BinarySearchTreeTest {
     }
 
     @Test
-    public void delete_String_InvalidValue() {
+    public void remove_String_InvalidValue() {
         BinarySearchTree<String> tree = new BinarySearchTree<String>();
-        tree.insert("John");
-        tree.insert("Brandon");
-        tree.insert("Pedro");
-        tree.insert("Carlos");
+        tree.add("John");
+        tree.add("Brandon");
+        tree.add("Pedro");
+        tree.add("Carlos");
 
-        assertThrows(IllegalArgumentException.class, () -> tree.delete("Roman"));
+        assertThrows(IllegalArgumentException.class, () -> tree.remove("Roman"));
     }
 
     @Test
-    public void delete_Integer_ValidValue() {
+    public void remove_Integer_ValidValue() {
         BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();
-        tree.insert(1);
-        tree.insert(3);
-        tree.insert(2);
-        tree.insert(-2);
-        tree.insert(4);
-        tree.insert(-5);
-        tree.insert(-3);
-        tree.insert(-1);
-        tree.delete(-2);
+        tree.add(1);
+        tree.add(3);
+        tree.add(2);
+        tree.add(-2);
+        tree.add(4);
+        tree.add(-5);
+        tree.add(-3);
+        tree.add(-1);
+        tree.remove(-2);
 
         Node<Integer> one = new Node<Integer>(1);
         Node<Integer> three = new Node<Integer>(3);
@@ -206,27 +206,27 @@ public class BinarySearchTreeTest {
     }
 
     @Test  
-    public void delete_Integer_InvalidValue() {
+    public void remove_Integer_InvalidValue() {
         BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();
-        tree.insert(1);
-        tree.insert(3);
-        tree.insert(2);
-        tree.insert(-2);
-        tree.insert(4);
-        tree.insert(-5);
-        tree.insert(-3);
-        tree.insert(-1);
-        assertThrows(IllegalArgumentException.class, () -> tree.delete(5));
+        tree.add(1);
+        tree.add(3);
+        tree.add(2);
+        tree.add(-2);
+        tree.add(4);
+        tree.add(-5);
+        tree.add(-3);
+        tree.add(-1);
+        assertThrows(IllegalArgumentException.class, () -> tree.remove(5));
     }
 
     @Test
-    public void delete_Person_ValidValue() {
+    public void remove_Person_ValidValue() {
         BinarySearchTree<Person> tree = new BinarySearchTree<Person>();
-        tree.insert(new Person("John", "2010-05-01", "123456789"));
-        tree.insert(new Person("Brandon", "2010-05-01", "123456788"));
-        tree.insert(new Person("Pedro", "2011-05-01", "123456787"));
-        tree.insert(new Person("Carlos", "2009-05-01", "123456786"));
-        tree.delete(new Person("Carlos", "2009-05-01", "123456786"));
+        tree.add(new Person("John", "2010-05-01", "123456789"));
+        tree.add(new Person("Brandon", "2010-05-01", "123456788"));
+        tree.add(new Person("Pedro", "2011-05-01", "123456787"));
+        tree.add(new Person("Carlos", "2009-05-01", "123456786"));
+        tree.remove(new Person("Carlos", "2009-05-01", "123456786"));
 
         Node<Person> john = new Node<Person>(new Person("John", "2010-05-01", "123456789"));
         Node<Person> brandon = new Node<Person>(new Person("Brandon", "2010-05-01", "123456788"));
@@ -239,22 +239,22 @@ public class BinarySearchTreeTest {
     }
 
     @Test
-    public void delete_Person_InvalidValue() {
+    public void remove_Person_InvalidValue() {
         BinarySearchTree<Person> tree = new BinarySearchTree<Person>();
-        tree.insert(new Person("John", "2010-05-01", "123456789"));
-        tree.insert(new Person("Brandon", "2010-05-01", "123456788"));
-        tree.insert(new Person("Pedro", "2011-05-01", "123456787"));
-        tree.insert(new Person("Carlos", "2009-05-01", "123456786"));
+        tree.add(new Person("John", "2010-05-01", "123456789"));
+        tree.add(new Person("Brandon", "2010-05-01", "123456788"));
+        tree.add(new Person("Pedro", "2011-05-01", "123456787"));
+        tree.add(new Person("Carlos", "2009-05-01", "123456786"));
 
-        assertThrows(IllegalArgumentException.class, () -> tree.delete(new Person("Carlos", "2009-05-01", "123456787")));
+        assertThrows(IllegalArgumentException.class, () -> tree.remove(new Person("Carlos", "2009-05-01", "123456787")));
     }
 
     @Test
     public void totalElements_AddingThreeElements_Three() {
         BinarySearchTree<String> tree = new BinarySearchTree<String>();
-        tree.insert("John");
-        tree.insert("Brandon");
-        tree.insert("Pedro");
+        tree.add("John");
+        tree.add("Brandon");
+        tree.add("Pedro");
 
         int actual = tree.getTotalElements();
         int expected = 3;
@@ -264,10 +264,10 @@ public class BinarySearchTreeTest {
     @Test 
     public void totalElements_AddingRepeatedElement_ElementDoesNotCount() {
         BinarySearchTree<String> tree = new BinarySearchTree<>();
-        tree.insert("John");
-        tree.insert("Brandon");
-        tree.insert("Pedro");
-        tree.insert("John");
+        tree.add("John");
+        tree.add("Brandon");
+        tree.add("Pedro");
+        tree.add("John");
 
         int actual = tree.getTotalElements();
         int expected = 3;
@@ -277,12 +277,12 @@ public class BinarySearchTreeTest {
     @Test
     public void totalElements_DeletingOneElement_Four() {
         BinarySearchTree<String> tree = new BinarySearchTree<String>();
-        tree.insert("John");
-        tree.insert("Brandon");
-        tree.insert("Pedro");
-        tree.insert("Carlos");
-        tree.insert("Maria");
-        tree.delete("Maria");
+        tree.add("John");
+        tree.add("Brandon");
+        tree.add("Pedro");
+        tree.add("Carlos");
+        tree.add("Maria");
+        tree.remove("Maria");
 
         int actual = tree.getTotalElements();
         int expected = 4;
@@ -292,12 +292,12 @@ public class BinarySearchTreeTest {
     @Test
     public void totalElements_DeletingElementWithTwoChild_Four() {
         BinarySearchTree<String> tree = new BinarySearchTree<String>();
-        tree.insert("John");
-        tree.insert("Brandon");
-        tree.insert("Pedro");
-        tree.insert("Carlos");
-        tree.insert("Maria");
-        tree.delete("John");
+        tree.add("John");
+        tree.add("Brandon");
+        tree.add("Pedro");
+        tree.add("Carlos");
+        tree.add("Maria");
+        tree.remove("John");
 
         int actual = tree.getTotalElements();
         int expected = 4;
@@ -307,9 +307,9 @@ public class BinarySearchTreeTest {
     @Test
     public void countLeafNodes_AddingThreeElements_Two() {
         BinarySearchTree<String> tree = new BinarySearchTree<String>();
-        tree.insert("John");
-        tree.insert("Brandon");
-        tree.insert("Pedro");
+        tree.add("John");
+        tree.add("Brandon");
+        tree.add("Pedro");
 
         int actual = tree.countLeafNodes();
         int expected = 2;
@@ -319,12 +319,12 @@ public class BinarySearchTreeTest {
     @Test
     public void countLeafNodes_AddingThreeLeafNodes_Three() {
         BinarySearchTree<String> tree = new BinarySearchTree<String>();
-        tree.insert("John");
-        tree.insert("Brandon");
-        tree.insert("Pedro");
-        tree.insert("Carlos");
-        tree.insert("Maria");
-        tree.insert("Vanessa");
+        tree.add("John");
+        tree.add("Brandon");
+        tree.add("Pedro");
+        tree.add("Carlos");
+        tree.add("Maria");
+        tree.add("Vanessa");
 
         int actual = tree.countLeafNodes();
         int expected = 3;
@@ -334,12 +334,12 @@ public class BinarySearchTreeTest {
     @Test
     public void countInternalNodes_AddingThreeInternalNodes_Three() {
         BinarySearchTree<String> tree = new BinarySearchTree<String>();
-        tree.insert("John");
-        tree.insert("Brandon");
-        tree.insert("Pedro");
-        tree.insert("Carlos");
-        tree.insert("Maria");
-        tree.insert("Vanessa");
+        tree.add("John");
+        tree.add("Brandon");
+        tree.add("Pedro");
+        tree.add("Carlos");
+        tree.add("Maria");
+        tree.add("Vanessa");
 
         int actual = tree.countInternalNodes();
         int expected = 3;
@@ -349,9 +349,9 @@ public class BinarySearchTreeTest {
     @Test
     public void countLeafNodes_AddingThreeElements_One() {
         BinarySearchTree<String> tree = new BinarySearchTree<String>();
-        tree.insert("John");
-        tree.insert("Brandon");
-        tree.insert("Pedro");
+        tree.add("John");
+        tree.add("Brandon");
+        tree.add("Pedro");
 
         int actual = tree.countInternalNodes();
         int expected = 1;

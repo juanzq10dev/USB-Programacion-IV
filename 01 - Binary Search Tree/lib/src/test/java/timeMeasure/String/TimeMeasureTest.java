@@ -16,7 +16,7 @@ import timeMeasure.TimeMeasure;
 @RunWith(Parameterized.class)
 public class TimeMeasureTest {
     enum Operation {
-        ADD, PRINT, SEARCH, DELETE
+        ADD, PRINT, SEARCH, REMOVE
     }
 
     enum DataStructure {
@@ -42,14 +42,14 @@ public class TimeMeasureTest {
                 { Operation.SEARCH, DataStructure.ARRAY_LIST, 1000000 },
                 { Operation.SEARCH, DataStructure.BINARY_SEARCH_TREE, 10000000 },
                 { Operation.SEARCH, DataStructure.ARRAY_LIST, 10000000 },
-                { Operation.DELETE, DataStructure.BINARY_SEARCH_TREE, 1000 },
-                { Operation.DELETE, DataStructure.ARRAY_LIST, 1000 },
-                { Operation.DELETE, DataStructure.BINARY_SEARCH_TREE, 10000 },
-                { Operation.DELETE, DataStructure.ARRAY_LIST, 10000 },
-                { Operation.DELETE, DataStructure.BINARY_SEARCH_TREE, 1000000 },
-                { Operation.DELETE, DataStructure.ARRAY_LIST, 1000000 },
-                { Operation.DELETE, DataStructure.BINARY_SEARCH_TREE, 10000000 },
-                { Operation.DELETE, DataStructure.ARRAY_LIST, 10000000 },
+                { Operation.REMOVE, DataStructure.BINARY_SEARCH_TREE, 1000 },
+                { Operation.REMOVE, DataStructure.ARRAY_LIST, 1000 },
+                { Operation.REMOVE, DataStructure.BINARY_SEARCH_TREE, 10000 },
+                { Operation.REMOVE, DataStructure.ARRAY_LIST, 10000 },
+                { Operation.REMOVE, DataStructure.BINARY_SEARCH_TREE, 1000000 },
+                { Operation.REMOVE, DataStructure.ARRAY_LIST, 1000000 },
+                { Operation.REMOVE, DataStructure.BINARY_SEARCH_TREE, 10000000 },
+                { Operation.REMOVE, DataStructure.ARRAY_LIST, 10000000 },
         });
     }
 
@@ -64,31 +64,31 @@ public class TimeMeasureTest {
     }
 
     @Test
-    public void measure_StringInsert_BinaryTree() {
+    public void measure_StringAdd_BinaryTree() {
         Assume.assumeTrue(operation == Operation.ADD && dataStructure == DataStructure.BINARY_SEARCH_TREE);
         BinarySearchTree<String> tree = new BinarySearchTree<>();
 
         int max = quantity * 10;
         int min = 0; 
-        tree.insert((char) max / 2 + "" );
+        tree.add((char) max / 2 + "" );
         while (tree.getTotalElements() < quantity / 2) {
             int value = (int) Math.floor(Math.random() * (max / 2 - min + 1) + min);
-            tree.insert((char) value + "");
+            tree.add((char) value + "");
         }
 
         while (tree.getTotalElements() < quantity - 1) {
             int value = (int) Math.floor(Math.random() * (max - max / 2 + 1) + max / 2);
-            tree.insert((char) value + "");
+            tree.add((char) value + "");
         }
 
         System.out.print("Adding element " + quantity + " to BinarySearchTree: ");
         TimeMeasure.measure(() -> {
-            tree.insert((char) max + 1 + "");
+            tree.add((char) max + 1 + "");
         });
     }
 
     @Test
-    public void measure_StringInsert_ArrayList() {
+    public void measure_StringAdd_ArrayList() {
         Assume.assumeTrue(operation == Operation.ADD && dataStructure == DataStructure.ARRAY_LIST);
         ArrayList<String> list = new ArrayList<String>();
         for (int i = 0; i < quantity - 1; i++) {
@@ -109,18 +109,18 @@ public class TimeMeasureTest {
 
         int max = quantity * 10;
         int min = 0; 
-        tree.insert((char) max / 2 + "" );
+        tree.add((char) max / 2 + "" );
         while (tree.getTotalElements() < quantity / 2) {
             int value = (int) Math.floor(Math.random() * (max / 2 - min + 1) + min);
-            tree.insert((char) value + "");
+            tree.add((char) value + "");
         }
 
         while (tree.getTotalElements() < quantity - 1) {
             int value = (int) Math.floor(Math.random() * (max - max / 2 + 1) + max / 2);
-            tree.insert((char) value + "");
+            tree.add((char) value + "");
         }
 
-        tree.insert((char) max + 1 + "");
+        tree.add((char) max + 1 + "");
 
         System.out.print("Searching element " + quantity + " in BinarySearchTree: ");
         TimeMeasure.measure(() -> {
@@ -145,33 +145,33 @@ public class TimeMeasureTest {
 
     @Test
     public void measure_StringDelete_BinaryTree() {
-        Assume.assumeTrue(operation == Operation.DELETE && dataStructure == DataStructure.BINARY_SEARCH_TREE);
+        Assume.assumeTrue(operation == Operation.REMOVE && dataStructure == DataStructure.BINARY_SEARCH_TREE);
         BinarySearchTree<String> tree = new BinarySearchTree<>();
 
         int max = quantity * 10;
         int min = 0; 
-        tree.insert((char) max / 2 + "" );
+        tree.add((char) max / 2 + "" );
         while (tree.getTotalElements() < quantity / 2) {
             int value = (int) Math.floor(Math.random() * (max / 2 - min + 1) + min);
-            tree.insert((char) value + "");
+            tree.add((char) value + "");
         }
 
         while (tree.getTotalElements() < quantity - 1) {
             int value = (int) Math.floor(Math.random() * (max - max / 2 + 1) + max / 2);
-            tree.insert((char) value + "");
+            tree.add((char) value + "");
         }
 
-        tree.insert((char) max + 1 + "");
+        tree.add((char) max + 1 + "");
 
         System.out.print("Deleting element " + quantity + " from BinarySearchTree: ");
         TimeMeasure.measure(() -> {
-            tree.delete((char) max + 1 + "");
+            tree.remove((char) max + 1 + "");
         });
     }
 
     @Test
     public void measure_StringDelete_ArrayList() {
-        Assume.assumeTrue(operation == Operation.DELETE && dataStructure == DataStructure.ARRAY_LIST);
+        Assume.assumeTrue(operation == Operation.REMOVE && dataStructure == DataStructure.ARRAY_LIST);
         ArrayList<String> list = new ArrayList<String>();
         for (int i = 0; i < quantity; i++) {
             list.add((char) i + "");

@@ -14,15 +14,15 @@ public class PrintTimeMeasure {
 
         int max = 1000 * 10;
         int min = 0; 
-        tree.insert(new Person("Juan", "2010-06-02", max / 2 + ""));
+        tree.add(new Person("Juan", "2010-06-02", max / 2 + ""));
         while (tree.getTotalElements() < 1000 / 2) {
             int value = (int) Math.floor(Math.random() * (max / 2 - min + 1) + min);
-            tree.insert(new Person("Juan", "2010-06-02", value + ""));
+            tree.add(new Person("Juan", "2010-06-02", value + ""));
         }
 
         while (tree.getTotalElements() < 1000) {
             int value = (int) Math.floor(Math.random() * (max - max / 2 + 1) + max / 2);
-            tree.insert(new Person("Juan", "2010-06-02", value + ""));
+            tree.add(new Person("Juan", "2010-06-02", value + ""));
         }
 
         System.out.print("Printing 1000 elements in BinarySearchTree: ");
@@ -51,15 +51,15 @@ public class PrintTimeMeasure {
         
         int max = 10000 * 10;
         int min = 0; 
-        tree.insert(new Person("Juan", "2010-06-02", max / 2 + ""));
+        tree.add(new Person("Juan", "2010-06-02", max / 2 + ""));
         while (tree.getTotalElements() < 10000 / 2) {
             int value = (int) Math.floor(Math.random() * (max / 2 - min + 1) + min);
-            tree.insert(new Person("Juan", "2010-06-02", value + ""));
+            tree.add(new Person("Juan", "2010-06-02", value + ""));
         }
 
         while (tree.getTotalElements() < 10000) {
             int value = (int) Math.floor(Math.random() * (max - max / 2 + 1) + max / 2);
-            tree.insert(new Person("Juan", "2010-06-02", value + ""));
+            tree.add(new Person("Juan", "2010-06-02", value + ""));
         }
 
         System.out.print("Printing 10000 elements in BinarySearchTree: ");
@@ -88,15 +88,15 @@ public class PrintTimeMeasure {
 
         int max = 1000000 * 10;
         int min = 0; 
-        tree.insert(new Person("Juan", "2010-06-02", max / 2 + ""));
+        tree.add(new Person("Juan", "2010-06-02", max / 2 + ""));
         while (tree.getTotalElements() < 1000000 / 2) {
             int value = (int) Math.floor(Math.random() * (max / 2 - min + 1) + min);
-            tree.insert(new Person("Juan", "2010-06-02", value + ""));
+            tree.add(new Person("Juan", "2010-06-02", value + ""));
         }
 
         while (tree.getTotalElements() < 1000000) {
             int value = (int) Math.floor(Math.random() * (max - max / 2 + 1) + max / 2);
-            tree.insert(new Person("Juan", "2010-06-02", value + ""));
+            tree.add(new Person("Juan", "2010-06-02", value + ""));
         }
 
         System.out.print("Printing 1000000 elements in BinarySearchTree: ");
@@ -124,15 +124,15 @@ public class PrintTimeMeasure {
 
         int max = 10000000 * 10;
         int min = 0; 
-        tree.insert(new Person("Juan", "2010-06-02", max / 2 + ""));
+        tree.add(new Person("Juan", "2010-06-02", max / 2 + ""));
         while (tree.getTotalElements() < 10000000 / 2) {
             int value = (int) Math.floor(Math.random() * (max / 2 - min + 1) + min);
-            tree.insert(new Person("Juan", "2010-06-02", value + ""));
+            tree.add(new Person("Juan", "2010-06-02", value + ""));
         }
 
         while (tree.getTotalElements() < 10000000) {
             int value = (int) Math.floor(Math.random() * (max - max / 2 + 1) + max / 2);
-            tree.insert(new Person("Juan", "2010-06-02", value + ""));
+            tree.add(new Person("Juan", "2010-06-02", value + ""));
         }
 
         System.out.print("Printing 10000000 elements in BinarySearchTree: ");

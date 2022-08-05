@@ -12,15 +12,15 @@ public class PrintTimeMeasure{
         BinarySearchTree<Integer> tree = new BinarySearchTree<>();
         int max = 1000 * 10;
         int min = 0; 
-        tree.insert(max / 2);
+        tree.add(max / 2);
         while (tree.getTotalElements() < 1000 / 2) {
             int value = (int) Math.floor(Math.random() * (max / 2 - min + 1) + min);
-            tree.insert(value);
+            tree.add(value);
         }
 
         while (tree.getTotalElements() < 1000) {
             int value = (int) Math.floor(Math.random() * (max - max / 2 + 1) + max / 2);
-            tree.insert(value);
+            tree.add(value);
         }
 
         TimeMeasure.measure(() -> {
@@ -45,15 +45,15 @@ public class PrintTimeMeasure{
         BinarySearchTree<Integer> tree = new BinarySearchTree<>();
         int max = 10000 * 10;
         int min = 0; 
-        tree.insert(max / 2);
+        tree.add(max / 2);
         while (tree.getTotalElements() < 10000 / 2) {
             int value = (int) Math.floor(Math.random() * (max / 2 - min + 1) + min);
-            tree.insert(value);
+            tree.add(value);
         }
 
         while (tree.getTotalElements() < 10000) {
             int value = (int) Math.floor(Math.random() * (max - max / 2 + 1) + max / 2);
-            tree.insert(value);
+            tree.add(value);
         }
 
         TimeMeasure.measure(() -> {
@@ -79,15 +79,15 @@ public class PrintTimeMeasure{
 
         int max = 1000000 * 10;
         int min = 0; 
-        tree.insert(max / 2);
+        tree.add(max / 2);
         while (tree.getTotalElements() < 1000000 / 2) {
             int value = (int) Math.floor(Math.random() * (max / 2 - min + 1) + min);
-            tree.insert(value);
+            tree.add(value);
         }
 
         while (tree.getTotalElements() < 1000000) {
             int value = (int) Math.floor(Math.random() * (max - max / 2 + 1) + max / 2);
-            tree.insert(value);
+            tree.add(value);
         }
 
         TimeMeasure.measure(() -> {
@@ -113,15 +113,15 @@ public class PrintTimeMeasure{
 
         int max = 10000000 * 10;
         int min = 0; 
-        tree.insert(max / 2);
+        tree.add(max / 2);
         while (tree.getTotalElements() < 10000000 / 2) {
             int value = (int) Math.floor(Math.random() * (max / 2 - min + 1) + min);
-            tree.insert(value);
+            tree.add(value);
         }
 
         while (tree.getTotalElements() < 10000000) {
             int value = (int) Math.floor(Math.random() * (max - max / 2 + 1) + max / 2);
-            tree.insert(value);
+            tree.add(value);
         }
 
         TimeMeasure.measure(() -> {

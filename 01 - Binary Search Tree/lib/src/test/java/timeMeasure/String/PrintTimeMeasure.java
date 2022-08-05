@@ -14,15 +14,15 @@ public class PrintTimeMeasure {
 
         int max = 1000 * 10;
         int min = 0; 
-        tree.insert((char) max / 2 + "" );
+        tree.add((char) max / 2 + "" );
         while (tree.getTotalElements() < 1000 / 2) {
             int value = (int) Math.floor(Math.random() * (max / 2 - min + 1) + min);
-            tree.insert((char) value + "");
+            tree.add((char) value + "");
         }
 
         while (tree.getTotalElements() < 1000) {
             int value = (int) Math.floor(Math.random() * (max - max / 2 + 1) + max / 2);
-            tree.insert((char) value + "");
+            tree.add((char) value + "");
         }
 
         System.out.print("Printing element 1000 to BinarySearchTree: ");
@@ -49,15 +49,15 @@ public class PrintTimeMeasure {
 
         int max = 1000 * 10;
         int min = 0; 
-        tree.insert((char) max / 2 + "" );
+        tree.add((char) max / 2 + "" );
         while (tree.getTotalElements() < 1000 / 2) {
             int value = (int) Math.floor(Math.random() * (max / 2 - min + 1) + min);
-            tree.insert((char) value + "");
+            tree.add((char) value + "");
         }
 
         while (tree.getTotalElements() < 1000) {
             int value = (int) Math.floor(Math.random() * (max - max / 2 + 1) + max / 2);
-            tree.insert((char) value + "");
+            tree.add((char) value + "");
         }
 
         System.out.print("Printing element 10000 to BinarySearchTree: ");
@@ -85,15 +85,15 @@ public class PrintTimeMeasure {
 
         int max = 1000 * 10;
         int min = 0; 
-        tree.insert((char) max / 2 + "" );
+        tree.add((char) max / 2 + "" );
         while (tree.getTotalElements() < 1000 / 2) {
             int value = (int) Math.floor(Math.random() * (max / 2 - min + 1) + min);
-            tree.insert((char) value + "");
+            tree.add((char) value + "");
         }
 
         while (tree.getTotalElements() < 1000) {
             int value = (int) Math.floor(Math.random() * (max - max / 2 + 1) + max / 2);
-            tree.insert((char) value + "");
+            tree.add((char) value + "");
         }
 
         System.out.print("Printing element 1000000 to BinarySearchTree: ");
@@ -121,15 +121,15 @@ public class PrintTimeMeasure {
 
         int max = 1000 * 10;
         int min = 0; 
-        tree.insert((char) max / 2 + "" );
+        tree.add((char) max / 2 + "" );
         while (tree.getTotalElements() < 1000 / 2) {
             int value = (int) Math.floor(Math.random() * (max / 2 - min + 1) + min);
-            tree.insert((char) value + "");
+            tree.add((char) value + "");
         }
 
         while (tree.getTotalElements() < 1000) {
             int value = (int) Math.floor(Math.random() * (max - max / 2 + 1) + max / 2);
-            tree.insert((char) value + "");
+            tree.add((char) value + "");
         }
 
         System.out.print("Printing element 10000000 to BinarySearchTree: ");

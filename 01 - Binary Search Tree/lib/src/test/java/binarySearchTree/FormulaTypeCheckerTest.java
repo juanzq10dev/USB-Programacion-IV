@@ -8,11 +8,11 @@ public class FormulaTypeCheckerTest {
     @Test
     public void fullBinaryTreeFormulaIsValid_FullBinaryTree_True() {
         BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();
-        tree.insert(1);
-        tree.insert(-1);
-        tree.insert(5);
-        tree.insert(2);
-        tree.insert(6);
+        tree.add(1);
+        tree.add(-1);
+        tree.add(5);
+        tree.add(2);
+        tree.add(6);
 
         assertTrue(FormulaTypeChecker.fullBinaryTreeFormulaIsValid(tree));
     }
@@ -20,10 +20,10 @@ public class FormulaTypeCheckerTest {
     @Test
     public void pathologicBinaryTreeFormulaIsValid_PathologicalBinaryTree_True() {
         BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();
-        tree.insert(1);
-        tree.insert(-1);
-        tree.insert(-2);
-        tree.insert(-4);
+        tree.add(1);
+        tree.add(-1);
+        tree.add(-2);
+        tree.add(-4);
 
         boolean result = FormulaTypeChecker.pathologicBinaryTreeFormulaIsValid(tree);
         assertTrue(result);
@@ -32,13 +32,13 @@ public class FormulaTypeCheckerTest {
     @Test
     public void perfectBinaryTreeFormulaIsValid_PerfectBinaryTree_True() {
         BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();
-        tree.insert(1);
-        tree.insert(-5);
-        tree.insert(-6);
-        tree.insert(-3);
-        tree.insert(5);
-        tree.insert(2);
-        tree.insert(6);
+        tree.add(1);
+        tree.add(-5);
+        tree.add(-6);
+        tree.add(-3);
+        tree.add(5);
+        tree.add(2);
+        tree.add(6);
 
         assertTrue(FormulaTypeChecker.perfectBinaryTreeFormulaIsValid(tree));
     }
