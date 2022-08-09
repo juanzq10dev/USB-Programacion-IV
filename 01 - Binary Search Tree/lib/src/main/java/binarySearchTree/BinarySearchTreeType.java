@@ -3,14 +3,14 @@ package binarySearchTree;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class BinarySearchTreeType<T> {
-    public static boolean isFull(BinarySearchTree tree) {
-        Node root = tree.getRootNode();
-        Queue<Node> queue = new LinkedList<>();
+public class BinarySearchTreeType {
+    public static<T extends Comparable<T>> boolean isFull(BinarySearchTree<T> tree) {
+        Node<T> root = tree.getRootNode();
+        Queue<Node<T>> queue = new LinkedList<>();
         queue.add(root);
 
         while (!queue.isEmpty()) {
-            Node node = queue.poll();
+            Node<T> node = queue.poll();
 
             if (node != null) {
                 if (node.isLeafNode()) {
@@ -27,13 +27,13 @@ public class BinarySearchTreeType<T> {
         return true;
     }
 
-    public static boolean isPathologic(BinarySearchTree tree) {
-        Node root = tree.getRootNode();
-        Queue<Node> queue = new LinkedList<>();
+    public static<T extends Comparable<T>> boolean isPathologic(BinarySearchTree<T> tree) {
+        Node<T> root = tree.getRootNode();
+        Queue<Node<T>> queue = new LinkedList<>();
         queue.add(root);
 
         while (!queue.isEmpty()) {
-            Node node = queue.poll();
+            Node<T> node = queue.poll();
             if (node != null) {
 
                 if (node.getLeftNode() != null && node.getRightNode() != null) {
@@ -48,14 +48,14 @@ public class BinarySearchTreeType<T> {
         return true;
     }
 
-    public static boolean isComplete(BinarySearchTree tree) {
-        Node root = tree.getRootNode();
-        Queue<Node> queue = new LinkedList<>();
+    public static<T extends Comparable<T>> boolean isComplete(BinarySearchTree<T> tree) {
+        Node<T> root = tree.getRootNode();
+        Queue<Node<T>> queue = new LinkedList<>();
         queue.add(root);
         boolean nonCompleteNodeFound = false;
 
         while (!queue.isEmpty()) {
-            Node node = queue.poll();
+            Node<T> node = queue.poll();
 
             if (node != null) {
                 if (nonCompleteNodeFound && (node.getLeftNode() != null || node.getRightNode() != null)) {
@@ -78,14 +78,14 @@ public class BinarySearchTreeType<T> {
         return true;
     }
 
-    public static boolean isPerfect(BinarySearchTree binarySearchTree) {
-        Node root = binarySearchTree.getRootNode();
-        Queue<Node> queue = new LinkedList<>();
+    public static<T extends Comparable<T>> boolean isPerfect(BinarySearchTree<T> binarySearchTree) {
+        Node<T> root = binarySearchTree.getRootNode();
+        Queue<Node<T>> queue = new LinkedList<>();
         queue.add(root);
         boolean leafNodeFound = false;
 
         while (!queue.isEmpty()) {
-            Node node = queue.poll();
+            Node<T> node = queue.poll();
 
             if (node != null) {
                 if (node.getLeftNode() != null && node.getRightNode() != null) {
@@ -110,8 +110,8 @@ public class BinarySearchTreeType<T> {
         return true;
     }
 
-    public static boolean isBalanced(BinarySearchTree binarySearchTree) {
-        Node root = binarySearchTree.getRootNode();
+    public static<T extends Comparable<T>> boolean isBalanced(BinarySearchTree<T> binarySearchTree) {
+        Node<T> root = binarySearchTree.getRootNode();
         int leftHeight = binarySearchTree.getHeightFrom(root.getLeftNode());
         int rightHeight = binarySearchTree.getHeightFrom(root.getRightNode());
 
