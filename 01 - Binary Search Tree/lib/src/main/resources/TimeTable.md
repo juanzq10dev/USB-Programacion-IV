@@ -20,12 +20,12 @@
 | Array List         | Search    | Integer   | 10000000     | 26.66   | 0.02666 | 0.0004443         |
 | Binary Search Tree | Search    | Integer   | 100000000000 | -       | -       | -                 |
 | Array List         | Search    | Integer   | 100000000000 | -       | -       | -                 |
-| Binary Search Tree | Print     | Integer   | 1000         | 24.04   | 0.02404 | 0.00040067        |
-| Array List         | Print     | Integer   | 1000         | 2.08    | 0.00208 | 3.467E-05         |
-| Binary Search Tree | Print     | Integer   | 10000        | 75.38   | 0.07538 | 0.0012563         |
-| Array List         | Print     | Integer   | 10000        | 13.93   | 0.01393 | 0.000232167       |
-| Binary Search Tree | Print     | Integer   | 1000000      | 1753.55 | 1.75355 | 0.02922583        |
-| Array List         | Print     | Integer   | 1000000      | 225.97  | 0.22597 | 0.003766167       |
+| Binary Search Tree | Print     | Integer   | 1000         | 1.93    | 0.00193 | 3.2167E-05        |
+| Array List         | Print     | Integer   | 1000         | 1.11    | 0.00111 | 1.85E-05          |
+| Binary Search Tree | Print     | Integer   | 10000        | 12      | 0.012   | 0.0002            |
+| Array List         | Print     | Integer   | 10000        | 5.53    | 0.00553 | 9.2167E-05        |
+| Binary Search Tree | Print     | Integer   | 1000000      | 568.67  | 0.56867 | 0.0095            |
+| Array List         | Print     | Integer   | 1000000      | 161.58  | 0.16158 | 0.002693          |
 | Binary Search Tree | Print     | Integer   | 10000000     | -       | -       | -                 |
 | Array List         | Print     | Integer   | 10000000     | -       | -       | -                 |
 | Binary Search Tree | Print     | Integer   | 100000000000 | -       | -       | -                 |
@@ -60,13 +60,13 @@
 | Array List         | Search    | String    | 10000000     | 1.27    | 0.00127 | 2.1167E-05        |
 | Binary Search Tree | Search    | String    | 100000000000 | -       | -       | -                 |
 | Array List         | Search    | String    | 100000000000 | -       | -       | -                 |
-| Binary Search Tree | Print     | String    | 1000         | 26.03   | 0.02603 | 0.00043383        |
-| Array List         | Print     | String    | 1000         | 1.31    | 0.00131 | 2.183E-05         |
-| Binary Search Tree | Print     | String    | 10000        | 70.21   | 0.07021 | 0.001170167       |
+| Binary Search Tree | Print     | String    | 1000         | 3.8     | 0.0038  | 6.33E-05          |
+| Array List         | Print     | String    | 1000         | 1.31    | 0.00131 | 2.1833E-05        |
+| Binary Search Tree | Print     | String    | 10000        | 4.2     | 0.0042  | 7E-05             |
 | Array List         | Print     | String    | 10000        | 8.92    | 0.00892 | 0.00014867        |
-| Binary Search Tree | Print     | String    | 1000000      | 297.89  | 0.29789 | 0.00496483        |
+| Binary Search Tree | Print     | String    | 1000000      | 3.94    | 0.00394 | 6.567E-05         |
 | Array List         | Print     | String    | 1000000      | -       | -       | -                 |
-| Binary Search Tree | Print     | String    | 10000000     | 529.83  | 0.52983 | 0.0088305         |
+| Binary Search Tree | Print     | String    | 10000000     | 5.15    | 0.00515 | 8.5833E-05        |
 | Array List         | Print     | String    | 10000000     | -       | -       | -                 |
 | Binary Search Tree | Print     | String    | 100000000000 | -       | -       | -                 |
 | Array List         | Print     | String    | 100000000000 | -       | -       | -                 |
@@ -100,12 +100,12 @@
 | Array List         | Search    | Person    | 10000000     | 110.13  | 0.11013 | 0.0018355         |
 | Binary Search Tree | Search    | Person    | 100000000000 | -       | -       | -                 |
 | Array List         | Search    | Person    | 100000000000 | -       | -       | -                 |
-| Binary Search Tree | Print     | Person    | 1000         | 46.8    | 0.047   | 0.00078           |
-| Array List         | Print     | Person    | 1000         | 3.98    | 0.00398 | 6.63E-05          |
-| Binary Search Tree | Print     | Person    | 10000        | 101.37  | 0.10137 | 0.0016895         |
+| Binary Search Tree | Print     | Person    | 1000         | 5.74    | 0.00574 | 9.567E-05         |
+| Array List         | Print     | Person    | 1000         | 3.98    | 0.00398 | 6.633E-05         |
+| Binary Search Tree | Print     | Person    | 10000        | 44.51   | 0.04451 | 0.00074183        |
 | Array List         | Print     | Person    | 10000        | 23.61   | 0.02361 | 0.0003935         |
-| Binary Search Tree | Print     | Person    | 1000000      | 3091.49 | 3.09149 | 0.05152483        |
-| Array List         | Print     | Person    | 1000000      | 402.7   | 0.403   | 0.00671167        |
+| Binary Search Tree | Print     | Person    | 1000000      | 1435.49 | 1.43549 | 0.02392483        |
+| Array List         | Print     | Person    | 1000000      | 402.7   | 0.4027  | 0.00671167        |
 | Binary Search Tree | Print     | Person    | 10000000     | -       | -       | -                 |
 | Array List         | Print     | Person    | 10000000     | -       | -       | -                 |
 | Binary Search Tree | Print     | Person    | 100000000000 | -       | -       | -                 |
@@ -115,7 +115,7 @@
 | Binary Search Tree | Delete    | Person    | 10000        | 0.01    | 1E-05   | 1.66E-07          |
 | Array List         | Delete    | Person    | 10000        | 2.66    | 0.00266 | 4.43E-05          |
 | Binary Search Tree | Delete    | Person    | 1000000      | 0.02    | 2E-05   | 3.33E-07          |
-| Array List         | Delete    | Person    | 1000000      | 22.66   | 0.02266 | 0.00037767        |
+| Array List         | Delete    | Person    | 1000000      | 22.66   | 0.02266 | 0.000377666666667 |
 | Binary Search Tree | Delete    | Person    | 10000000     | 0.02    | 2E-05   | 3.33E-07          |
 | Array List         | Delete    | Person    | 10000000     | 119.13  | 0.11913 | 0.0019855         |
 | Binary Search Tree | Delete    | Person    | 100000000000 | -       | -       | -                 |
