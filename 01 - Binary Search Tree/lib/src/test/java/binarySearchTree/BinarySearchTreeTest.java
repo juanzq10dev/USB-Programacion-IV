@@ -142,6 +142,36 @@ public class BinarySearchTreeTest {
         assertThrows(IllegalArgumentException.class, () -> tree.search(new Person("Roman", "2010-06-01", "123456789")));
     }
 
+    @Test 
+    public void print_IntegerTree() {
+        BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();
+        tree.add(1);
+        tree.add(2);
+        tree.add(3);
+        tree.add(-2);
+        tree.print();
+    }
+
+    @Test
+    public void print_StringTree() {
+        BinarySearchTree<String> tree = new BinarySearchTree<String>();
+        tree.add("John");
+        tree.add("Brandon");
+        tree.add("Pedro");
+        tree.add("Carlos");
+        tree.print();
+    }
+
+    @Test
+    public void print_PersonTree() {
+        BinarySearchTree<Person> tree = new BinarySearchTree<Person>();
+        tree.add(new Person("John", "2010-05-01", "123456789"));
+        tree.add(new Person("Brandon", "2010-05-01", "123456788"));
+        tree.add(new Person("Pedro", "2011-05-01", "123456787"));
+        tree.add(new Person("Carlos", "2009-05-01", "123456786"));
+        tree.print();
+    }
+
     @Test
     public void remove_String_ValidValue() {
         BinarySearchTree<String> tree = new BinarySearchTree<String>();
