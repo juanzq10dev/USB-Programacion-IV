@@ -1,7 +1,7 @@
 package binarySearchTree;
 
-public class FormulaTypeChecker {
-    public static<T extends Comparable<T>> boolean fullBinaryTreeFormulaIsValid(BinarySearchTree<T> binarySearchTree) {
+public class BinaryTreeFormulaChecker {
+    public static<T extends Comparable<T>> boolean fullTreeFormulaIsValid(BinarySearchTree<T> binarySearchTree) {
         if (!BinarySearchTreeType.isFull(binarySearchTree)) {
             throw new IllegalArgumentException("Binary search tree is not full");
         }
@@ -11,7 +11,7 @@ public class FormulaTypeChecker {
         return leafNodes == internalNodes + 1;
     }
 
-    public static<T extends Comparable<T>> boolean perfectBinaryTreeFormulaIsValid(BinarySearchTree<T> binarySearchTree) {
+    public static<T extends Comparable<T>> boolean perfectTreeFormulaIsValid(BinarySearchTree<T> binarySearchTree) {
         if (!BinarySearchTreeType.isFull(binarySearchTree)) {
             throw new IllegalArgumentException("Binary search tree is not full");
         }
@@ -21,7 +21,7 @@ public class FormulaTypeChecker {
         return totalElements == Math.pow(2, height) - 1;
     }
 
-    public static<T extends Comparable<T>> boolean pathologicBinaryTreeFormulaIsValid(BinarySearchTree<T> binarySearchTree) {
+    public static<T extends Comparable<T>> boolean pathologicTreeFormulaIsValid(BinarySearchTree<T> binarySearchTree) {
         if (!BinarySearchTreeType.isPathologic(binarySearchTree)) {
             throw new IllegalArgumentException("Binary search tree is not pathologic");
         }
@@ -30,7 +30,4 @@ public class FormulaTypeChecker {
         int totalElements = binarySearchTree.getTotalElements();
         return height == totalElements;
     }
-
-    
-
 }

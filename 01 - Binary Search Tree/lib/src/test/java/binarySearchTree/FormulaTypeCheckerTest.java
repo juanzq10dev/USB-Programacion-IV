@@ -14,7 +14,7 @@ public class FormulaTypeCheckerTest {
         tree.add(2);
         tree.add(6);
 
-        assertTrue(FormulaTypeChecker.fullBinaryTreeFormulaIsValid(tree));
+        assertTrue(BinaryTreeFormulaChecker.fullTreeFormulaIsValid(tree));
     }
 
     @Test
@@ -25,7 +25,7 @@ public class FormulaTypeCheckerTest {
         tree.add(-2);
         tree.add(-4);
 
-        boolean result = FormulaTypeChecker.pathologicBinaryTreeFormulaIsValid(tree);
+        boolean result = BinaryTreeFormulaChecker.pathologicTreeFormulaIsValid(tree);
         assertTrue(result);
     }
 
@@ -40,6 +40,6 @@ public class FormulaTypeCheckerTest {
         tree.add(2);
         tree.add(6);
 
-        assertTrue(FormulaTypeChecker.perfectBinaryTreeFormulaIsValid(tree));
+        assertTrue(BinaryTreeFormulaChecker.perfectTreeFormulaIsValid(tree));
     }
 }
