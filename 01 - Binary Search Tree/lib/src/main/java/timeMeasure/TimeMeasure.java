@@ -1,9 +1,9 @@
 package timeMeasure;
 
 public class TimeMeasure {
-    public static void measure(Runnable runnable) {
+    public static void measure(Executable executable) {
         long initTime = System.nanoTime();
-        runnable.run();
+        executable.execute();
         long endTime = System.nanoTime();
         System.out.println(nanoToMillis(endTime - initTime) + " ms");
     }
