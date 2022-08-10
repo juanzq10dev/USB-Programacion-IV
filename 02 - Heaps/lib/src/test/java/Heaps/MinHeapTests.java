@@ -9,13 +9,13 @@ import Person.Person;
 
 import static org.junit.Assert.*;
 
-import java.lang.reflect.Array;
+
 import java.util.Arrays;
 
-public class HeapSortTests {
+public class MinHeapTests {
     @Test
     public void sort_LongArray_ArraySorted() {
-        Heap<Long> heap = new Heap<Long>(new Long[] {9L, 10L, 7L, 8L, 5L, 6L, 3L, 4L, 1L, 2L, 0L});
+        MinHeap<Long> heap = new MinHeap<Long>(new Long[] {9L, 10L, 7L, 8L, 5L, 6L, 3L, 4L, 1L, 2L, 0L});
         Long[] result = heap.getArray();
         Long[] expected = {0L, 1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L};
         assertArrayEquals(expected, result);
@@ -23,7 +23,7 @@ public class HeapSortTests {
 
     @Test
     public void sort_StringArray_ArraySorted() {
-        Heap<String> heap = new Heap<String>(new String[] {"k", "j", "a", "d", "b", "f", "c", "e", "g", "h"});
+        MinHeap<String> heap = new MinHeap<String>(new String[] {"k", "j", "a", "d", "b", "f", "c", "e", "g", "h"});
         String[] result = heap.getArray();
         String[] expected = {"a", "b", "c", "d", "e", "f", "g", "h", "j", "k"};
         assertArrayEquals(expected, result);
@@ -42,7 +42,7 @@ public class HeapSortTests {
             new Person("i", "2000-01-01", "4"),
             new Person("j", "2000-01-01", "1")
         };
-        Heap<Person> heap = new Heap<Person>(array);
+        MinHeap<Person> heap = new MinHeap<Person>(array);
         
         Person[] expected = {
             new Person("j", "2000-01-01", "1"),
@@ -61,13 +61,15 @@ public class HeapSortTests {
     }
 
 
-    // @Test
-    // public void insert_InsertingElementAtTheBeginning_arraySorted() {
-    //     Heap<Long> heap = new Heap<Long>(new Long[] {1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L});
-    //     heap.insert(0L);
-    //     Long[] result = heap.getArray();
-    //     result = Arrays.stream(result).filter(x -> x != null).toArray(Long[]::new);
-    //     System.out.println(Arrays.toString(result));
-    //     Long[] expected = {0L, 1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L};
-    // }
+    @Test
+    public void add_InsertingElementAtTheBeginning_arraySorted() {
+        MinHeap<Long> heap = new MinHeap<Long>(new Long[] {1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L});
+        heap.add(0L);
+
+        Long[] result = heap.getArray();
+        result = Arrays.stream(result).filter(x -> x != null).toArray(Long[]::new);
+        Long[] expected = {0L, 1L, 3L, 4L, 2L, 6L, 7L, 8L, 9L, 10L, 5L};
+
+        assertArrayEquals(expected, result);
+    }
 }
