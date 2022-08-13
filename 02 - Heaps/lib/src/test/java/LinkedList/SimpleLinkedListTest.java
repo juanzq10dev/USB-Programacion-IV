@@ -1,17 +1,19 @@
 package LinkedList;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThrows;
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
-import org.junit.Test;
+import java.util.Arrays;
+import java.util.Comparator;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SimpleLinkedListTest {
 
     @Test
     public void add_AddingTwoElements_TheSecondElement() {
-        LinkedList<String> fruitList = new SimpleLinkedList<>();
+        LinkedList<String> fruitList = new SimpleLinkedList<String>();
 
         fruitList.add("banana");
         fruitList.add("apple");
@@ -23,7 +25,7 @@ public class SimpleLinkedListTest {
 
     @Test 
     public void add_AddingTwoElements_TheSizeIncreases() {
-        LinkedList<String> fruitList = new SimpleLinkedList<>();
+        LinkedList<String> fruitList = new SimpleLinkedList<String>();
 
         fruitList.add("banana");
         fruitList.add("apple");
@@ -35,7 +37,7 @@ public class SimpleLinkedListTest {
 
     @Test 
     public void add_AddingAndElementNextToOther_TheElementAddedSuccesfully() {
-        LinkedList<String> fruitList = new SimpleLinkedList<>();
+        LinkedList<String> fruitList = new SimpleLinkedList<String>();
 
         fruitList.add("banana");
         fruitList.add("apple");
@@ -48,7 +50,7 @@ public class SimpleLinkedListTest {
 
     @Test
     public void add_AddingAnElementAfterTheHead_TheElementAddedSuccesfully() {
-        LinkedList<String> fruitList = new SimpleLinkedList<>();
+        LinkedList<String> fruitList = new SimpleLinkedList<String>();
 
         fruitList.add("banana");
         fruitList.add("apple");
@@ -61,7 +63,7 @@ public class SimpleLinkedListTest {
 
     @Test 
     public void add_AddingAnInvalidPrevValue_InvalidArgumentException() {
-        LinkedList<String> fruitList = new SimpleLinkedList<>();
+        LinkedList<String> fruitList = new SimpleLinkedList<String>();
 
         fruitList.add("banana");
         fruitList.add("apple");
@@ -71,7 +73,7 @@ public class SimpleLinkedListTest {
 
     @Test 
     public void remove_RemovingTheHead_TheHeadWasRemoved() {
-        LinkedList<String> fruitList = new SimpleLinkedList<>(); 
+        LinkedList<String> fruitList = new SimpleLinkedList<String>();
 
         fruitList.add("pinneaple"); 
         fruitList.add("apple"); 
@@ -86,7 +88,7 @@ public class SimpleLinkedListTest {
 
     @Test 
     public void remove_RemovingTheTale_TheTaleWasRemoved() {
-        LinkedList<String> fruitList = new SimpleLinkedList<>(); 
+        LinkedList<String> fruitList = new SimpleLinkedList<String>();
 
         fruitList.add("pinneaple"); 
         fruitList.add("apple"); 
@@ -102,7 +104,7 @@ public class SimpleLinkedListTest {
 
     @Test
     public void remove_RemovingAnElement_TheSizeDecreases() {
-        LinkedList<String> fruitList = new SimpleLinkedList<>(); 
+        LinkedList<String> fruitList = new SimpleLinkedList<String>();
 
         fruitList.add("pinneaple"); 
         fruitList.add("apple"); 
@@ -117,7 +119,7 @@ public class SimpleLinkedListTest {
 
     @Test 
     public void isEmpty_AddingAnElement_False() {
-        LinkedList<Integer> numbersList = new SimpleLinkedList<>(); 
+        LinkedList<Integer> numbersList = new SimpleLinkedList<Integer>();
 
         numbersList.add(1);
         boolean result = numbersList.isEmpty(); 
@@ -127,10 +129,25 @@ public class SimpleLinkedListTest {
 
     @Test 
     public void isEmpty_AddingNoElement_True() {
-        LinkedList<Integer> numbersList = new SimpleLinkedList<>(); 
+        LinkedList<Integer> numbersList = new SimpleLinkedList<Integer>();
 
         boolean result = numbersList.isEmpty(); 
 
         assertTrue(result);
+    }
+
+    @Test
+    public void add_AddingWithOrder_ListSorted() {
+        LinkedList<Integer> numbersList = new SimpleLinkedList<Integer>();
+        numbersList.add(5, Comparator.naturalOrder());
+        numbersList.add(3, Comparator.naturalOrder());
+        numbersList.add(1, Comparator.naturalOrder());
+        numbersList.add(4, Comparator.naturalOrder());
+        numbersList.add(2, Comparator.naturalOrder());
+        numbersList.add(6, Comparator.naturalOrder());
+
+        Object[] expected = {1, 2, 3, 4, 5, 6};
+        Object[] result = numbersList.toArray();
+        assertArrayEquals(expected, result);
     }
 }

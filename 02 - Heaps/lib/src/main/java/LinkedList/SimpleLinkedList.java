@@ -1,5 +1,6 @@
 package LinkedList;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 
@@ -8,7 +9,7 @@ public class SimpleLinkedList<T> implements LinkedList<T> {
     protected Node<T> head; 
     protected Node<T> tail;
 
-    protected SimpleLinkedList() { };
+    public SimpleLinkedList() { };
 
     @Override
     public void add(T element) {
@@ -20,6 +21,11 @@ public class SimpleLinkedList<T> implements LinkedList<T> {
     public void add(T prev, T element) {
         Node<T> lastNode = getNode(prev); 
         Node<T> newNode = new Node<T>(element);
+
+        add(lastNode, newNode);
+    }
+
+    private void add(Node<T> lastNode, Node<T> newNode) {
         Node<T> nextNode = lastNode.getNext();
 
         link(lastNode, newNode);
@@ -32,9 +38,23 @@ public class SimpleLinkedList<T> implements LinkedList<T> {
         size++;
     }
 
+    public void add(T element, Comparator<T> comparator) {
+        if (isEmpty()) {
+            add(element);
+        } else {
+            Node<T> lesserNode = getLesserNode(element, comparator);
+            if (lesserNode == null) {
+                addToHead(new Node<T>(element));
+            } else {
+                add(lesserNode, new Node<T>(element));
+            }
+        }
+    }
+
     private void addToHead(Node<T> newNode) { 
         link(newNode, head);
         head = newNode;
+        size++;
     }
 
     private void addToTale(Node<T> newNode) { 
@@ -107,7 +127,7 @@ public class SimpleLinkedList<T> implements LinkedList<T> {
         tail = penultimateNode;
     }
 
-    protected Node<T> getNode(int index) {
+    public Node<T> getNode(int index) {
         if (indexIsValid(index)) {
             Node<T> node = head;
     
@@ -119,6 +139,28 @@ public class SimpleLinkedList<T> implements LinkedList<T> {
         }
         
         throw new IndexOutOfBoundsException("The index " + index + " is out of bounds");
+    }
+
+    protected Node<T> getLesserNode(T value, Comparator<T> comparator) {
+        if (!isEmpty()) {
+            Node<T> node = head;
+
+            if (comparator.compare(node.getElement(), value) > 0) {
+                return null;
+            }
+
+            while (node.getNext() != null) {
+                if (comparator.compare(node.getNext().getElement(), value) > 0) {
+                    return node;
+                }
+
+                node = node.getNext();
+            }
+
+            return node;
+        }
+
+        return null;
     }
 
     protected Node<T> getNode(T value) {
@@ -137,6 +179,18 @@ public class SimpleLinkedList<T> implements LinkedList<T> {
 
     public boolean isEmpty() {
         return size == 0;
+    }
+
+    @Override
+    public Object[] toArray() {
+        Object[] array = new Object[size];
+        int i = 0;
+        for (Node<T> node = head; node != null; node = node.getNext()) {
+            array[i] = node.getElement();
+            i++;
+        }
+
+        return array;
     }
 
     public int getSize() {
@@ -172,5 +226,10 @@ public class SimpleLinkedList<T> implements LinkedList<T> {
             index++;
             return element;
         } 
+    }
+
+    @Override
+    public T get(int index) {
+        return getNode(index).getElement();
     }
 }
