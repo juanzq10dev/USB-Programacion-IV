@@ -4,6 +4,7 @@ import LinkedList.Node;
 import LinkedList.SimpleLinkedList;
 
 import java.util.Comparator;
+import java.util.Iterator;
 
 public class LinkedListPriorityQueue<T extends Comparable<T>> implements PriorityQueue<T> {
     private SimpleLinkedList<T> list;
@@ -33,5 +34,9 @@ public class LinkedListPriorityQueue<T extends Comparable<T>> implements Priorit
     public T peek() {
         return list.peek();
     }
-    
+
+    @Override
+    public Iterator<T> iterator() {
+        return list.iterator();
+    }
 }

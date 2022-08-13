@@ -11,5 +11,7 @@ public interface Heap<T extends Comparable<T>> {
 
     void heapifyUp(int index);
 
-    void heapifyDown(int length, int i); 
+    void heapifyDown(int length, int i);
+
+    int size();
 }

@@ -4,6 +4,8 @@ import Heaps.BinaryHeap;
 import Heaps.MaxHeap;
 import Heaps.MinHeap;
 
+import java.util.Iterator;
+
 public class BinaryHeapPriorityQueue<T extends Comparable<T>> implements PriorityQueue<T>{
     private BinaryHeap heap;
 
@@ -23,5 +25,30 @@ public class BinaryHeapPriorityQueue<T extends Comparable<T>> implements Priorit
     @Override
     public T peek() {
         return (T) this.heap.peek();
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new MyIterator<>();
+    }
+
+    private class MyIterator<LinkedList> implements Iterator<T> {
+        private T[] array;
+        private int index;
+
+        public MyIterator() {
+            heap.sort();
+            array = (T[]) heap.getArray();
+            index = 0;
+        }
+        @Override
+        public boolean hasNext() {
+            return index < heap.size();
+        }
+
+        @Override
+        public T next() {
+            return array[index++];
+        }
     }
 }

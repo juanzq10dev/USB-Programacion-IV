@@ -136,4 +136,8 @@ public abstract class BinaryHeap<T extends Comparable<T>> implements Heap<T>, Co
         return size == 0;
     }
 
+    @Override
+    public int size() {
+        return size;
+    }
 }

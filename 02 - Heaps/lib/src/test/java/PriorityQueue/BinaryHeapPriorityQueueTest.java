@@ -51,4 +51,24 @@ class BinaryHeapPriorityQueueTest {
         assertEquals(expectedFirstPeek, firstPeek);
         assertEquals(expectedSecondPeek, secondPeek);
     }
+
+    @Test
+    void iterate_Iterate_TheHeadDoesNotChange() {
+        BinaryHeapPriorityQueue<String> fruitList = new BinaryHeapPriorityQueue<String>(true);
+        fruitList.enqueue("banana");
+        fruitList.enqueue("carrot");
+        fruitList.enqueue("apple");
+
+        String expectedString = "carrot";
+        String actualString = "";
+        for (String s : fruitList) {
+            actualString = s;
+        }
+
+        String actualHead = fruitList.peek();
+        String expectedHead = "apple";
+
+        assertEquals(expectedString, actualString);
+        assertEquals(expectedHead, actualHead);
+    }
 }
