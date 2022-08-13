@@ -12,9 +12,11 @@ public interface LinkedList<T> extends Iterable<T> {
 
     void remove(T value);
 
-    void removeHead();
+    T removeHead();
 
     void removeTail(Node<T> penultimateNode);
+
+    T peek();
 
     T get(int index);
 

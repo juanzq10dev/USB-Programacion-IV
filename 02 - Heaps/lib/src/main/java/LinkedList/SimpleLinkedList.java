@@ -38,6 +38,7 @@ public class SimpleLinkedList<T> implements LinkedList<T> {
         size++;
     }
 
+    @Override
     public void add(T element, Comparator<T> comparator) {
         if (isEmpty()) {
             add(element);
@@ -117,14 +118,29 @@ public class SimpleLinkedList<T> implements LinkedList<T> {
     }
 
     @Override
-    public void removeHead() {
+    public T removeHead() {
+        if (isEmpty()) {
+            return null;
+        }
+        T value = head.getElement();
         head = head.getNext();
+        size--;
+        return value;
     }
 
     @Override
     public void removeTail(Node<T> penultimateNode) {
         penultimateNode.setNext(null);
         tail = penultimateNode;
+    }
+
+    @Override
+    public T peek() {
+        if (isEmpty()) {
+            return null;
+        }
+
+        return head.getElement();
     }
 
     public Node<T> getNode(int index) {

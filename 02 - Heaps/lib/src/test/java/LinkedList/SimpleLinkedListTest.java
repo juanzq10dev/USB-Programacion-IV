@@ -150,4 +150,52 @@ public class SimpleLinkedListTest {
         Object[] result = numbersList.toArray();
         assertArrayEquals(expected, result);
     }
+
+    @Test
+    public void removeHead_RemovingHeadFromEmptyList_Null() {
+        LinkedList<Integer> numbersList = new SimpleLinkedList<Integer>();
+
+        Integer result = numbersList.removeHead();
+        Integer expected = null;
+        int expectedSize = 0;
+        int resultSize = numbersList.getSize();
+        assertEquals(expected, result);
+        assertEquals(expectedSize, resultSize);
+    }
+
+    @Test
+    public void removeHead_RemovingHeadFromNonEmptyList_HeadRemoved() {
+        LinkedList<Integer> numbersList = new SimpleLinkedList<Integer>();
+        numbersList.add(1);
+        numbersList.add(2);
+
+        int actualRemovedItem = numbersList.removeHead();
+        int expectedRemovedItem = 1;
+        int expectedSize = 1;
+        int resultSize = numbersList.getSize();
+        int resultHead = numbersList.peek();
+        int actualHead = 2;
+        assertEquals(expectedRemovedItem, actualRemovedItem);
+        assertEquals(expectedSize, resultSize);
+        assertEquals(actualHead, resultHead);
+    }
+
+    @Test
+    public void peek_PeekingEmptyList_Null() {
+        LinkedList<Integer> numbersList = new SimpleLinkedList<Integer>();
+
+        Integer result = numbersList.peek();
+        Integer expected = null;
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void peek_PeekingNonEmptyList_Head() {
+        LinkedList<Integer> numbersList = new SimpleLinkedList<Integer>();
+        numbersList.add(1);
+
+        Integer result = numbersList.peek();
+        Integer expected = 1;
+        assertEquals(expected, result);
+    }
 }
