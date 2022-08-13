@@ -3,7 +3,7 @@
  */
 package Heaps;
 
-public class MinHeap<T extends Comparable<T>> extends AbstractBinaryHeap<T> {
+public class MinHeap<T extends Comparable<T>> extends BinaryHeap<T> {
 
     public MinHeap() {
         super();

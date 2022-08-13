@@ -4,11 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LinkedListPriorityQueueTest {
+class BinaryHeapPriorityQueueTest {
 
     @Test
     void enqueue_EnqueueStrings_HeadIsOrdered() {
-        LinkedListPriorityQueue<String> fruitList = new LinkedListPriorityQueue<String>();
+        BinaryHeapPriorityQueue<String> fruitList = new BinaryHeapPriorityQueue<String>(true);
         fruitList.enqueue("banana");
         fruitList.enqueue("carrot");
         fruitList.enqueue("apple");
@@ -20,7 +20,7 @@ class LinkedListPriorityQueueTest {
 
     @Test
     void dequeue_DequeueTwoElements_ElementsAreDequeued() {
-        LinkedListPriorityQueue<String> fruitList = new LinkedListPriorityQueue<String>();
+        BinaryHeapPriorityQueue<String> fruitList = new BinaryHeapPriorityQueue<String>(true);
         fruitList.enqueue("banana");
         fruitList.enqueue("carrot");
         fruitList.enqueue("apple");
@@ -39,7 +39,7 @@ class LinkedListPriorityQueueTest {
 
     @Test
     void peek_PeekingTwice_TheHeadDoesNotChange() {
-        LinkedListPriorityQueue<String> fruitList = new LinkedListPriorityQueue<String>();
+        BinaryHeapPriorityQueue<String> fruitList = new BinaryHeapPriorityQueue<String>(true);
         fruitList.enqueue("banana");
         fruitList.enqueue("carrot");
         fruitList.enqueue("apple");

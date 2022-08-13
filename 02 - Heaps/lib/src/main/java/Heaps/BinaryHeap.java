@@ -3,16 +3,16 @@ package Heaps;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public abstract class AbstractBinaryHeap<T extends Comparable<T>> implements Heap<T>, Comparator<T> {
+public abstract class BinaryHeap<T extends Comparable<T>> implements Heap<T>, Comparator<T> {
     protected T[] array;
     protected int size;
 
-    public AbstractBinaryHeap() {
+    public BinaryHeap() {
         this.array = (T[]) new Comparable[10];
         this.size = 0;
     }
 
-    public AbstractBinaryHeap(T[] array) {
+    public BinaryHeap(T[] array) {
         this.array = array;
         this.size = array.length;
         sort();
@@ -79,6 +79,25 @@ public abstract class AbstractBinaryHeap<T extends Comparable<T>> implements Hea
         }
     }
 
+    public void heapifyDown(int index) {
+        int largest = index;
+        int left = 2 * index + 1;
+        int right = 2 * index + 2;
+
+        if (left < size - 1 && compare(array[left], array[largest]) < 0) {
+            largest = left;
+        }
+
+        if (right < size - 1 && compare(array[right], array[largest]) < 0) {
+            largest = right;
+        }
+
+        if (largest != index) {
+            swap(index, largest);
+            heapifyDown(largest);
+        }
+    }
+
     @Override
     public void add(T value) {
         if (size == array.length) {
@@ -90,20 +109,31 @@ public abstract class AbstractBinaryHeap<T extends Comparable<T>> implements Hea
     }
 
     @Override
-    public T search(T value) {
-        // TODO Auto-generated method stub
+    public T removeRoot() {
+        if (!isEmpty()) {
+            T root = array[0];
+            T lastElement = array[size - 1];
+            array[0] = lastElement;
+            array[size - 1] = null;
+            size--;
+            heapifyDown(0);
+            return root;
+        }
+
         return null;
     }
 
     @Override
-    public void remove(T value) {
-        // TODO Auto-generated method stub
-        
+    public T peek() {
+        if (!isEmpty()) {
+            return array[0];
+        }
+
+        return null;
     }
 
-    @Override
-    public void print() {
-        // TODO Auto-generated method stub
-        
+    private boolean isEmpty() {
+        return size == 0;
     }
+
 }

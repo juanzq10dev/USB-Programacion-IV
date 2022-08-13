@@ -1,12 +1,12 @@
 package Heaps;
 
-import static org.junit.Assert.assertArrayEquals;
-
 import java.util.Arrays;
 
-import org.junit.Test;
 
 import Person.Person;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MaxHeapTests {
     @Test
@@ -55,8 +55,7 @@ public class MaxHeapTests {
 
         assertArrayEquals(expected, result);
     }
-
-
+    
     @Test
     public void add_InsertingElementAtTheBeginning_arraySorted() {
         MaxHeap<Long> heap = new MaxHeap<Long>(new Long[] {1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L});
@@ -69,4 +68,42 @@ public class MaxHeapTests {
         assertArrayEquals(expected, result);
     }
 
+    @Test
+    public void removeRoot_removingRoot_RemovesRootAndReorderedHeap() {
+        MaxHeap<Long> heap = new MaxHeap<>(new Long[] {1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L});
+
+        long actualRoot = heap.removeRoot();
+        long expectedRoot = 10L;
+        Long[] resultArray = heap.getArray();
+        resultArray = Arrays.stream(resultArray).filter(x -> x != null).toArray(Long[]::new);
+        Long[] expectedArray = {9L, 7L, 8L, 3L, 6L, 5L, 4L, 1L, 2L};
+
+        assertArrayEquals(expectedArray, resultArray);
+        assertEquals(expectedRoot, actualRoot);
+    }
+
+    @Test
+    public void removeRoot_removingRootFromEmptyHeap_ReturnsNull() {
+        MaxHeap<Long> heap = new MaxHeap<>();
+        Long actualRoot = heap.removeRoot();
+        assertNull(actualRoot);
+    }
+
+    @Test
+    public void peek_peekingRootTwice_ReturnsRoot() {
+        MaxHeap<Long> heap = new MaxHeap<>(new Long[] {1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L});
+        long actualFirstPeek = heap.peek();
+        long actualSecondPeek = heap.peek();
+        long expectedFirstPeek = 10L;
+        long expectedSecondPeek = 10L;
+        assertEquals(actualFirstPeek, expectedFirstPeek);
+        assertEquals(actualSecondPeek, expectedSecondPeek);
+    }
+
+    @Test
+    public void peek_peekingRootFromEmptyHeap_ReturnsNull() {
+        MaxHeap<Long> heap = new MaxHeap<>();
+        Long actualRoot = heap.peek();
+        assertNull(actualRoot);
+    }
 }

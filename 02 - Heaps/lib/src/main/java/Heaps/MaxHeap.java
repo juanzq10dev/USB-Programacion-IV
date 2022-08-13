@@ -1,6 +1,6 @@
 package Heaps;
 
-public class MaxHeap<T extends Comparable<T>> extends AbstractBinaryHeap<T> {
+public class MaxHeap<T extends Comparable<T>> extends BinaryHeap<T> {
 
     public MaxHeap() {
         super();
@@ -12,6 +12,6 @@ public class MaxHeap<T extends Comparable<T>> extends AbstractBinaryHeap<T> {
 
     @Override
     public int compare(T o1, T o2) {
-        return o1.compareTo(o2) * -1;
+        return o2.compareTo(o1);
     } 
 }

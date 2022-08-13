@@ -1,19 +1,15 @@
 package Heaps;
 
 public interface Heap<T extends Comparable<T>> {
-    void add(T value); 
+    void add(T value);
 
-    T search(T value); 
+    T removeRoot();
 
-    void remove(T value);
-
-    void print(); 
+    T peek();
 
     void sort();
 
     void heapifyUp(int index);
 
-    void heapifyDown(int length, int i);
-
-    
+    void heapifyDown(int length, int i); 
 }

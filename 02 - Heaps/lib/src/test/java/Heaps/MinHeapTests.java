@@ -3,14 +3,15 @@
  */
 package Heaps;
 
-import org.junit.Test;
-
 import Person.Person;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Test;
 
 public class MinHeapTests {
     @Test
@@ -71,5 +72,53 @@ public class MinHeapTests {
         Long[] expected = {0L, 1L, 3L, 4L, 2L, 6L, 7L, 8L, 9L, 10L, 5L};
 
         assertArrayEquals(expected, result);
+    }
+
+    @Test
+    public void removeRoot_removingRoot_RemovesRootAndReorderTheArray() {
+        MinHeap<Long> heap = new MinHeap<>(new Long[] {1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L});
+
+        Long actualRoot = heap.removeRoot();
+        Long expectedRoot = 1L;
+        Long[] result = heap.getArray();
+        result = Arrays.stream(result).filter(x -> x != null).toArray(Long[]::new);
+        Long[] expected = {2L, 4L, 3L, 8L, 5L, 6L, 7L, 10L, 9L};
+
+        assertEquals(expectedRoot, actualRoot);
+        assertArrayEquals(expected, result);
+    }
+
+    @Test
+    public void removeRoot_removingRootFromEmptyHeap_ReturnsNull() {
+        MinHeap<Long> heap = new MinHeap<>(new Long[] {});
+
+        Long actualRoot = heap.removeRoot();
+        Long expectedRoot = null;
+
+        assertEquals(expectedRoot, actualRoot);
+    }
+
+    @Test
+    public void peek_peekingRoot_ReturnsRoot() {
+        MinHeap<Long> heap = new MinHeap<>(new Long[] {1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L});
+
+        Long actualRoot = heap.peek();
+        Long expectedRoot = 1L;
+        Long[] result = heap.getArray();
+        result = Arrays.stream(result).filter(x -> x != null).toArray(Long[]::new);
+        Long[] expected = {1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L};
+
+        assertEquals(expectedRoot, actualRoot);
+        assertArrayEquals(expected, result);
+    }
+
+    @Test
+    public void peek_peekingRootFromEmptyHeap_ReturnsNull() {
+        MinHeap<Long> heap = new MinHeap<>(new Long[] {});
+
+        Long actualRoot = heap.peek();
+        Long expectedRoot = null;
+
+        assertEquals(expectedRoot, actualRoot);
     }
 }
