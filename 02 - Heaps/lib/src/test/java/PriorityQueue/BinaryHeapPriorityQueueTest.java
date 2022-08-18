@@ -1,5 +1,6 @@
 package PriorityQueue;
 
+import Person.Person;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -70,5 +71,61 @@ class BinaryHeapPriorityQueueTest {
 
         assertEquals(expectedString, actualString);
         assertEquals(expectedHead, actualHead);
+    }
+
+    @Test
+    void queue_bankProve_PriorityListIsOrdered() {
+        BinaryHeapPriorityQueue<Person> bankList = new BinaryHeapPriorityQueue<Person>(true);
+        Person john = new Person("John", "1980-05-01", "1213");
+        Person jane = new Person("Jane", "1973-05-01", "1213");
+        Person jill = new Person("Jill", "1982-05-01", "1213");
+        Person jack = new Person("Jack", "1970-05-01", "1213");
+        Person jake = new Person("Jake", "1983-05-01", "1213");
+
+        bankList.enqueue(john);
+        bankList.enqueue(jane);
+        bankList.enqueue(jill);
+        bankList.enqueue(jack);
+        bankList.enqueue(jake);
+
+        Person expected1 = bankList.dequeue();
+        Person expected2 = bankList.dequeue();
+        Person expected3 = bankList.dequeue();
+        Person expected4 = bankList.dequeue();
+        Person expected5 = bankList.dequeue();
+
+        assertEquals(expected1, jack);
+        assertEquals(expected2, jane);
+        assertEquals(expected3, john);
+        assertEquals(expected4, jill);
+        assertEquals(expected5, jake);
+    }
+
+    @Test
+    void queue_BankProveWithCI_PriorityListIsOrdered() {
+        BinaryHeapPriorityQueue<Person> bankList = new BinaryHeapPriorityQueue<Person>(true);
+        Person john = new Person("John", "1980-05-01", "1213");
+        Person jane = new Person("Jane", "1980-05-01", "1214");
+        Person jill = new Person("Jill", "1980-05-01", "1212");
+        Person jack = new Person("Jack", "1980-05-01", "1215");
+        Person jake = new Person("Jake", "1980-05-01", "1211");
+
+        bankList.enqueue(john);
+        bankList.enqueue(jane);
+        bankList.enqueue(jill);
+        bankList.enqueue(jack);
+        bankList.enqueue(jake);
+
+        Person expected1 = bankList.dequeue();
+        Person expected2 = bankList.dequeue();
+        Person expected3 = bankList.dequeue();
+        Person expected4 = bankList.dequeue();
+        Person expected5 = bankList.dequeue();
+
+        assertEquals(expected1, jack);
+        assertEquals(expected2, jane);
+        assertEquals(expected3, john);
+        assertEquals(expected4, jill);
+        assertEquals(expected5, jake);
     }
 }

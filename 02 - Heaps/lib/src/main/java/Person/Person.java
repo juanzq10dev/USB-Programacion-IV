@@ -17,7 +17,7 @@ public class Person implements Comparable<Person> {
     @Override
     public int compareTo(Person o) {
         if (this.birthday.equals(o.birthday)) {
-            return this.CI.compareTo(o.CI);
+            return o.CI.compareTo(this.CI);
         } else {
             return this.birthday.compareTo(o.birthday);
         }
