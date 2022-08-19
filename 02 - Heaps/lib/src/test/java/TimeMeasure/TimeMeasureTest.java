@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 class TimeMeasureTest {
 
     @ParameterizedTest
-    @ValueSource(ints = {100000, 80000, 60000, 40000, 20000, 10000, 5000, 2000, 1000, 500})
+    @ValueSource(ints = {800000, 600000, 400000, 200000, 100000, 80000, 60000, 40000, 20000, 10000, 5000, 2000, 1000, 500})
     void measure_LinkedListPriorityQueue_Enqueue(int max) {
         PriorityQueue<Person> personList = new LinkedListPriorityQueue<Person>();
 
@@ -26,7 +26,7 @@ class TimeMeasureTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {100000, 80000, 60000, 40000, 20000, 10000, 5000, 2000, 1000, 500})
+    @ValueSource(ints = {10000000, 800000, 600000, 400000, 200000, 100000, 80000, 60000, 40000, 20000, 10000, 5000, 2000, 1000, 500})
     void measure_BinaryHeapPriorityQueue_Enqueue(int max) {
         PriorityQueue<Person> personList = new BinaryHeapPriorityQueue<Person>(true);
 
@@ -40,7 +40,7 @@ class TimeMeasureTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {100000, 80000, 60000, 40000, 20000, 10000, 5000, 2000, 1000, 500})
+    @ValueSource(ints = {800000, 600000, 400000, 200000, 100000, 80000, 60000, 40000, 20000, 10000, 5000, 2000, 1000, 500})
     void measure_LinkedListPriorityQueue_Dequeue(int max) {
         PriorityQueue<Person> personList = new LinkedListPriorityQueue<Person>();
         for (int i = 0; i < max; i++) {
@@ -57,7 +57,7 @@ class TimeMeasureTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {100000, 80000, 60000, 40000, 20000, 10000, 5000, 2000, 1000, 500})
+    @ValueSource(ints = {10000000, 800000, 600000, 400000, 200000, 100000, 80000, 60000, 40000, 20000, 10000, 5000, 2000, 1000, 500})
     void measure_BinaryHeapPriorityQueue_Dequeue(int max) {
         PriorityQueue<Person> personList = new BinaryHeapPriorityQueue<Person>(true);
         for (int i = 0; i < max; i++) {

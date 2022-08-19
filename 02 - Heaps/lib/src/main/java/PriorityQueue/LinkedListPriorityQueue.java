@@ -1,33 +1,29 @@
 package PriorityQueue;
 
-import LinkedList.Node;
-import LinkedList.SimpleLinkedList;
+import SkipList.SkipList;
 
 import java.util.Comparator;
 import java.util.Iterator;
 
 public class LinkedListPriorityQueue<T extends Comparable<T>> implements PriorityQueue<T> {
-    private SimpleLinkedList<T> list;
-    private Comparator<T> comparator;
+    private SkipList<T> list;
 
     public LinkedListPriorityQueue() {
-        this.list = new SimpleLinkedList<T>();
-        this.comparator = Comparator.naturalOrder();
+        this.list = new SkipList<T>();
     }
 
     public LinkedListPriorityQueue(Comparator<T> comparator) {
-        this();
-        this.comparator = comparator;
+        this.list = new SkipList<T>(comparator);
     }
 
     @Override
     public void enqueue(T value) {
-        list.add(value, this.comparator);
+        list.add(value);
     }
 
     @Override
     public T dequeue() {
-        return list.removeHead();
+       return list.removeHead();
     }
 
     @Override

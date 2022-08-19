@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 
-public class SimpleLinkedList<T> implements LinkedList<T> {
+public class SimpleLinkedList<T> implements LinkedList<T>{
     protected int size;
     protected Node<T> head; 
     protected Node<T> tail;

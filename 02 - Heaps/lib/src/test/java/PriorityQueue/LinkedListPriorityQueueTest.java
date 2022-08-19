@@ -97,6 +97,7 @@ class LinkedListPriorityQueueTest {
         String actualString = "";
         for (String s : fruitList) {
             actualString = s;
+            System.out.println(s);
         }
 
         String actualHead = fruitList.peek();
