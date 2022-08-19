@@ -1,6 +1,6 @@
 SKIP LIST 
 ===================
-Adding more than 100000 elements to Priority Queue lasts too much because 
+Adding more than 100000 elements to PriorityQueue lasts too much because 
 a simple LinkedList is not efficient to keep track of the order of the elements. 
 Searching for a better algorithm to easily search values on a LinkedList to order them I found the SkipList.
 
