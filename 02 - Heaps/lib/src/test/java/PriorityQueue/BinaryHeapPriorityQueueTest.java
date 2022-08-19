@@ -20,6 +20,37 @@ class BinaryHeapPriorityQueueTest {
     }
 
     @Test
+    void enqueueAndDequeue_EnqueueRepeatedElements_ElementsAreAdded() {
+        BinaryHeapPriorityQueue<String> fruitList = new BinaryHeapPriorityQueue<String>(true);
+        fruitList.enqueue("banana");
+        fruitList.enqueue("carrot");
+        fruitList.enqueue("apple");
+        fruitList.enqueue("potato");
+        fruitList.enqueue("banana");
+        fruitList.enqueue("carrot");
+
+        String actualFirstDequeued = fruitList.dequeue();
+        String actualSecondDequeued = fruitList.dequeue();
+        String actualThirdDequeued = fruitList.dequeue();
+        String actualFourthDequeued = fruitList.dequeue();
+        String actualFifthDequeued = fruitList.dequeue();
+        String actualSixthDequeued = fruitList.dequeue();
+        String expectedFirstDequeued = "apple";
+        String expectedSecondDequeued = "banana";
+        String expectedThirdDequeued = "banana";
+        String expectedFourthDequeued = "carrot";
+        String expectedFifthDequeued = "carrot";
+        String expectedSixthDequeued = "potato";
+
+        assertEquals(expectedFirstDequeued, actualFirstDequeued);
+        assertEquals(expectedSecondDequeued, actualSecondDequeued);
+        assertEquals(expectedThirdDequeued, actualThirdDequeued);
+        assertEquals(expectedFourthDequeued, actualFourthDequeued);
+        assertEquals(expectedFifthDequeued, actualFifthDequeued);
+        assertEquals(expectedSixthDequeued, actualSixthDequeued);
+    }
+
+    @Test
     void dequeue_DequeueTwoElements_ElementsAreDequeued() {
         BinaryHeapPriorityQueue<String> fruitList = new BinaryHeapPriorityQueue<String>(true);
         fruitList.enqueue("banana");

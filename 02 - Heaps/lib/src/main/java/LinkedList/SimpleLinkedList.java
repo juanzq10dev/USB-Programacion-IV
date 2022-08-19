@@ -161,7 +161,7 @@ public class SimpleLinkedList<T> implements LinkedList<T> {
         if (!isEmpty()) {
             Node<T> node = head;
 
-            if (comparator.compare(node.getElement(), value) > 0) {
+            if (comparator.compare(head.getElement(), value) > 0) {
                 return null;
             }
 
