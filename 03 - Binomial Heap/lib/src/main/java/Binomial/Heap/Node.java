@@ -12,7 +12,7 @@ public class Node<T> {
     public Node(T value) {
         this.value = value;
         this.degree = 0;
-        this.children = new Node[1];
+        this.children = new Node[0];
     }
 
     public void merge(Node<T> node) {
@@ -29,14 +29,13 @@ public class Node<T> {
     }
 
     public void resizeChildrenArray() {
-        this.children = Arrays.copyOf(this.children, this.children.length * 2);
+        this.children = Arrays.copyOf(this.children, this.children.length + 1);
     }
 
     public Node[] getChildren() {
         List<Node<T>> childrenList = Arrays.asList(this.children);
         Collections.reverse(childrenList);
-        Node[] childrenArray = Arrays.stream(childrenList.toArray()).filter(x -> x != null).toArray(Node[]::new);
-        return childrenArray;
+        return childrenList.toArray(new Node[childrenList.size()]);
     }
 
     public int getDegree() {

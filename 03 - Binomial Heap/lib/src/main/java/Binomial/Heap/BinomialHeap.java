@@ -13,6 +13,13 @@ public class BinomialHeap<T extends Comparable<T>>  {
         max = null;
     }
 
+    public BinomialHeap(T[] array) {
+        this();
+        for (T value : array) {
+            insert(value);
+        }
+    }
+
     public void insert(T value) {
         if (value != null) {
             Node<T> newNode = new Node<T>(value);
@@ -44,7 +51,7 @@ public class BinomialHeap<T extends Comparable<T>>  {
         addToMap(greaterNode);
     }
 
-    public void deleteMax() {
+    public T deleteMax() {
         if (max != null) {
             Node<T> deleted = nodes.remove(max.getDegree());
             Node<T>[] children = deleted.getChildren(); 
@@ -54,8 +61,10 @@ public class BinomialHeap<T extends Comparable<T>>  {
             }
 
             findNewMax();
+            return deleted.getValue(); 
         }
 
+        return null; 
     }
 
     private void findNewMax() {
@@ -78,6 +87,10 @@ public class BinomialHeap<T extends Comparable<T>>  {
     }
 
     public T getMax() {
-        return max.getValue();
+        if (max != null) {
+            return max.getValue();
+        }
+
+        return  null;
     }
 }
