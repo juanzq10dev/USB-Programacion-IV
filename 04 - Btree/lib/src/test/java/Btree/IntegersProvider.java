@@ -4,8 +4,8 @@ import java.util.stream.Stream;
 
 import org.junit.jupiter.params.provider.Arguments;
 
-public class ValuesProvider {
-    public static Stream<Arguments> insertIntegerElementsCheckingSize() {
+public class IntegersProvider {
+    public static Stream<Arguments> insertElementsCheckingSize() {
         return Stream.of(
             Arguments.of(new Integer[] {89, 60, 23, 43, 54, 65}, 3,  6),
             Arguments.of(new Integer[] {89, 89, 89, 89, 89}, 3, 1), 
@@ -19,7 +19,7 @@ public class ValuesProvider {
         ); 
     }
 
-    public static Stream<Arguments> insertIntegerElementsCheckingHeadValues() {
+    public static Stream<Arguments> insertElementsCheckingHeadValues() {
         return Stream.of(
             Arguments.of(new Integer[] {12, 45, 65, 23, 43}, 3, new Integer[] {23, 45}), 
             Arguments.of(new Integer[] {54, 23, 23, 1, 3}, 3, new Integer[] {23}), 
@@ -33,7 +33,7 @@ public class ValuesProvider {
         );
     }
 
-    public static Stream<Arguments> findExistingIntegerElements() {
+    public static Stream<Arguments> findExistingElements() {
         return Stream.of(
             Arguments.of(new Integer[] {12, 43, 54, 23, 1, 2}, 3, 12),
             Arguments.of(new Integer[] {12, 43, 32, 43, 2}, 3, 2),
@@ -47,7 +47,7 @@ public class ValuesProvider {
         ); 
     }
 
-    public static Stream<Arguments> findNonExistingIntegerElements() {
+    public static Stream<Arguments> findNonExistingElements() {
         return Stream.of(
             Arguments.of(new Integer[] {12, 43, 54, 23, 1, 2}, 3, 10),
             Arguments.of(new Integer[] {12, 43, 32, 43, 2}, 3, 1),
@@ -61,7 +61,7 @@ public class ValuesProvider {
         ); 
     }
 
-    public static Stream<Arguments> deleteIntegerValuesCheckHead() {
+    public static Stream<Arguments> deleteValuesCheckHead() {
         return Stream.of(
             Arguments.of(new Integer[] {53, 54, 2, 1, 45, 4}, 3, 53,  new Integer[] {2, 45}),
             Arguments.of(new Integer[] {54, 2, 345, 23, 53, 1}, 3, 1, new Integer[] {23, 54}),
@@ -72,6 +72,14 @@ public class ValuesProvider {
             Arguments.of(new Integer[] {55, 43, 23, 54, 32 , 5}, 5, 55, new Integer[] {32}),
             Arguments.of(new Integer[] {67, 54, 32, 2, 54, 2}, 5, 2, new Integer[] {32, 54, 67}),
             Arguments.of(new Integer[] {43, 65, 43, 23,  5, 4}, 5, 43, new Integer[] {4, 5, 23, 65})
+        ); 
+    }
+
+    public static Stream<Arguments> deleteNullElements() {
+        return Stream.of(
+            Arguments.of(new Integer[] {12, 43, 45, 23, 1, 3}, 3), 
+            Arguments.of(new Integer[] {43, 76, 34, 2, 12}, 4), 
+            Arguments.of(new Integer[] {54, 2, 1, 43, 2, 32}, 5)
         ); 
     }
 }
