@@ -1,5 +1,9 @@
 package Btree;
 
-public class Node {
+public class Node<T> {
+
+    public T[] getValues() {
+        return null;
+    }
     
 }
