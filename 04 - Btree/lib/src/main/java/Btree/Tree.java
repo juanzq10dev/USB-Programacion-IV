@@ -1,6 +1,6 @@
 package Btree;
 
-public interface Tree<T> {
+public interface Tree<T extends Comparable<T>> {
     void insert(T value);
 
     void insert(T[] values);

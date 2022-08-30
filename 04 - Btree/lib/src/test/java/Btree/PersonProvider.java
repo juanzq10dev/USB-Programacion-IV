@@ -11,24 +11,24 @@ public class PersonProvider {
         return Stream.of(
             Arguments.of(
                 new Person[] {
-                    new Person("Juan", "2020-5-6", "12345678"),
-                    new Person("Juan", "2012-7-1", "123231"),
-                    new Person("Juan", "2012-7-1", "65432")
+                    new Person("Juan", "2020-05-06", "12345678"),
+                    new Person("Juan", "2012-07-01", "123231"),
+                    new Person("Juan", "2012-07-01", "65432")
                 }, 3, 3
             ),
             Arguments.of(
                 new Person[] {
-                    new Person("Pedro", "2012-7-1", "123231"),
-                    new Person("Pedro", "2012-7-1", "123231"),
-                    new Person("Pedro", "2012-7-1", "123231"),
+                    new Person("Pedro", "2012-07-01", "123231"),
+                    new Person("Pedro", "2012-07-01", "123231"),
+                    new Person("Pedro", "2012-07-01", "123231"),
                 }, 4, 1
             ),
             Arguments.of(
                 new Person[] {
-                    new Person("Pedro", "2012-7-1", "123231"),
-                    new Person("Maria", "2010-7-10", "12343"),
-                    new Person("Pedro", "2012-7-1", "123231"),
-                    new Person("Roberto", "2011-4-11", "12332"),
+                    new Person("Pedro", "2012-07-01", "123231"),
+                    new Person("Maria", "2010-07-10", "12343"),
+                    new Person("Pedro", "2012-07-01", "123231"),
+                    new Person("Roberto", "2011-04-11", "12332"),
                 }, 5, 3
             )
         );
@@ -38,39 +38,39 @@ public class PersonProvider {
         return Stream.of(
             Arguments.of(
                 new Person[] {
-                    new Person("Juan", "2020-5-12", "12345678"),
-                    new Person("Juan", "2020-5-5", "12345678"),
-                    new Person("Juan", "2020-5-13", "12345678"),
-                    new Person("Juan", "2020-5-24", "12345678"),
-                    new Person("Juan", "2020-5-30", "12345678")
+                    new Person("Juan", "2020-05-12", "12345678"),
+                    new Person("Juan", "2020-05-05", "12345678"),
+                    new Person("Juan", "2020-05-13", "12345678"),
+                    new Person("Juan", "2020-05-24", "12345678"),
+                    new Person("Juan", "2020-05-30", "12345678")
                 }, 3, 
                 new Person[] {
-                    new Person("Juan", "2020-5-12", "12345678"),
-                    new Person("Juan", "2020-5-24", "12345678")
+                    new Person("Juan", "2020-05-12", "12345678"),
+                    new Person("Juan", "2020-05-24", "12345678")
                 }
             ),
             Arguments.of(
                 new Person[] {
-                    new Person("Juan", "2020-5-10", "12345678"),
-                    new Person("Juan", "2021-5-10", "12345678"),
-                    new Person("Juan", "2019-5-10", "12345678"),
-                    new Person("Juan", "2012-5-10", "12345678"),
-                    new Person("Juan", "2023-5-10", "12345678")
+                    new Person("Juan", "2020-05-10", "12345678"),
+                    new Person("Juan", "2021-05-10", "12345678"),
+                    new Person("Juan", "2019-05-10", "12345678"),
+                    new Person("Juan", "2012-05-10", "12345678"),
+                    new Person("Juan", "2023-05-10", "12345678")
                 }, 4, 
                 new Person[] {
-                    new Person("Juan", "2020-5-10", "12345678")
+                    new Person("Juan", "2020-05-10", "12345678")
                 }
             ),
             Arguments.of(
                 new Person[] {
-                    new Person("Juan", "2020-5-10", "12345678"),
-                    new Person("Juan", "2020-5-10", "12345679"),
-                    new Person("Juan", "2020-5-10", "12345680"),
-                    new Person("Juan", "2020-5-10", "12345682"),
-                    new Person("Juan", "2020-5-10", "12345612")
+                    new Person("Juan", "2020-05-10", "12345678"),
+                    new Person("Juan", "2020-05-10", "12345679"),
+                    new Person("Juan", "2020-05-10", "12345680"),
+                    new Person("Juan", "2020-05-10", "12345682"),
+                    new Person("Juan", "2020-05-10", "12345612")
                 }, 5, 
                 new Person[] {
-                    new Person("Juan", "2020-5-10", "12345679")
+                    new Person("Juan", "2020-05-10", "12345679")
                 }
             ) 
         );
@@ -80,10 +80,10 @@ public class PersonProvider {
         return Stream.of(
             Arguments.of(
                 new Person[] {
-                    new Person("Juan", "2021-5-10", "12345678"),
+                    new Person("Juan", "2021-05-10", "12345678"),
                     new Person("Pedro", "2012-12-12", "123439"),
                     new Person("John", "2018-11-05", "123431")
-                }, 3, new Person("Juan", "2021-5-10", "12345678")
+                }, 3, new Person("Juan", "2021-05-10", "12345678")
             ),
             Arguments.of(
                 new Person[] {
@@ -106,7 +106,7 @@ public class PersonProvider {
         return Stream.of(
             Arguments.of(
                 new Person[] {
-                    new Person("Juan", "2021-5-10", "12345678"),
+                    new Person("Juan", "2021-05-10", "12345678"),
                     new Person("Pedro", "2012-12-12", "123439"),
                     new Person("John", "2018-11-05", "123431")
                 }, 3, new Person("Maria", "2012-12-12", "123439")
@@ -191,7 +191,7 @@ public class PersonProvider {
             Arguments.of(
                 new Person[] {
                     new Person("Pedri", "2019-04-12", "123433"), 
-                    new Person("Juan", "2021-5-10", "12345678"),
+                    new Person("Juan", "2021-05-10", "12345678"),
                     new Person("Maria", "2012-04-11", "120411"),
                 }, 5
             )

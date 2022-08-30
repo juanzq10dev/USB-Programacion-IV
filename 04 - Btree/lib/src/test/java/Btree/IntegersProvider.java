@@ -12,7 +12,7 @@ public class IntegersProvider {
             Arguments.of(new Integer[] {21, 32, null, null, 12, 3}, 3, 4),
             Arguments.of(new Integer[] {12, 54, 645, 43, 23}, 4, 5),
             Arguments.of(new Integer[] {12, 12, 12, 12, 12}, 4, 1),
-            Arguments.of(new Integer[] {null, 1, 23, 54, 23}, 4, 4),
+            Arguments.of(new Integer[] {null, 1, 23, 54, 23}, 4, 3),
             Arguments.of(new Integer[] {12, 115, 65, 67, 43}, 5, 5), 
             Arguments.of(new Integer[] {12, 12, 12, 12, 12}, 5, 1), 
             Arguments.of(new Integer[] {null, 12, 4, null, 54}, 5, 3)
