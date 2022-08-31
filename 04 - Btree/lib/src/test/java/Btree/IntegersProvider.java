@@ -28,7 +28,7 @@ public class IntegersProvider {
             Arguments.of(new Integer[] {54, 23, 23, 1, 3}, 4, new Integer[] {23}),
             Arguments.of(new Integer[] {23, 21, 32, 4, null, 12}, 4, new Integer[] {23}),
             Arguments.of(new Integer[] {12, 45, 65, 23, 43}, 5, new Integer[] {43}), 
-            Arguments.of(new Integer[] {54, 23, 23, 1, 3}, 5, new Integer[] {21}), 
+            Arguments.of(new Integer[] {54, 23, 23, 1, 3}, 5, new Integer[] {1, 3, 23, 54}), 
             Arguments.of(new Integer[] {23, 21, 32, 4, null, 12}, 5, new Integer[] {21})
         );
     }

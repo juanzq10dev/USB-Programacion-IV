@@ -144,4 +144,8 @@ public class Node<T extends Comparable<T>> {
     public Node<T> getParent() {
         return parent;
     }
+
+    public T[] getKey() {
+        return (T[]) Arrays.stream(key).filter(s -> (s != null)).toArray(Comparable[]::new); 
+    }
 }

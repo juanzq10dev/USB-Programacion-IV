@@ -97,8 +97,7 @@ public class Btree<T extends Comparable<T>> implements Tree<T> {
 
     @Override
     public T[] getHeadValues() {
-        // TODO Auto-generated method stub
-        return null;
+        return root.getKey();
     }
 
 }
