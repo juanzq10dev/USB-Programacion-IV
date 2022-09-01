@@ -20,17 +20,17 @@ public class Btree<T extends Comparable<T>> implements Tree<T> {
 
     private void insert(T value, Node<T> node) {
         if (!node.isLeaf()) {
-            int childIndex = node.getChildIndex(value);
-            if (childIndex != -1) {
-                Node<T> child = node.getChild(childIndex); 
-                if (child == null) {
-                    child = new Node<T>(range);
-                }
-                node.setChild(childIndex, child);
-                insert(value, child);
+            Node<T> child = node.getChildInRangeOf(value);
+            
+            if (child == null) {
+                child = new Node<T>(range);
+                node.setChildInRangeOf(value, child);
             }
+
+            insert(value, child);
         } else {
             int ixdexInserted = node.insert(value);
+
             if (ixdexInserted != -1) {
                 if (node.needsSplit()) {
                     split(node);
@@ -38,7 +38,6 @@ public class Btree<T extends Comparable<T>> implements Tree<T> {
                 size++;
             }
         }
-
     }
 
     private void split(Node<T> node) {
@@ -51,7 +50,7 @@ public class Btree<T extends Comparable<T>> implements Tree<T> {
             parent = node.getParent();
         }
 
-        parent.insert(node.midKey(), node.leftSide(), node.rigthSide());
+        parent.insertSplittedNode(node.midKey(), node.leftSide(), node.rigthSide());
         parent.setLeaf(false);
 
         if (parent.needsSplit()) {
@@ -99,5 +98,4 @@ public class Btree<T extends Comparable<T>> implements Tree<T> {
     public T[] getHeadValues() {
         return root.getKey();
     }
-
 }

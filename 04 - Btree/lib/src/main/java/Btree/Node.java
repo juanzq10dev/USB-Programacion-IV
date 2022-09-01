@@ -35,12 +35,14 @@ public class Node<T extends Comparable<T>> {
         return -1; 
     }
 
-    public void insert(T midValue, Node<T> leftSide, Node<T> rightSide) {
+    public void insertSplittedNode(T midValue, Node<T> leftSide, Node<T> rightSide) {
         int indexInserted = insert(midValue); 
+
         for (int i = size - 2; i >= indexInserted; i--) {
             child[i + 1] = child[i];
             child[i] = null;  
         }
+
         for (int i = size - 2; i >= indexInserted; i--) {
             child[i + 1] = child[i];
             child[i] = null;  
@@ -52,21 +54,31 @@ public class Node<T extends Comparable<T>> {
 
     public Node<T> leftSide() {
         int mid = (0 + rank) / 2;
-        Node<T> leftSide = new Node<T>(rank); 
+        return split(0, mid);
+    }
 
-        for (int i = 0; i < mid; i++) {
-            leftSide.insert(key[i]); 
+    public Node<T> rigthSide() {
+        int mid = (0 + rank) / 2;
+        return split(mid + 1, rank);
+    }
+
+    private Node<T> split(int from, int to) {
+        Node<T> side = new Node<T>(rank); 
+
+        for (int i = from; i < to; i++) {
+            side.insert(key[i]); 
         }
 
-        leftSide.leaf = this.leaf;
+        side.leaf = this.leaf;
 
-        if (leftSide.leaf) {
-            for (int i = 0; i <= mid; i++) {
-                leftSide.setChild(i, child[i]);
+        if (side.leaf) {
+            int counter = 0;
+            for (int i = from; i <= to; i++) {
+                side.setChild(counter, child[i]);
             }
         }
 
-        return leftSide; 
+        return side; 
     }
 
     public void setChild(int childIndex, Node<T> child) {
@@ -76,31 +88,20 @@ public class Node<T extends Comparable<T>> {
         }
     }
 
-    public Node<T> rigthSide() {
-        int mid = (0 + rank) / 2;
-        Node<T> rigthSide = new Node<T>(rank); 
-
-        for (int i = mid + 1; i < key.length; i++) {
-            rigthSide.insert(key[i]); 
-        }
-
-        rigthSide.leaf = this.leaf;
-
-        if (rigthSide.leaf) {
-            int counter = 0;
-            for (int i = mid + 1; i < child.length; i++) {
-                rigthSide.setChild(counter, child[i]);
-            }
-        }
-        return rigthSide; 
-    }
-
     public T midKey() {
         int mid = (0 + rank) / 2;
         return key[mid];
     }
 
-    public int getChildIndex(T value) {
+    public Node<T> getChildInRangeOf(T value) {
+        return child[getIndexOfChildInRangeOf(value)];
+    }
+
+    public void setChildInRangeOf(T value, Node<T> child) {
+        this.child[getIndexOfChildInRangeOf(value)] = child;
+    }
+ 
+    public int getIndexOfChildInRangeOf(T value) {
         int i = 0; 
         for (i = 0; i < size; i++) {
             if (key[i].compareTo(value) == 0) {
