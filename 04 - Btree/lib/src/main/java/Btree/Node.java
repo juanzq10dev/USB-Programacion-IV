@@ -127,6 +127,10 @@ public class Node<T extends Comparable<T>> {
         return parent;
     }
 
+    public T getKey(int index) {
+        return key[index];
+    }
+
     public T[] getKey() {
         return (T[]) Arrays.stream(key).filter(s -> (s != null)).toArray(Comparable[]::new); 
     }

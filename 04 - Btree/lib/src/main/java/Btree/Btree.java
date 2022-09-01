@@ -22,9 +22,9 @@ public class Btree<T extends Comparable<T>> implements Tree<T> {
         if (!node.isLeaf()) {
             int index = node.binarySearch(value);
             if (index < 0) {
-                index = index * -1 - 1; 
+                index = index * -1 - 1;
                 Node<T> child = node.getChild(index);
-                
+
                 if (child == null) {
                     child = new Node<T>(range);
                     node.setChild(index, child);
@@ -71,12 +71,20 @@ public class Btree<T extends Comparable<T>> implements Tree<T> {
 
     @Override
     public T find(T value) {
-        // TODO Auto-generated method stub
-        return null;
+        return find(this.root, value);
     }
 
-    public T find(Node<T> node) {
-        return null;
+    public T find(Node<T> node, T value) {
+        int index = node.binarySearch(value);
+        if (index < 0) {
+            Node<T> child = node.getChild(index * -1 - 1);
+            if (child != null) {
+                return find(child, value);
+            }
+            return null;
+        } else {
+            return node.getKey(index);
+        }
     }
 
     @Override
