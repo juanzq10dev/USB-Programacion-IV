@@ -38,7 +38,7 @@ public class Node<T extends Comparable<T>> {
     public void insertSplittedNode(T midValue, Node<T> leftSide, Node<T> rightSide) {
         int indexInserted = insert(midValue); 
 
-        for (int i = size - 2; i >= indexInserted; i--) {
+        for (int i = size - 1; i >= indexInserted; i--) {
             child[i + 1] = child[i];
             child[i] = null;  
         }

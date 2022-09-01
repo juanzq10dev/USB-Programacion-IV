@@ -48,7 +48,7 @@ public class Btree<T extends Comparable<T>> implements Tree<T> {
         Node<T> parent;
 
         if (node == root) {
-            parent = new Node<>(range);
+            parent = new Node<T>(range);
             root = parent;
         } else {
             parent = node.getParent();
