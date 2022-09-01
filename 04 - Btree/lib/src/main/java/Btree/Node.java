@@ -93,27 +93,8 @@ public class Node<T extends Comparable<T>> {
         return key[mid];
     }
 
-    public Node<T> getChildInRangeOf(T value) {
-        return child[getIndexOfChildInRangeOf(value)];
-    }
-
-    public void setChildInRangeOf(T value, Node<T> child) {
-        this.child[getIndexOfChildInRangeOf(value)] = child;
-    }
- 
-    public int getIndexOfChildInRangeOf(T value) {
-        int i = 0; 
-        for (i = 0; i < size; i++) {
-            if (key[i].compareTo(value) == 0) {
-                return -1;
-            }
-
-            if (key[i].compareTo(value) > 0) {
-                return i; 
-            }
-        }
-
-        return size; 
+    public int binarySearch(T value) {
+        return Arrays.binarySearch(this.key, 0, size,  value); 
     }
 
     public boolean contains(T value) {

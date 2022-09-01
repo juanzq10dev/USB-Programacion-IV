@@ -20,14 +20,18 @@ public class Btree<T extends Comparable<T>> implements Tree<T> {
 
     private void insert(T value, Node<T> node) {
         if (!node.isLeaf()) {
-            Node<T> child = node.getChildInRangeOf(value);
-            
-            if (child == null) {
-                child = new Node<T>(range);
-                node.setChildInRangeOf(value, child);
-            }
+            int index = node.binarySearch(value);
+            if (index < 0) {
+                index = index * -1 - 1; 
+                Node<T> child = node.getChild(index);
+                
+                if (child == null) {
+                    child = new Node<T>(range);
+                    node.setChild(index, child);
+                }
 
-            insert(value, child);
+                insert(value, child);
+            }
         } else {
             int ixdexInserted = node.insert(value);
 
@@ -68,6 +72,10 @@ public class Btree<T extends Comparable<T>> implements Tree<T> {
     @Override
     public T find(T value) {
         // TODO Auto-generated method stub
+        return null;
+    }
+
+    public T find(Node<T> node) {
         return null;
     }
 
