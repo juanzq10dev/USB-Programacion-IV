@@ -89,8 +89,58 @@ public class Btree<T extends Comparable<T>> implements Tree<T> {
 
     @Override
     public T delete(T value) {
-        // TODO Auto-generated method stub
+        Node<T> nodeWithValue = findNode(this.root, value);
+        int indexOfValue = nodeWithValue.binarySearch(value);
+
+        if (nodeWithValue.isLeaf()) {
+            nodeWithValue.removeKey(indexOfValue);
+        } else {
+            Node<T> nodeWithSuccessor = nodeWithValue.inorderSuccessorNode(value);
+            T inorderSuccessor = nodeWithValue.pushFirstKey();
+            nodeWithSuccessor.replaceKey(indexOfValue, inorderSuccessor);
+        }
         return null;
+    }
+
+    private void refactor(Node<T> node) {
+        if (node == root || node.hasExactlyMinKeys() || node.hasMoreThanMinKeys()) {
+            return;
+        }
+
+        // 2nd case steal brother key
+        Node<T> leftBrother = node.getLeftBrother();
+        Node<T> rightBrother = node.getRightBrother();
+
+        if (leftBrother.hasMoreThanMinKeys()) {
+            int indexInParent = node.getIndexInParent();
+            T parentKey = node.getParent().getKey(indexInParent);
+            T leftBrotherKey = leftBrother.removeLast();
+            node.insert(parentKey);
+            node.getParent().setKey(indexInParent, leftBrotherKey);
+        } else if (rightBrother.hasMoreThanMinKeys()) {
+            int indexInParent = node.getIndexInParent() - 1;
+            T parentKey = node.getParent().getKey(indexInParent);
+            T rightBrotherKey = rightBrother.pushFirstKey();
+            node.insert(parentKey);
+            node.getParent().setKey(indexInParent, rightBrotherKey);
+        }
+
+        // 3rd case merge brother
+    }
+
+
+
+    public Node<T> findNode(Node<T> node, T value) {
+        int index = node.binarySearch(value);
+        if (index < 0) {
+            Node<T> child = node.getChild(index * -1 - 1);
+            if (child != null) {
+                return findNode(child, value);
+            }
+            return null;
+        } else {
+            return node;
+        }
     }
 
     @Override

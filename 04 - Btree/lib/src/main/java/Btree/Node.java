@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 
 public class Node<T extends Comparable<T>> {
+    private final int MIN_KEYS;
     private int size;
     private T[] key;
     private LinkedList<Node<T>> child;
@@ -11,6 +12,7 @@ public class Node<T extends Comparable<T>> {
     private int rank;
     private Node<T> parent;
     private int maxChilds;
+    private int indexInParent;
 
     public Node(int rank) {
         this.size = 0;
@@ -20,6 +22,8 @@ public class Node<T extends Comparable<T>> {
         this.leaf = true;
         this.rank = rank;
         this.parent = null;
+        this.MIN_KEYS = rank / 2;
+        this.indexInParent = -1;
     }
 
     public int insert(T value) {
@@ -34,7 +38,6 @@ public class Node<T extends Comparable<T>> {
             size++;
             return j;
         }
-
         return -1;
     }
 
@@ -83,6 +86,7 @@ public class Node<T extends Comparable<T>> {
         this.child.add(childIndex, child);
         if (child != null) {
             child.parent = this;
+            child.indexInParent = childIndex;
         }
     }
 
@@ -118,7 +122,7 @@ public class Node<T extends Comparable<T>> {
         this.leaf = leaf;
     }
 
-    public Node<T> inorderSuccesor(T value) {
+    public Node<T> inorderSuccessorNode(T value) {
         int index = binarySearch(value);
 
         if (index >= 0) {
@@ -128,10 +132,30 @@ public class Node<T extends Comparable<T>> {
                 child = child.getChild(0);
             }
 
-            return child; 
+            return child;
         }
 
         return null;
+    }
+
+    public T removeKey(int index) {
+        T value = key[index];
+        key[index] = null;
+
+        for (int i = index; i < key.length - 1; i++) {
+            swap(key, i, i + 1);
+        }
+
+        size--;
+        return value;
+    }
+
+    public T pushFirstKey() {
+        return removeKey(0);
+    }
+
+    public T removeLast() {
+        return removeKey(size - 1);
     }
 
     private void swap(T[] array, int i, int j) {
@@ -144,8 +168,46 @@ public class Node<T extends Comparable<T>> {
         return parent;
     }
 
+    public void setKey(int index, T value) {
+        key[index] = value;
+    }
     public T getKey(int index) {
         return key[index];
+    }
+
+    public void replaceKey(int index, T value) {
+        if (index < size) {
+            key[index] = value;
+            Arrays.sort(key, 0, size);
+        }
+
+        throw new IndexOutOfBoundsException("Index " + index + " for size " + size);
+    }
+
+    public Node<T> getLeftBrother() {
+        if (this.indexInParent > 0) {
+            return parent.getChild(this.indexInParent - 1);
+        }
+        return null;
+    }
+
+    public Node<T> getRightBrother() {
+        if (this.indexInParent < parent.size - 1) {
+            return parent.getChild(this.indexInParent + 1);
+        }
+        return null;
+    }
+
+    public boolean hasMoreThanMinKeys() {
+        return size > MIN_KEYS;
+    }
+
+    public boolean hasExactlyMinKeys() {
+        return size == MIN_KEYS;
+    }
+
+    public int getIndexInParent() {
+        return indexInParent;
     }
 
     public T[] getKey() {
