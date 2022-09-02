@@ -1,19 +1,22 @@
 package Btree;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 
 public class Node<T extends Comparable<T>> {
-    private int size; 
+    private int size;
     private T[] key;
-    private Node<T>[] child; 
-    private boolean leaf; 
+    private LinkedList<Node<T>> child;
+    private boolean leaf;
     private int rank;
-    private Node<T> parent; 
+    private Node<T> parent;
+    private int maxChilds;
 
     public Node(int rank) {
-        this.size = 0; 
+        this.size = 0;
         this.key = (T[]) new Comparable[rank];
-        this.child = new Node[rank + 1];
+        this.maxChilds = rank + 1;
+        this.child = new LinkedList<Node<T>>();
         this.leaf = true;
         this.rank = rank;
         this.parent = null;
@@ -23,30 +26,20 @@ public class Node<T extends Comparable<T>> {
         if (!contains(value)) {
             key[size] = value;
             int j = size;
-    
+
             while (j > 0 && key[j].compareTo(key[j - 1]) < 0) {
                 swap(key, j, j - 1);
                 j--;
             }
-            size++; 
+            size++;
             return j;
         }
 
-        return -1; 
+        return -1;
     }
 
     public void insertSplittedNode(T midValue, Node<T> leftSide, Node<T> rightSide) {
-        int indexInserted = insert(midValue); 
-
-        for (int i = size - 1; i >= indexInserted; i--) {
-            child[i + 1] = child[i];
-            child[i] = null;  
-        }
-
-        for (int i = size - 2; i >= indexInserted; i--) {
-            child[i + 1] = child[i];
-            child[i] = null;  
-        }
+        int indexInserted = insert(midValue);
 
         setChild(indexInserted, leftSide);
         setChild(indexInserted + 1, rightSide);
@@ -63,10 +56,10 @@ public class Node<T extends Comparable<T>> {
     }
 
     private Node<T> split(int from, int to) {
-        Node<T> side = new Node<T>(rank); 
+        Node<T> side = new Node<T>(rank);
 
         for (int i = from; i < to; i++) {
-            side.insert(key[i]); 
+            side.insert(key[i]);
         }
 
         side.leaf = this.leaf;
@@ -74,15 +67,20 @@ public class Node<T extends Comparable<T>> {
         if (side.leaf) {
             int counter = 0;
             for (int i = from; i <= to; i++) {
-                side.setChild(counter, child[i]);
+                if (i < child.size()) {
+                    side.setChild(counter, child.get(i));
+                    counter++;
+                } else {
+                    break;
+                }
             }
         }
 
-        return side; 
+        return side;
     }
 
     public void setChild(int childIndex, Node<T> child) {
-        this.child[childIndex] = child;
+        this.child.add(childIndex, child);
         if (child != null) {
             child.parent = this;
         }
@@ -94,19 +92,22 @@ public class Node<T extends Comparable<T>> {
     }
 
     public int binarySearch(T value) {
-        return Arrays.binarySearch(this.key, 0, size,  value); 
+        return Arrays.binarySearch(this.key, 0, size, value);
     }
 
     public boolean contains(T value) {
-        return Arrays.binarySearch(this.key, 0, size,  value) >= 0;
+        return Arrays.binarySearch(this.key, 0, size, value) >= 0;
     }
 
     public boolean needsSplit() {
-        return size == rank; 
+        return size == rank;
     }
 
     public Node<T> getChild(int index) {
-        return child[index];
+        if (index < child.size()) {
+            return child.get(index);
+        }
+        return null;
     }
 
     public boolean isLeaf() {
@@ -115,6 +116,22 @@ public class Node<T extends Comparable<T>> {
 
     public void setLeaf(boolean leaf) {
         this.leaf = leaf;
+    }
+
+    public Node<T> inorderSuccesor(T value) {
+        int index = binarySearch(value);
+
+        if (index >= 0) {
+            Node<T> child = this.getChild(index + 1);
+
+            while (child != null && !child.isLeaf()) {
+                child = child.getChild(0);
+            }
+
+            return child; 
+        }
+
+        return null;
     }
 
     private void swap(T[] array, int i, int j) {
@@ -132,6 +149,6 @@ public class Node<T extends Comparable<T>> {
     }
 
     public T[] getKey() {
-        return (T[]) Arrays.stream(key).filter(s -> (s != null)).toArray(Comparable[]::new); 
+        return (T[]) Arrays.stream(key).filter(s -> (s != null)).toArray(Comparable[]::new);
     }
 }
