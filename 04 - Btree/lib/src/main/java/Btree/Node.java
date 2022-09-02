@@ -41,9 +41,18 @@ public class Node<T extends Comparable<T>> {
         return -1;
     }
 
+    public void insertAll(T[] keys) {
+        for (T key : keys) {
+            insert(key);
+        }
+    }
+
     public void insertSplittedNode(T midValue, Node<T> leftSide, Node<T> rightSide) {
         int indexInserted = insert(midValue);
 
+        if (indexInserted < this.child.size()) {
+            removeChild(indexInserted);
+        }
         setChild(indexInserted, leftSide);
         setChild(indexInserted + 1, rightSide);
     }
@@ -158,6 +167,10 @@ public class Node<T extends Comparable<T>> {
         return removeKey(size - 1);
     }
 
+    public void removeChild(int index) {
+        this.child.remove(index);
+    }
+
     private void swap(T[] array, int i, int j) {
         T temp = array[i];
         array[i] = array[j];
@@ -175,10 +188,12 @@ public class Node<T extends Comparable<T>> {
         return key[index];
     }
 
-    public void replaceKey(int index, T value) {
+    public T replaceKey(int index, T value) {
         if (index < size) {
+            T deleted = key[index];
             key[index] = value;
             Arrays.sort(key, 0, size);
+            return deleted;
         }
 
         throw new IndexOutOfBoundsException("Index " + index + " for size " + size);
@@ -208,6 +223,10 @@ public class Node<T extends Comparable<T>> {
 
     public int getIndexInParent() {
         return indexInParent;
+    }
+
+    public int getSize() {
+        return size;
     }
 
     public T[] getKey() {

@@ -89,16 +89,27 @@ public class Btree<T extends Comparable<T>> implements Tree<T> {
 
     @Override
     public T delete(T value) {
-        Node<T> nodeWithValue = findNode(this.root, value);
-        int indexOfValue = nodeWithValue.binarySearch(value);
-
-        if (nodeWithValue.isLeaf()) {
-            nodeWithValue.removeKey(indexOfValue);
-        } else {
-            Node<T> nodeWithSuccessor = nodeWithValue.inorderSuccessorNode(value);
-            T inorderSuccessor = nodeWithValue.pushFirstKey();
-            nodeWithSuccessor.replaceKey(indexOfValue, inorderSuccessor);
+        if (value == null) {
+            return null;
         }
+
+        Node<T> nodeWithValue = findNode(this.root, value);
+        if (nodeWithValue != null) {
+            int indexOfValue = nodeWithValue.binarySearch(value);
+
+            if (nodeWithValue.isLeaf()) {
+                T removed = nodeWithValue.removeKey(indexOfValue);
+                refactor(nodeWithValue);
+                return removed;
+            } else {
+                Node<T> nodeWithSuccessor = nodeWithValue.inorderSuccessorNode(value);
+                T inorderSuccessor = nodeWithSuccessor.pushFirstKey();
+                T removed = nodeWithValue.replaceKey(indexOfValue, inorderSuccessor);
+                refactor(nodeWithSuccessor);
+                return removed;
+            }
+        }
+
         return null;
     }
 
@@ -110,25 +121,47 @@ public class Btree<T extends Comparable<T>> implements Tree<T> {
         // 2nd case steal brother key
         Node<T> leftBrother = node.getLeftBrother();
         Node<T> rightBrother = node.getRightBrother();
+        Node<T> parent = node.getParent();
 
-        if (leftBrother.hasMoreThanMinKeys()) {
+        if (leftBrother != null && leftBrother.hasMoreThanMinKeys()) {
             int indexInParent = node.getIndexInParent();
-            T parentKey = node.getParent().getKey(indexInParent);
+            T parentKey = parent.getKey(indexInParent);
             T leftBrotherKey = leftBrother.removeLast();
             node.insert(parentKey);
-            node.getParent().setKey(indexInParent, leftBrotherKey);
-        } else if (rightBrother.hasMoreThanMinKeys()) {
+            parent.setKey(indexInParent, leftBrotherKey);
+            refactor(parent);
+            return;
+        } else if (rightBrother != null && rightBrother.hasMoreThanMinKeys()) {
             int indexInParent = node.getIndexInParent() - 1;
-            T parentKey = node.getParent().getKey(indexInParent);
+            T parentKey = parent.getKey(indexInParent);
             T rightBrotherKey = rightBrother.pushFirstKey();
             node.insert(parentKey);
-            node.getParent().setKey(indexInParent, rightBrotherKey);
+            parent.setKey(indexInParent, rightBrotherKey);
+            refactor(parent);
+            return;
         }
 
         // 3rd case merge brother
+        if (leftBrother != null) {
+            T parentKey = node.removeKey(node.getIndexInParent() - 1);
+            leftBrother.insert(parentKey);
+            leftBrother.insertAll(node.getKey());
+            parent.removeChild(node.getIndexInParent());
+            if (parent == root && parent.getSize() == 0) {
+                root = leftBrother;
+            }
+            refactor(parent);
+        } else if (rightBrother != null) {
+            T parentKey = node.removeKey(node.getIndexInParent());
+            node.insert(parentKey);
+            node.insertAll(rightBrother.getKey());
+            parent.removeChild(rightBrother.getIndexInParent());
+            if (parent == root && parent.getSize() == 0) {
+                root = node;
+            }
+            refactor(parent);
+        }
     }
-
-
 
     public Node<T> findNode(Node<T> node, T value) {
         int index = node.binarySearch(value);
