@@ -12,7 +12,6 @@ public class Node<T extends Comparable<T>> {
     private int rank;
     private Node<T> parent;
     private int maxChilds;
-    private int indexInParent;
 
     public Node(int rank) {
         this.size = 0;
@@ -22,8 +21,7 @@ public class Node<T extends Comparable<T>> {
         this.leaf = true;
         this.rank = rank;
         this.parent = null;
-        this.MIN_KEYS = rank / 2;
-        this.indexInParent = -1;
+        this.MIN_KEYS = rank % 2 == 0 ? rank / 2 - 1 : rank / 2;
     }
 
     public int insert(T value) {
@@ -95,7 +93,6 @@ public class Node<T extends Comparable<T>> {
         this.child.add(childIndex, child);
         if (child != null) {
             child.parent = this;
-            child.indexInParent = childIndex;
         }
     }
 
@@ -200,15 +197,15 @@ public class Node<T extends Comparable<T>> {
     }
 
     public Node<T> getLeftBrother() {
-        if (this.indexInParent > 0) {
-            return parent.getChild(this.indexInParent - 1);
+        if (this.parent.child.indexOf(this) > 0) {
+            return parent.getChild(this.parent.child.indexOf(this) - 1);
         }
         return null;
     }
 
     public Node<T> getRightBrother() {
-        if (this.indexInParent < parent.size - 1) {
-            return parent.getChild(this.indexInParent + 1);
+        if (this.parent.child.indexOf(this) < parent.size) {
+            return parent.getChild(this.parent.child.indexOf(this) + 1);
         }
         return null;
     }
@@ -221,12 +218,12 @@ public class Node<T extends Comparable<T>> {
         return size == MIN_KEYS;
     }
 
-    public int getIndexInParent() {
-        return indexInParent;
-    }
-
     public int getSize() {
         return size;
+    }
+
+    public LinkedList<Node<T>> getChild() {
+        return child;
     }
 
     public T[] getKey() {

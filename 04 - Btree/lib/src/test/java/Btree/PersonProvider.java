@@ -109,7 +109,7 @@ public class PersonProvider {
                     new Person("Juan", "2021-05-10", "12345678"),
                     new Person("Pedro", "2012-12-12", "123439"),
                     new Person("John", "2018-11-05", "123431")
-                }, 3, new Person("Maria", "2012-12-12", "123439")
+                }, 3, new Person("Maria", "2012-12-13", "123439")
             ),
             Arguments.of(
                 new Person[] {

@@ -114,17 +114,18 @@ public class Btree<T extends Comparable<T>> implements Tree<T> {
     }
 
     private void refactor(Node<T> node) {
-        if (node == root || node.hasExactlyMinKeys() || node.hasMoreThanMinKeys()) {
+        if (node.getParent() == null || node.hasExactlyMinKeys() || node.hasMoreThanMinKeys()) {
             return;
         }
 
         // 2nd case steal brother key
+        Node<T> parent = node.getParent();
+        int indexInParent = parent.getChild().indexOf(node);
         Node<T> leftBrother = node.getLeftBrother();
         Node<T> rightBrother = node.getRightBrother();
-        Node<T> parent = node.getParent();
 
         if (leftBrother != null && leftBrother.hasMoreThanMinKeys()) {
-            int indexInParent = node.getIndexInParent();
+            indexInParent -= 1;
             T parentKey = parent.getKey(indexInParent);
             T leftBrotherKey = leftBrother.removeLast();
             node.insert(parentKey);
@@ -132,7 +133,6 @@ public class Btree<T extends Comparable<T>> implements Tree<T> {
             refactor(parent);
             return;
         } else if (rightBrother != null && rightBrother.hasMoreThanMinKeys()) {
-            int indexInParent = node.getIndexInParent() - 1;
             T parentKey = parent.getKey(indexInParent);
             T rightBrotherKey = rightBrother.pushFirstKey();
             node.insert(parentKey);
@@ -143,19 +143,19 @@ public class Btree<T extends Comparable<T>> implements Tree<T> {
 
         // 3rd case merge brother
         if (leftBrother != null) {
-            T parentKey = node.removeKey(node.getIndexInParent() - 1);
+            T parentKey = parent.removeKey(indexInParent - 1);
             leftBrother.insert(parentKey);
             leftBrother.insertAll(node.getKey());
-            parent.removeChild(node.getIndexInParent());
+            parent.removeChild(indexInParent);
             if (parent == root && parent.getSize() == 0) {
                 root = leftBrother;
             }
             refactor(parent);
         } else if (rightBrother != null) {
-            T parentKey = node.removeKey(node.getIndexInParent());
+            T parentKey = parent.removeKey(indexInParent);
             node.insert(parentKey);
             node.insertAll(rightBrother.getKey());
-            parent.removeChild(rightBrother.getIndexInParent());
+            parent.removeChild(indexInParent);
             if (parent == root && parent.getSize() == 0) {
                 root = node;
             }
