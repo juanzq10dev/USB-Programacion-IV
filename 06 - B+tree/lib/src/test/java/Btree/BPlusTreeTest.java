@@ -33,7 +33,7 @@ public class BPlusTreeTest<T extends Comparable<T>>{
     }
     
     @ParameterizedTest
-    @MethodSource({"Btree.IntegerProvider#searchNonExistingElements"})
+    @MethodSource({"Btree.IntegerProvider#searchAllElements"})
     void search_searchAllExistingElements_True(T[] values, int range) {
         BTree<T> tree = new BPlusTree<>(range); 
 
@@ -45,7 +45,7 @@ public class BPlusTreeTest<T extends Comparable<T>>{
 
     @ParameterizedTest
     @MethodSource({"Btree.IntegerProvider#searchNonExistingElements"})
-    void search_searchNonExistingElements_False(T[] values, int range, T toSearch) {
+    void search_searchNonExistingElements(T[] values, int range, T toSearch) {
         BTree<T> tree = new BPlusTree<>(range); 
 
         tree.insertAll(values);

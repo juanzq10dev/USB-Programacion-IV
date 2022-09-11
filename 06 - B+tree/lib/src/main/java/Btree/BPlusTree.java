@@ -71,15 +71,33 @@ public class BPlusTree<T extends Comparable<T>> implements BTree<T> {
     }
 
     @Override
-    public boolean search(T node) {
-        // TODO Auto-generated method stub
+    public boolean search(T value) {
+        if (value != null) {
+            return find(this.root, value);
+        }
+
         return false;
     }
 
+    public boolean find(Node<T> node, T value) {
+        int index = node.binarySearch(value);
+        if (!node.isLeaf()) {
+            Node<T> child = index < 0 ? node.getChild(index * -1 - 1) : node.getChild(index + 1);
+            return find(child, value);
+        } else {
+            return node.contains(value);
+        }
+    }
+
     @Override
-    public boolean searchAll(T[] nodes) {
-        // TODO Auto-generated method stub
-        return false;
+    public boolean searchAll(T[] values) {
+        for (T value : values) {
+            if (!search(value)) {
+                return false;
+            }
+        }
+        
+        return true;
     }
 
     @Override
