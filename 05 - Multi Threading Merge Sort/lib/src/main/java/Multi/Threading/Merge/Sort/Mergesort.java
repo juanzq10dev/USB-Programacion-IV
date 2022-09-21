@@ -9,7 +9,7 @@ public class Mergesort {
         sort(array, 0, array.length - 1);
     }
 
-    private static<T extends Comparable<T>> void sort(T array[], int leftIndex, int rightIndex) {
+    public static<T extends Comparable<T>> void sort(T array[], int leftIndex, int rightIndex) {
         if (leftIndex < rightIndex) {
             int midIndex = leftIndex + (rightIndex - leftIndex) / 2;
             sort(array, leftIndex, midIndex);
@@ -18,7 +18,7 @@ public class Mergesort {
         }
     }
 
-    private static<T extends Comparable<T>> void merge(T array[], int leftIndex, int midIndex, int rightIndex) {
+    static<T extends Comparable<T>> void merge(T array[], int leftIndex, int midIndex, int rightIndex) {
         int length1 = midIndex - leftIndex + 1; 
         int length2 = rightIndex - midIndex; 
 
