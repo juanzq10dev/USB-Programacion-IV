@@ -74,7 +74,7 @@ public class Node<T extends Comparable<T>> {
 
         side.leaf = this.leaf;
 
-        if (side.leaf) {
+        if (!side.leaf) {
             int counter = 0;
             for (int i = from; i <= to; i++) {
                 if (i < child.size()) {
